@@ -1,6 +1,7 @@
 @extends('publik.layouts.main')
 
 @section('section')
+
 	<!-- HOT DEAL SECTION -->
 	<div id="hot-deal2" class="section">
 		<!-- container -->
@@ -49,7 +50,7 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
-										@for($i = 1; $i <= 10; $i++)
+                                        @foreach($products2 as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
@@ -59,16 +60,18 @@
 												</div>
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-												<h4 class="product-price">Rp. {{ number_format(mt_rand(2000,5000),0, ',', '.') }}</h4>
-												<p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
+												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+												<p class="text-truncate">{{ $product->description }}</p>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                <a href="/product/{{ $product->slug }}">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                </a>
 											</div>
 										</div>
 										<!-- /product -->
-										@endfor
+                                        @endforeach
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>

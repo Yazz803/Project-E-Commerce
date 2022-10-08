@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id');
-            $table->foreignId('user_id');
-            $table->dateTime('tgl_pembelian');
-            $table->string('total_biaya');
-            $table->integer('total_item');
-            $table->enum('status', ['Belum dibayar', 'Sudah dibayar', 'Diproses', 'Done']);
+            $table->string('name');
+            $table->string('slug');
+            $table->string('price');
+            $table->integer('stock');
+            $table->text('description');
+            $table->text('detail');
+            $table->string('category');
+            $table->string('seller_name');
+            $table->string('seller_num');
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('products');
     }
 };
