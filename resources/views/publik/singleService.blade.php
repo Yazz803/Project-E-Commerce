@@ -62,7 +62,7 @@
 							<p class="text-truncate" style="text-align: left">{{ $service->description }}</p>
 
 							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button class="add-to-cart-btn"><i class="fa fa-whatsapp fa-lg"></i> Let's talk</button>
 							</div>
 							
 							<ul class="product-links">

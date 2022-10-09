@@ -201,6 +201,7 @@
                             </div>
 						@endforeach
                     </div>
+					{{ $drinks->links() }}
                 </div>
                 <!-- /Products tab & slick -->
             </div>

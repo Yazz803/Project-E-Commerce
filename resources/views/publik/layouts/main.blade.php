@@ -26,6 +26,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="/assets/css/style.css"/>
+		<link rel="stylesheet" href="/assets/css/login.css">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,7 +86,7 @@
 
                                 {{-- Account --}}
                                 <div>
-									<a href="#">
+									<a href="#" data-toggle="modal" data-target="#largeModal">
 										<i class="fa fa-user-o"></i>
 										<span>My Account</span>
 									</a>
@@ -139,6 +140,40 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
+
+		{{-- LOGIN --}}
+		
+		<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="main">  	
+						<button type="button" class="close tombol-close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+						<input type="checkbox" id="chk" aria-hidden="true">
+				
+							<div class="signup">
+								<form class="login-form">
+									<label for="chk" aria-hidden="true">Sign up</label>
+									<input type="text" name="txt" placeholder="User name" required="">
+									<input type="email" name="email" placeholder="Email" required="">
+									<input type="password" name="pswd" placeholder="Password" required="">
+									<button>Sign up</button>
+								</form>
+							</div>
+				
+							<div class="login">
+								<form class="login-form">
+									<label for="chk" aria-hidden="true">Login</label>
+									<input type="email" name="email" placeholder="Email" required="">
+									<input type="password" name="pswd" placeholder="Password" required="">
+									<button>Login</button>
+								</form>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  
+		{{-- /LOGIN --}}
 
         {{-- SECTION --}}
         @yield('section')
@@ -240,5 +275,6 @@
 		<script src="/assets/js/nouislider.min.js"></script>
 		<script src="/assets/js/jquery.zoom.min.js"></script>
 		<script src="/assets/js/main.js"></script>
+		<script src="/assets/js/login.js"></script>
 	</body>
 </html>

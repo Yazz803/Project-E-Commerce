@@ -193,7 +193,7 @@
                                         <p class="text-truncate">{{ $design->description }}</p>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/product/{{ $design->slug }}">
+                                        <a href="/service/{{ $design->slug }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>
