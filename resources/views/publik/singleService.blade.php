@@ -1,6 +1,7 @@
 @extends('publik.layouts.main')
 
 @section('section')
+    
     <!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -54,35 +55,24 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">{{ $product->name }}</h2>
+							<h2 class="product-name">{{ $service->name }}</h2>
 							<div>
-								<h3 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h3>
-								<span class="product-available">Stock : {{ $product->stock }}</span>
+								<h3 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h3>
 							</div>
-							<p class="text-truncate" style="text-align: left">{{ $product->description }}</p>
+							<p class="text-truncate" style="text-align: left">{{ $service->description }}</p>
 
 							<div class="add-to-cart">
-								<div class="qty-label">
-									Qty
-									<div class="input-number">
-										<form action="">
-											<input type="number" value="1" max="{{ $product->stock }}">
-										</form>
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
-									</div>
-								</div>
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 							</div>
 							
 							<ul class="product-links">
 								<li>Category:</li>
-								<li><a href="#">{{ $product->category }}</a></li>
+								<li><a href="#">{{ $service->category }}</a></li>
 							</ul>
 
 							<ul class="product-links">
 								<li>Penjual:</li>
-								<li><a href="#">{{ $product->seller_name }}</a></li>
+								<li><a href="#">{{ $service->seller_name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -94,7 +84,7 @@
 
 							<ul class="product-links">
 								<li>Nomor Seller:</li>
-								<li><a href="#">{{ $product->seller_num }}</a></li>
+								<li><a href="#">{{ $service->seller_num }}</a></li>
 							</ul>
 
 						</div>
@@ -117,7 +107,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p>{{ $product->description }}</p>
+											<p>{{ $service->description }}</p>
 										</div>
 									</div>
 								</div>
@@ -127,7 +117,7 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>{{ $product->detail }}</p>
+											<p>{{ $service->detail }}</p>
 										</div>
 									</div>
 								</div>
@@ -194,7 +184,7 @@
 							@foreach($drinks as $drink)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/products.png" alt="">
+									<img src="/assets/img/bannerMinuman.jpg" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>

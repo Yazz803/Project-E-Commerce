@@ -110,7 +110,7 @@
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/3.jpg" alt="" style="object-fit: cover;">
+                                        <img src="/assets/img/makanan.jpg" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="#">{{ $food->name }}</a></h3>
@@ -185,7 +185,7 @@
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/3.jpg" alt="" style="object-fit: cover;">
+                                        <img src="/assets/img/bannerMinuman.jpg" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="#">{{ $drink->name }}</a></h3>

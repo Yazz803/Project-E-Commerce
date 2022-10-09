@@ -839,6 +839,34 @@ textarea.input {
   background-repeat: no-repeat;
 }
 
+#hot-deal4.section {
+  padding: 60px 0px;
+  margin: 30px 0px;
+  background-color: #E4E7ED;
+  background-image: 
+  linear-gradient(
+    rgba(44, 44, 44, 0.322),
+    rgba(51, 51, 51, 0.349)
+  )
+  ,url('../img/pplg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#hot-deal5.section {
+  padding: 60px 0px;
+  margin: 30px 0px;
+  background-color: #E4E7ED;
+  background-image: 
+  linear-gradient(
+    rgba(44, 44, 44, 0.322),
+    rgba(51, 51, 51, 0.349)
+  )
+  ,url('../img/animeduduk.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .hot-deal {
   text-align: center;
 }

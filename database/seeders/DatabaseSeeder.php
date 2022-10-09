@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(9)->create();
+        // Product::factory(9)->create();
+        
+        Service::factory()->create([
+            'name' => 'Web Developer',
+            'slug' => 'web-developer',
+            'price' => '150000',
+            'description' => fake()->sentence(40),
+            'detail' => fake()->sentence(70),
+            'seller_name' => 'Muhammad Yazid Akbar',
+            'seller_num' => '+62 812-9021-5655',
+            'category' => 'progtech',
+            'tag' => 'pplg'
+        ]);
+        Service::factory()->create([
+            'name' => 'Pemasangan Wi-Fi',
+            'slug' => 'pemasangan-wi-fi',
+            'price' => '100000',
+            'description' => fake()->sentence(40),
+            'detail' => fake()->sentence(70),
+            'seller_name' => 'Obed Syarif Musaffa',
+            'seller_num' => '+62 812-0909-2012',
+            'category' => 'progtech',
+            'tag' => 'tkjt'
+        ]);
+        Service::factory()->create([
+            'name' => 'Design Logo',
+            'slug' => 'design-logo',
+            'price' => '100000',
+            'description' => fake()->sentence(40),
+            'detail' => fake()->sentence(70),
+            'seller_name' => 'Muhammad Mulki Hafiz',
+            'seller_num' => '+62 812-2901-2001',
+            'category' => 'design',
+            'tag' => 'dkv'
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -24,6 +25,15 @@ class PagesController extends Controller
             'categories' => ['BDP', 'MPLB', 'PPLG', 'TKJT', 'KLN'],
             'products' => ['Bolsu', 'Batagor', 'Susu Murni Nasional', 'Sushi', 'Mie Ayam'],
             'services' => ['Front-End Dev', 'Back-End Dev', 'Fullstack Dev', 'Komputer Jaringan Telekomunikasi', 'Design Grafis', 'UI/UX Website']
+        ]);
+    }
+
+    public function services()
+    {
+        return view('publik.services',[
+            'services' => Service::orderBy('id', 'desc')->take(8)->get(),
+            'progtechs' => Service::where('category','progtech')->orderBy('id','desc')->paginate(8),
+            'designs' => Service::where('category','design')->orderBy('id','desc')->paginate(8),
         ]);
     }
 

@@ -122,8 +122,12 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;">Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;">Products</a></li>
-						<li class="{{ Request::is('service') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;">Services</a></li>
+						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;">Services</a></li>
 						@if(Request::is('product/*'))
+						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
+						@endif
+						@if(Request::is('service/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
 						@endif

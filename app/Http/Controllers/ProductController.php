@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Service;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -19,7 +20,7 @@ class ProductController extends Controller
             'product' => $product,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
-            'products' => Product::inRandomOrder()->take(5)->get(),
+            'services' => Service::inRandomOrder()->take(5)->get(),
         ]);
     }
 
