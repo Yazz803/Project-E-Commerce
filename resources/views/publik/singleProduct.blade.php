@@ -59,13 +59,15 @@
 								<h3 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h3>
 								<span class="product-available">Stock : {{ $product->stock }}</span>
 							</div>
-							<p class="text-truncate">{{ $product->description }}</p>
+							<p class="text-truncate" style="text-align: left">{{ $product->description }}</p>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
 									Qty
 									<div class="input-number">
-										<input type="number" value="1">
+										<form action="">
+											<input type="number" value="1" max="{{ $product->stock }}">
+										</form>
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
@@ -75,7 +77,7 @@
 							
 							<ul class="product-links">
 								<li>Category:</li>
-								<li><a href="#">Foods</a></li>
+								<li><a href="#">{{ $product->category }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -130,96 +132,6 @@
 									</div>
 								</div>
 								<!-- /tab2  -->
-
-								<!-- tab3  -->
-								<div id="tab3" class="tab-pane fade in">
-									<div class="row">
-										<!-- Rating -->
-										<div class="col-md-3">
-											<div id="rating">
-												<div class="rating-avg">
-													<span>4.5</span>
-													<div class="rating-stars">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-												</div>
-												<ul class="rating">
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-														<div class="rating-progress">
-															<div style="width: 80%;"></div>
-														</div>
-														<span class="sum">3</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div style="width: 60%;"></div>
-														</div>
-														<span class="sum">2</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-												</ul>
-											</div>
-										</div>
-										<!-- /Rating -->
-									</div>
-								</div>
-								<!-- /tab3  -->
 							</div>
 							<!-- /product tab content  -->
 						</div>
@@ -231,4 +143,104 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+
+		
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container" style="border-top: 2px solid #8D99AE;">
+            <!-- row -->
+            <div class="row" style="margin-top: 50px">
+                <div class="col-md-4 col-xs-6">
+                    <div class="section-title">
+                        <h4 class="title">Foods</h4>
+                        <div class="section-nav">
+                            <div id="slick-nav-3" class="products-slick-nav"></div>
+                        </div>
+                    </div>
+
+                    <div class="products-widget-slick" data-nav="#slick-nav-3">
+                        <div>
+							<!-- product widget -->
+							@foreach($foods as $food)
+                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
+                                <div class="product-img">
+									<img src="/assets/img/products.png" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
+                                    <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $food->description }}</p>
+                                </div>
+                            </div>
+							@endforeach
+                            <!-- /product widget -->
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-4 col-xs-6">
+                    <div class="section-title">
+                        <h4 class="title">Drinks</h4>
+                        <div class="section-nav">
+                            <div id="slick-nav-4" class="products-slick-nav"></div>
+                        </div>
+                    </div>
+
+                    <div class="products-widget-slick" data-nav="#slick-nav-3">
+                        <div>
+							<!-- product widget -->
+							@foreach($drinks as $drink)
+                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
+                                <div class="product-img">
+									<img src="/assets/img/products.png" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
+                                    <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $drink->description }}</p>
+                                </div>
+                            </div>
+							@endforeach
+                            <!-- /product widget -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-xs-6">
+                    <div class="section-title">
+                        <h4 class="title">Services</h4>
+                        <div class="section-nav">
+                            <div id="slick-nav-5" class="products-slick-nav"></div>
+                        </div>
+                    </div>
+
+                    <div class="products-widget-slick" data-nav="#slick-nav-3">
+                        <div>
+							<!-- product widget -->
+							@foreach($products as $product)
+                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
+                                <div class="product-img">
+									<img src="/assets/img/products.png" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+                                    <h4 class="product-price">Rp. {{ number_format($product->price,0,',','.') }}</h4>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $product->description }}</p>
+                                </div>
+                            </div>
+							@endforeach
+                            <!-- /product widget -->
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+
 @endsection

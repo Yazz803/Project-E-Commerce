@@ -10,16 +10,17 @@ class PagesController extends Controller
     public function index()
     {
         return view('publik.landingpage',[
-            'categories' => ['BDP', 'MPLB', 'PPLG', 'TKJT', 'KLN'],
-            'products' => ['Bolsu', 'Batagor', 'Susu Murni Nasional', 'Sushi', 'Mie Ayam'],
-            'services' => ['Front-End Dev', 'Back-End Dev', 'Fullstack Dev', 'Komputer Jaringan Telekomunikasi', 'Design Grafis', 'UI/UX Website']
+            'newest' => Product::orderBy('id','desc')->take(8)->get(),
+            'products' => Product::inRandomOrder()->get(),
         ]);
     }
 
     public function products(Product $product)
     {
         return view('publik.products', [
-            'products2' => Product::orderBy('id', 'desc')->take(5)->get(),
+            'products2' => Product::orderBy('id', 'desc')->take(8)->get(),
+            'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8),
+            'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8),
             'categories' => ['BDP', 'MPLB', 'PPLG', 'TKJT', 'KLN'],
             'products' => ['Bolsu', 'Batagor', 'Susu Murni Nasional', 'Sushi', 'Mie Ayam'],
             'services' => ['Front-End Dev', 'Back-End Dev', 'Fullstack Dev', 'Komputer Jaringan Telekomunikasi', 'Design Grafis', 'UI/UX Website']

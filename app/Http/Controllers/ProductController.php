@@ -17,6 +17,9 @@ class ProductController extends Controller
     {
         return view('publik.singleProduct', [
             'product' => $product,
+            'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
+            'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            'products' => Product::inRandomOrder()->take(5)->get(),
         ]);
     }
 

@@ -27,7 +27,7 @@
 							</li>
 						</ul>
 						<h2 class="text-uppercase" style="color: white;">Selamat datang di Wikrama's shop</h2>
-						<a class="primary-btn cta-btn" href="#">Shop now</a>
+						<a class="primary-btn cta-btn" href="#new-product">Shop now</a>
 					</div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 	<!-- /HOT DEAL SECTION -->
 	
     <!-- SECTION -->
-		<div class="section">
+		<div class="section" id="new-product">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -47,7 +47,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">New Products</h3>
+							<h3 class="title"><i class="fa fa-circle" style="color: red"></i> New Products</h3>
 						</div>
 					</div>
 					<!-- /section title -->
@@ -59,7 +59,7 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
-										@for($i = 1; $i <= 10; $i++)
+										@foreach($newest as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
@@ -69,16 +69,18 @@
 												</div>
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-												<h4 class="product-price">Rp. {{ number_format(mt_rand(2000,5000),0, ',', '.') }}</h4>
-												<p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
+												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+												<p class="text-truncate">{{ $product->description }}</p>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                <a href="/product/{{ $product->slug }}">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                </a>
 											</div>
 										</div>
 										<!-- /product -->
-										@endfor
+                                        @endforeach
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -109,7 +111,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Products<br>Collection</h3>
-                            <a href="#" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="/products" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Services<br>Collection</h3>
-                            <a href="#" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="/services" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +149,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">Products</h3>
+							<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Products</h3>
 						</div>
 					</div>
 					<!-- /section title -->
@@ -159,23 +161,25 @@
 								<!-- tab -->
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
-										@for($i = 1; $i <= 10; $i++)
+										@foreach($products as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
 												<img src="/assets/img/products.png" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-												<h4 class="product-price">Rp. {{ number_format(mt_rand(2000,5000),0, ',', '.') }}</h4>
-												<p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
+												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+												<p class="text-truncate">{{ $product->description }}</p>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                <a href="/product/{{ $product->slug }}">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                </a>
 											</div>
 										</div>
 										<!-- /product -->
-										@endfor
+                                        @endforeach
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -201,7 +205,7 @@
 				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h3 class="title">Services</h3>
+						<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Services</h3>
 					</div>
 				</div>
 				<!-- /section title -->
@@ -213,22 +217,25 @@
 							<!-- tab -->
 							<div id="tab" class="tab-pane fade in active">
 								<div class="products-slick" data-nav="#slick-nav-6">
-									@for($i = 1; $i <= 10; $i++)
+									@foreach($products as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/website.jpg" alt="" style="object-fit: cover;">
+												<img src="/assets/img/services.jpg" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $services[mt_rand(0, count($products)-1)] }}</a></h3>
-												<p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
+												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+												<p class="text-truncate">{{ $product->description }}</p>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                <a href="/product/{{ $product->slug }}">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                                </a>
 											</div>
 										</div>
 										<!-- /product -->
-										@endfor
+                                        @endforeach
 								</div>
 								<div id="slick-nav-6" class="products-slick-nav"></div>
 							</div>

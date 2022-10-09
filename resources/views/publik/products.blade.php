@@ -18,7 +18,7 @@
 							</li>
 						</ul>
 						<h2 class="text-uppercase" style="color: white;">Nikmati Sesukamu!</h2>
-						<a class="primary-btn cta-btn" href="#">Shop now</a>
+						<a class="primary-btn cta-btn" href="#new-product">Shop now</a>
 					</div>
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 	<!-- /HOT DEAL SECTION -->
 	
     <!-- SECTION -->
-		<div class="section">
+		<div class="section" id="new-product">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -106,24 +106,27 @@
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
                         <div class="cards">
-                            @for($k=1;$k<=8;$k++)
+                            @foreach($foods as $food)
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="/assets/img/3.jpg" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-                                        <h4 class="product-price">Rp. {{ number_format(mt_rand(2000,5000),0, ',', '.') }}</h4>
-                                        <p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
+                                        <h3 class="product-name"><a href="#">{{ $food->name }}</a></h3>
+                                        <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
+                                        <p class="text-truncate">{{ $food->description }}</p>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                        <a href="/product/{{ $food->slug }}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            @endfor
+                            @endforeach
                         </div>
+						{{ $foods->links() }}
 					</div>
 					<!-- /Products tab & slick -->
 				</div>
@@ -178,23 +181,25 @@
                 <!-- Products tab & slick -->
                 <div class="col-md-12">
                     <div class="cards">
-                        @for($k=1;$k<=8;$k++)
-                        <div class="card">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="/assets/img/products.png" alt="" style="object-fit: cover;">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format(mt_rand(2000,5000),0, ',', '.') }}</h4>
-                                    <p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae ratione omnis saepe similique, molestiae perferendis enim numquam nobis alias dignissimos beatae eaque deleniti rem ad fugit unde totam quo.</p>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                        @foreach($drinks as $drink)
+                            <div class="card">
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="/assets/img/3.jpg" alt="" style="object-fit: cover;">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">{{ $drink->name }}</a></h3>
+                                        <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
+                                        <p class="text-truncate">{{ $drink->description }}</p>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <a href="/product/{{ $drink->slug }}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        @endfor
+						@endforeach
                     </div>
                 </div>
                 <!-- /Products tab & slick -->
@@ -204,107 +209,5 @@
         <!-- /container -->
     </div>
     <!-- /SECTION -->
-    
-{{-- 
-    <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Foods</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-3" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        @for($i=1;$i<=9/3;$i++)
-                        <div>
-                            @for($j=1;$j<=3;$j++)
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="/assets/img/products.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format(mt_rand(2000,10000),0,',','.') }}</h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            @endfor
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-                
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Drinks</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-4" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-4">
-                        @for($i=1;$i<=9/3;$i++)
-                        <div>
-                            @for($j=1;$j<=3;$j++)
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="/assets/img/products.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format(mt_rand(2000,10000),0,',','.') }}</h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            @endfor
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Services</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-5" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-5">
-                        @for($i=1;$i<=9/3;$i++)
-                        <div>
-                            @for($j=1;$j<=3;$j++)
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="/assets/img/products.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">{{ $products[mt_rand(0, count($products)-1)] }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format(mt_rand(2000,10000),0,',','.') }}</h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            @endfor
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-                
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /SECTION --> --}}
 
 @endsection

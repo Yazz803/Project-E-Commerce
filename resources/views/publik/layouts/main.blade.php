@@ -120,9 +120,13 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
-						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products">Products</a></li>
-						<li class="{{ Request::is('service') ? 'active' : '' }}"><a href="/">Services</a></li>
+						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;">Home</a></li>
+						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;">Products</a></li>
+						<li class="{{ Request::is('service') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;">Services</a></li>
+						@if(Request::is('product/*'))
+						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
+						@endif
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -232,6 +236,5 @@
 		<script src="/assets/js/nouislider.min.js"></script>
 		<script src="/assets/js/jquery.zoom.min.js"></script>
 		<script src="/assets/js/main.js"></script>
-
 	</body>
 </html>
