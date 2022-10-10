@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -17,14 +18,16 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
         if(Auth::attempt($credentials, $request->get('remember'))){
             $request->session()->regenerate();       
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
+
+        Alert::warning('Login Gagal!', 'Silahkan masukan email dan password yang benar');
 
         return back();
     }

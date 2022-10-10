@@ -49,6 +49,7 @@ class ServiceController extends Controller
     public function show(Service $service)
     {
         return view('publik.singleService',[
+            'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'service' => $service,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),

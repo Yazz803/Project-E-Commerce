@@ -555,7 +555,7 @@ textarea.input {
 
 .cart-dropdown {
   position: absolute;
-  width: 300px;
+  width: 200px;
   background: #FFF;
   padding: 15px;
   -webkit-box-shadow: 0px 0px 0px 2px #E4E7ED;
@@ -573,8 +573,10 @@ textarea.input {
 
 .cart-dropdown .cart-list {
   max-height: 180px;
-  overflow-y: scroll;
-  margin-bottom: 15px;
+  /* overflow-y: scroll; */
+  /* margin-bottom: 15px; */
+  border-bottom: 1px solid #E4E7ED;
+  padding: 10px 5px;
 }
 
 .cart-dropdown .cart-list .product-widget {
@@ -678,9 +680,9 @@ textarea.input {
 
 @media only screen and (max-width: 991px) {
   .header-ctn .menu-toggle {
-    display: inline-block;
+    display: none;
   }
-  #responsive-nav {
+  /* #responsive-nav {
     position: fixed;
     left: 0;
     top: 0;
@@ -696,27 +698,27 @@ textarea.input {
     transform: translateX(-100%);
     -webkit-transition: 0.2s all;
     transition: 0.2s all;
-  }
-  #responsive-nav.active {
+  } */
+  /* #responsive-nav.active {
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
     transform: translateX(0%);
     width: 100%;
-  }
+  } */
   .main-nav {
     margin: 0px;
-    float: none;
+    float: left;
   }
   .main-nav>li {
     display: block;
-    float: none;
+    float: left;
   }
   .main-nav>li+li {
     margin-left: 0px;
   }
   .main-nav>li>a {
-    padding: 15px;
-    color: #FFF;
+    padding: 15px 5px;
+    color: rgb(0, 0, 0);
   }
 }
 

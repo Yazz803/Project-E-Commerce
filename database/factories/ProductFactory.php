@@ -16,17 +16,18 @@ class ProductFactory extends Factory
      */
     // private $category = ['foods', 'drinks'];
     private $Products = ['Bolsu', 'Mie Ayam', 'Corndog', 'Sandwich', 'Bread', 'Cookies', 'Onde-Onde', 'Donut', 'Seblak'];
+    private $category = ['foods', 'drinks'];
     public function definition()
     {
         return [
             'name' => $this->Products[mt_rand(0,count($this->Products)-1)],
             'slug' => str_replace(' ', '-', strtolower($this->Products[mt_rand(0,count($this->Products)-1)])),
-            'price' => $this->faker->numerify('#####'),
+            'price' => $this->faker->numerify('######'),
             'stock' => mt_rand(1,100),
-            'description' => $this->faker->sentence(10),
-            'detail' => $this->faker->sentence(20),
+            'description' => $this->faker->sentence(60),
+            'detail' => $this->faker->sentence(80),
             // 'category' => $this->category[mt_rand(1,count($this->category)-1)],
-            'category' => 'foods',
+            'category' => $this->category[mt_rand(0,1)],
             'seller_name' => $this->faker->name(),
             'seller_num' => $this->faker->phoneNumber()
         ];

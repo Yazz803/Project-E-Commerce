@@ -217,19 +217,19 @@
 							<!-- tab -->
 							<div id="tab" class="tab-pane fade in active">
 								<div class="products-slick" data-nav="#slick-nav-6">
-									@foreach($products as $product)
+									@foreach($services as $service)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/services.jpg" alt="" style="object-fit: cover;">
+												<img src="/assets/img/pplg.jpg" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
-												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-												<p class="text-truncate">{{ $product->description }}</p>
+												<h3 class="product-name"><a href="#">{{ $service->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h4>
+												<p class="text-truncate">{{ $service->description }}</p>
 											</div>
 											<div class="add-to-cart">
-                                                <a href="/product/{{ $product->slug }}">
+                                                <a href="/service/{{ $service->slug }}">
                                                     <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                                 </a>
 											</div>

@@ -11,7 +11,7 @@
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/assets/img/pplg.jpg" alt="">
 							</div>
 
 							<div class="product-preview">
@@ -72,7 +72,9 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<a href="#" data-toggle="modal" data-target="#largeModal">
+									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								</a>
 							</div>
 							
 							<ul class="product-links">

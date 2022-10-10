@@ -11,14 +11,17 @@ class PagesController extends Controller
     public function index()
     {
         return view('publik.landingpage',[
+            'title' => 'Landing Page',
             'newest' => Product::orderBy('id','desc')->take(8)->get(),
             'products' => Product::inRandomOrder()->get(),
+            'services' => Service::inRandomOrder()->get()
         ]);
     }
 
     public function products(Product $product)
     {
         return view('publik.products', [
+            'title' => 'Products',
             'products2' => Product::orderBy('id', 'desc')->take(8)->get(),
             'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8),
             'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8),
@@ -31,6 +34,7 @@ class PagesController extends Controller
     public function services()
     {
         return view('publik.services',[
+            'title' => 'Services',
             'services' => Service::orderBy('id', 'desc')->take(8)->get(),
             'progtechs' => Service::where('category','progtech')->orderBy('id','desc')->paginate(8),
             'designs' => Service::where('category','design')->orderBy('id','desc')->paginate(8),
@@ -49,6 +53,8 @@ class PagesController extends Controller
 
     public function shoppingcart()
     {
-        return view('publik.shoppingcart');
+        return view('publik.shoppingcart',[
+            'title' => 'euy'
+        ]);
     }
 }

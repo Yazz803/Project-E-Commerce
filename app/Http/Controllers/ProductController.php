@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function index(Product $product)
     {
         return view('publik.singleProduct', [
+            'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),

@@ -12,11 +12,11 @@
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/assets/img/animeduduk.jpg" alt="">
 							</div>
 
 							<div class="product-preview">
-								<img src="/assets/img/products.png" alt="">
+								<img src="/assets/img/peakpx.jpg" alt="">
 							</div>
 
 							<div class="product-preview">
@@ -34,11 +34,11 @@
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/assets/img/animeduduk.jpg" alt="">
 							</div>
 
 							<div class="product-preview">
-								<img src="/assets/img/products.png" alt="">
+								<img src="/assets/img/peakpx.jpg" alt="">
 							</div>
 
 							<div class="product-preview">

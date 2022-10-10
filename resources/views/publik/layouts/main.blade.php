@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>Wikrama's Shop | {{ $title }}</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -76,20 +76,51 @@
 							<div class="header-ctn">
 								<!-- Cart -->
 								<div>
+									@if(!auth()->check())
+									<a href="#" data-toggle="modal" data-target="#largeModal">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your Cart</span>
+										<div class="qty">0</div>
+									</a>
+									@else
 									<a href="/shopping-cart">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
 										<div class="qty">0</div>
 									</a>
+									@endif
 								</div>
 								<!-- /Cart -->
 
                                 {{-- Account --}}
-                                <div>
+                                <div class="dropdown">
+									@if(!auth()->check())
 									<a href="#" data-toggle="modal" data-target="#largeModal">
 										<i class="fa fa-user-o"></i>
 										<span>My Account</span>
 									</a>
+									@else
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+											<i class="fa fa-user-o"></i>
+											<span>{{ strtoupper(auth()->user()->username) }}</span>
+										</a>
+
+										<div class="cart-dropdown">
+											<div class="cart-list">
+												<h5 style="margin-bottom: 0;"><a href="/edit/" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
+											</div>
+											<div class="cart-list">
+												<h5 style="margin-bottom: 0;"><a href="/dashboard" style="font-weight: bold;"><i class="fa fa-server fa-lg" style="padding-right:10px;"></i> Admin Dashoard</a></h5>
+											</div>
+											<div class="cart-list">
+												<h5 style="margin-bottom: 0;"><a href="/statuspesanan/" style="font-weight: bold;"><i class="fa fa-check-square fa-lg" style="padding-right:10px;"></i> Status Orders</a></h5>
+											</div>
+											<div class="cart-list">
+												<h5 style="margin-bottom: 0;"><a href="/logout" style="font-weight: bold;"><i class="fa fa-sign-out fa-lg" style="padding-right:10px;"></i> Logout</a></h5>
+											</div>
+										</div>
+
+									@endif
 								</div>
                                 {{-- /Account --}}
 
@@ -124,11 +155,7 @@
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;">Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;">Products</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;">Services</a></li>
-						@if(Request::is('product/*'))
-						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
-						@endif
-						@if(Request::is('service/*'))
+						@if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
 						@endif
@@ -151,21 +178,25 @@
 						<input type="checkbox" id="chk" aria-hidden="true">
 				
 							<div class="signup">
-								<form class="login-form">
+								<form class="login-form" action="/register" method="POST">
+									@csrf
 									<label for="chk" aria-hidden="true">Sign up</label>
-									<input type="text" name="txt" placeholder="User name" required="">
+									<input type="text" name="username" placeholder="Username" required="">
 									<input type="email" name="email" placeholder="Email" required="">
-									<input type="password" name="pswd" placeholder="Password" required="">
-									<button>Sign up</button>
+									<input type="password" name="password" placeholder="Password" required="">
+									<button type="submit">Sign up</button>
 								</form>
 							</div>
 				
 							<div class="login">
-								<form class="login-form">
+								<form class="login-form" action="/login" method="POST">
+									@csrf
 									<label for="chk" aria-hidden="true">Login</label>
 									<input type="email" name="email" placeholder="Email" required="">
-									<input type="password" name="pswd" placeholder="Password" required="">
-									<button>Login</button>
+									<input type="password" name="password" placeholder="Password" required="">
+									{{-- Remember me --}}
+									<input type="hidden" name="remember" value="1" required>
+									<button type="submit">Login</button>
 								</form>
 							</div>
 					</div>
@@ -267,6 +298,9 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+
+		{{-- Sweet Alert --}}
+		@include('sweetalert::alert')
 
 		<!-- jQuery Plugins -->
 		<script src="/assets/js/jquery.min.js"></script>
