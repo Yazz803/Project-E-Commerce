@@ -50,19 +50,21 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
-                                        @foreach($products2 as $product)
+                                        @foreach($products as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/products.png" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
 												<div class="product-label">
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+												<h3 class="product-name"><a href="/product/{{ $product->slug }}">{{ $product->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-												<p class="text-truncate">{{ $product->description }}</p>
+												<div class="text-truncate">
+													{!! $product->description !!}
+												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="/product/{{ $product->slug }}">
@@ -104,18 +106,31 @@
 					<!-- /section title -->
 
 					<!-- Products tab & slick -->
+
 					<div class="col-md-12">
                         <div class="cards">
                             @foreach($foods as $food)
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/makanan.jpg" alt="" style="object-fit: cover;">
+										<img src="/images/{{ $food->thumb_img }}" alt="" style="object-fit: cover;">
+										{{-- @foreach($images as $image)
+										@if($food->code_product == $image->code_product)
+											@if($image > 2)
+											@foreach($singleimage as $single)
+											<img src="/images/{{ $single->name }}" alt="" style="object-fit: cover;">
+											@endforeach
+											@endif
+											<img src="/images/{{ $image->name }}" alt="" style="object-fit: cover;">
+										@endif
+										@endforeach --}}
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ $food->name }}</a></h3>
+                                        <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-                                        <p class="text-truncate">{{ $food->description }}</p>
+                                        <div class="text-truncate">
+											{!! $food->description !!}
+										</div>
                                     </div>
                                     <div class="add-to-cart">
                                         <a href="/product/{{ $food->slug }}">
@@ -126,7 +141,7 @@
                             </div>
                             @endforeach
                         </div>
-						{{ $foods->links() }}
+						{{ $foods->appends(['foods' => $foods->currentPage()])->links() }}
 					</div>
 					<!-- /Products tab & slick -->
 				</div>
@@ -188,9 +203,11 @@
                                         <img src="/assets/img/bannerMinuman.jpg" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ $drink->name }}</a></h3>
+                                        <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-                                        <p class="text-truncate">{{ $drink->description }}</p>
+                                        <div class="text-truncate">
+											{!! $drink->description !!}
+										</div>
                                     </div>
                                     <div class="add-to-cart">
                                         <a href="/product/{{ $drink->slug }}">
@@ -201,7 +218,7 @@
                             </div>
 						@endforeach
                     </div>
-					{{ $drinks->links() }}
+					{{ $drinks->appends(['drinks' => $drinks->currentPage()])->links() }}
                 </div>
                 <!-- /Products tab & slick -->
             </div>

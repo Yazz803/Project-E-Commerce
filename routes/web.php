@@ -1,14 +1,16 @@
 <?php
 
-use App\Models\Test;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Models\Product;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ServiceController;
+use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\PagesController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ use App\Http\Controllers\User\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
+Route::get('/', [PagesController::class, 'index'])->name('login');
 Route::get('/products', [PagesController::class, 'products']);
 Route::get('/product/{product:slug}', [ProductController::class, 'index']);
 
@@ -35,18 +37,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/test', function(){
-    return view('publik.test',[
-        'test' => Test::where('id', '2'),
-    ]);
-});
 
-
-Route::get('/dashboard', function(){
-    return view('admin.home',[
-        'title' => 'Dashboard',
-        'foods' => Product::where('category', 'foods')->get(),
-        'drinks' => Product::where('category', 'drinks')->get(),
-        'services' => Service::all()
-    ]);
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('/dashboard/products', AdminProductController::class);
+Route::get('/dashboard/products/checkSlug', [AdminProductController::class, 'checkSlug'])->middleware('auth');

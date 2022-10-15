@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    
     public function index()
     {
         return view('publik.landingpage',[
@@ -18,16 +20,15 @@ class PagesController extends Controller
         ]);
     }
 
-    public function products(Product $product)
+    public function products()
     {
         return view('publik.products', [
             'title' => 'Products',
-            'products2' => Product::orderBy('id', 'desc')->take(8)->get(),
-            'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8),
-            'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8),
-            'categories' => ['BDP', 'MPLB', 'PPLG', 'TKJT', 'KLN'],
-            'products' => ['Bolsu', 'Batagor', 'Susu Murni Nasional', 'Sushi', 'Mie Ayam'],
-            'services' => ['Front-End Dev', 'Back-End Dev', 'Fullstack Dev', 'Komputer Jaringan Telekomunikasi', 'Design Grafis', 'UI/UX Website']
+            'products' => Product::orderBy('created_at', 'desc')->take(8)->get(),
+            'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8, ['*'], 'foods'),
+            'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8, ['*'], 'drinks'),
+            'images' => ImageProduct::all(),
+            'singleimage' => ImageProduct::orderBy('id', 'desc')->take(1)->get(),
         ]);
     }
 

@@ -63,7 +63,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/products.png" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
 												<div class="product-label">
 													<span class="new">NEW</span>
 												</div>
@@ -71,7 +71,9 @@
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-												<p class="text-truncate">{{ $product->description }}</p>
+												<div class="text-truncate">
+													{!! $product->description !!}
+												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="/product/{{ $product->slug }}">
@@ -130,6 +132,19 @@
                     </div>
                 </div>
                 <!-- /shop -->
+                <!-- shop -->
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="/assets/img/services.jpg" alt="">
+                        </div>
+                        <div class="shop-body">
+                            <h3>About<br>Wikrama's Shop</h3>
+                            <a href="/services" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /shop -->
             </div>
             <!-- /row -->
         </div>
@@ -165,12 +180,14 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/products.png" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-												<p class="text-truncate">{{ $product->description }}</p>
+												<div class="text-truncate">
+													{!! $product->description !!}
+												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="/product/{{ $product->slug }}">

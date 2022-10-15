@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Product;
 use App\Models\Service;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ImageProduct;
 
 class ProductController extends Controller
 {
@@ -16,11 +17,22 @@ class ProductController extends Controller
      */
     public function index(Product $product)
     {
+        $images = ImageProduct::all();
+        $row = [];
+        foreach($images as $image){
+            $row[] = $image->code_product;
+        }
+
+        for($i=0; $i < count($images); ++$i){
+            $imageProduct = $row[$i];
+        }
+
         return view('publik.singleProduct', [
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            'images' => ImageProduct::where('code_product', $imageProduct)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
         ]);
     }

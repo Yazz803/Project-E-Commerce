@@ -11,6 +11,7 @@
 
     <title>SB Admin 2 - Dashboard</title>
 
+    <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -19,6 +20,13 @@
 
     <!-- Custom styles for this template-->
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/trix.css">
+    <style>
+        /* menghilangkan fitur upload gambar di trix-nya */
+        .trix-button-group.trix-button-group--file-tools {
+          display: none;
+        }
+    </style>
 
 </head>
 
@@ -42,8 +50,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -55,7 +63,7 @@
                 </a>
             </li>
             <!-- Nav Item - Product Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('dashboard/products/*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
@@ -64,8 +72,8 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Add Product & Service:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-plus"></i> Add Product</a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-plus"></i> Add Service</a>
+                        <a class="collapse-item" href="/dashboard/products/create"><i class="fas fa-fw fa-plus"></i> Add Product</a>
+                        <a class="collapse-item" href="/dashboard/services"><i class="fas fa-fw fa-plus"></i> Add Service</a>
                     </div>
                 </div>
             </li>
@@ -352,6 +360,9 @@
         </div>
     </div>
 
+    {{-- Sweet Alert --}}
+    @include('sweetalert::alert')
+
     <!-- Bootstrap core JavaScript-->
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -368,6 +379,11 @@
     <!-- Page level custom scripts -->
     <script src="/assets/js/demo/chart-area-demo.js"></script>
     <script src="/assets/js/demo/chart-pie-demo.js"></script>
+
+    <script src="/assets/js/trix.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
 
 </body>
 

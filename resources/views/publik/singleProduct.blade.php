@@ -10,21 +10,15 @@
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
+							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/assets/img/pplg.jpg" alt="">
+								<img src="/images/{{ $product->thumb_img }}" alt="">
 							</div>
-
+							@foreach($images as $image)
 							<div class="product-preview">
-								<img src="/assets/img/products.png" alt="">
+								<img src="/images/{{ $image->name }}" alt="">
 							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMakanan.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMinuman.jpg" alt="">
-							</div>
+							@endforeach
 						</div>
 					</div>
 					<!-- /Product main img -->
@@ -32,21 +26,15 @@
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
+							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/images/{{ $product->thumb_img }}" alt="">
 							</div>
-
+							@foreach($images as $image)
 							<div class="product-preview">
-								<img src="/assets/img/products.png" alt="">
+								<img src="/images/{{ $image->name }}" alt="">
 							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMakanan.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMinuman.jpg" alt="">
-							</div>
+							@endforeach
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
@@ -59,7 +47,7 @@
 								<h3 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h3>
 								<span class="product-available">Stock : {{ $product->stock }}</span>
 							</div>
-							<p class="text-truncate" style="text-align: left">{{ $product->description }}</p>
+							<div class="text-truncate" style="text-align: left; margin-bottom:20px;">{!! $product->description !!}</div>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
@@ -119,7 +107,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p>{{ $product->description }}</p>
+											<p>{!! $product->description !!}</p>
 										</div>
 									</div>
 								</div>
@@ -129,7 +117,7 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>{{ $product->detail }}</p>
+											<p>{!! $product->detail !!}</p>
 										</div>
 									</div>
 								</div>
@@ -172,7 +160,7 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $food->description }}</p>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $food->description !!}</p>
                                 </div>
                             </div>
 							@endforeach
@@ -201,7 +189,7 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $drink->description }}</p>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $drink->description !!}</p>
                                 </div>
                             </div>
 							@endforeach
@@ -229,7 +217,7 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $service->description }}</p>
+									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $service->description !!}</p>
                                 </div>
                             </div>
 							@endforeach

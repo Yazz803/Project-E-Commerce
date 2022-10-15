@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(20)->create();
+        // Product::factory(20)->create();
         
         Service::factory()->create([
             'name' => 'Web Developer',
@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'username' => 'yazz803',
             'email' => 'yazzhanz@gmail.com',
+            'role' => 'admin',
             'password' => bcrypt('password')
         ]);
     }

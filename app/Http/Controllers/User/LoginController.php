@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,8 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials, $request->get('remember'))){
-            $request->session()->regenerate();       
+            $request->session()->regenerate();  
+            Alert::success('Login Berhasil!', ' ');
             return redirect()->intended('/');
         }
 
@@ -38,6 +39,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        Alert::toast('Anda telah logout!', 'warning');
         return redirect('/');
     }
 }

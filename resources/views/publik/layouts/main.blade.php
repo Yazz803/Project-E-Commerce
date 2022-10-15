@@ -107,11 +107,14 @@
 
 										<div class="cart-dropdown">
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/edit/" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="/edit/{{ auth()->user()->username }}" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
 											</div>
+											@if(auth()->user()->role == 'admin')
 											<div class="cart-list">
 												<h5 style="margin-bottom: 0;"><a href="/dashboard" style="font-weight: bold;"><i class="fa fa-server fa-lg" style="padding-right:10px;"></i> Admin Dashoard</a></h5>
 											</div>
+											@else
+											@endif
 											<div class="cart-list">
 												<h5 style="margin-bottom: 0;"><a href="/statuspesanan/" style="font-weight: bold;"><i class="fa fa-check-square fa-lg" style="padding-right:10px;"></i> Status Orders</a></h5>
 											</div>
@@ -222,7 +225,7 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<p>Wikrama' Shop menyediakan product dan jasa untuk masyarakat sekitar</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
 									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
@@ -235,11 +238,9 @@
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+									<li><a href="#">Foods</a></li>
+									<li><a href="#">Drinks</a></li>
+									<li><a href="#">Services</a></li>
 								</ul>
 							</div>
 						</div>
@@ -265,7 +266,6 @@
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
 									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
 									<li><a href="#">Track My Order</a></li>
 									<li><a href="#">Help</a></li>
 								</ul>
