@@ -10,6 +10,7 @@ use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\PagesController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminServicesController;
 use App\Http\Controllers\Admin\ImageController;
 
 /*
@@ -40,4 +41,5 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/dashboard/products', AdminProductController::class);
+Route::resource('/dashboard/services', AdminServicesController::class);
 Route::get('/dashboard/products/checkSlug', [AdminProductController::class, 'checkSlug'])->middleware('auth');

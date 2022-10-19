@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use App\Models\ImageService;
 
 class ServiceController extends Controller
 {
@@ -53,6 +54,7 @@ class ServiceController extends Controller
             'service' => $service,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
         ]);
     }

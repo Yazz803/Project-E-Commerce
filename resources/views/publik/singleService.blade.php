@@ -8,82 +8,70 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- Product main img -->
+					<!-- Service main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
+							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/assets/img/animeduduk.jpg" alt="">
+								<img src="/images/{{ $service->thumb_img }}" alt="">
 							</div>
-
+							@foreach($imageServices as $image)
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/images/{{ $image->name }}" alt="">
 							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMakanan.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMinuman.jpg" alt="">
-							</div>
+							@endforeach
 						</div>
 					</div>
-					<!-- /Product main img -->
+					<!-- /Service main img -->
 
-					<!-- Product thumb imgs -->
+					<!-- Service thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
+							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/assets/img/animeduduk.jpg" alt="">
+								<img src="/images/{{ $service->thumb_img }}" alt="">
 							</div>
-
+							@foreach($imageServices as $image)
 							<div class="product-preview">
-								<img src="/assets/img/peakpx.jpg" alt="">
+								<img src="/images/{{ $image->name }}" alt="">
 							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMakanan.jpg" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="/assets/img/bannerMinuman.jpg" alt="">
-							</div>
+							@endforeach
 						</div>
 					</div>
-					<!-- /Product thumb imgs -->
+					<!-- /Service thumb imgs -->
 
-					<!-- Product details -->
+					<!-- Service details -->
 					<div class="col-md-5">
 						<div class="product-details">
 							<h2 class="product-name">{{ $service->name }}</h2>
 							<div>
 								<h3 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h3>
 							</div>
-							<p class="text-truncate" style="text-align: left">{{ $service->description }}</p>
+							<div class="text-truncate" style="text-align: left; margin-bottom:20px;">{!! $service->description !!}</div>
 
 							<div class="add-to-cart">
 								<button class="add-to-cart-btn"><i class="fa fa-whatsapp fa-lg"></i> Let's talk</button>
 							</div>
 							
 							<ul class="product-links">
-								<li>Category:</li>
+								<li style="font-weight: bold;">Category:</li>
 								<li><a href="#">{{ $service->category }}</a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Penjual:</li>
+								<li style="font-weight: bold;">Penjual:</li>
 								<li><a href="#">{{ $service->seller_name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Social Media Seller:</li>
+								<li style="font-weight: bold;">Social Media Seller:</li>
 								<li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
 								<li><a href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
 								<li><a href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Nomor Seller:</li>
+								<li style="font-weight: bold;">Nomor Seller:</li>
 								<li><a href="#">{{ $service->seller_num }}</a></li>
 							</ul>
 
@@ -106,8 +94,8 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div class="col-md-12">
-											<p>{{ $service->description }}</p>
+										<div class="col-lg-8" style="font-size: 15px;">
+											{!! $service->description !!}
 										</div>
 									</div>
 								</div>
@@ -116,8 +104,8 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div class="col-md-12">
-											<p>{{ $service->detail }}</p>
+										<div class="col-md-8" style="font-size: 15px;">
+											<p>{!! $service->detail !!}</p>
 										</div>
 									</div>
 								</div>
@@ -217,7 +205,9 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $service->description }}</p>
+									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
+										{!! $service->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach

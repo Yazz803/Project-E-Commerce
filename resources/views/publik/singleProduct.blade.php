@@ -106,8 +106,8 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div class="col-md-12">
-											<p>{!! $product->description !!}</p>
+										<div class="col-lg-8" style="text-align: justify; font-size: 2.5vh;">
+											{!! $product->description !!}
 										</div>
 									</div>
 								</div>
@@ -116,7 +116,7 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-8" style="text-align: justify; font-size: 2.5vh;">
 											<p>{!! $product->detail !!}</p>
 										</div>
 									</div>
@@ -160,7 +160,9 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $food->description !!}</p>
+									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
+										{!! $food->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach
@@ -189,7 +191,9 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $drink->description !!}</p>
+									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
+										{!! $drink->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach

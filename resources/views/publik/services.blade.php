@@ -54,7 +54,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/pplg.jpg" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
 												<div class="product-label">
 													<span class="new">NEW</span>
 												</div>
@@ -62,7 +62,9 @@
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $service->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h4>
-												<p class="text-truncate">{{ $service->description }}</p>
+												<div class="text-truncate">
+													{!! $service->description !!}
+												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="/service/{{ $service->slug }}">
@@ -110,12 +112,14 @@
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/pplg.jpg" alt="" style="object-fit: cover;">
+                                        <img src="/images/{{ $progtech->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="#">{{ $progtech->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($progtech->price,0,',','.') }}</h4>
-                                        <p class="text-truncate">{{ $progtech->description }}</p>
+										<div class="text-truncate">
+											{!! $service->description !!}
+										</div>
                                     </div>
                                     <div class="add-to-cart">
                                         <a href="/service/{{ $progtech->slug }}">
@@ -190,7 +194,9 @@
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="#">{{ $design->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($design->price,0,',','.') }}</h4>
-                                        <p class="text-truncate">{{ $design->description }}</p>
+										<div class="text-truncate">
+											{!! $design->description !!}
+										</div>
                                     </div>
                                     <div class="add-to-cart">
                                         <a href="/service/{{ $design->slug }}">

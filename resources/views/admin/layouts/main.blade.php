@@ -73,7 +73,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Add Product & Service:</h6>
                         <a class="collapse-item" href="/dashboard/products/create"><i class="fas fa-fw fa-plus"></i> Add Product</a>
-                        <a class="collapse-item" href="/dashboard/services"><i class="fas fa-fw fa-plus"></i> Add Service</a>
+                        <a class="collapse-item" href="/dashboard/services/create"><i class="fas fa-fw fa-plus"></i> Add Service</a>
                     </div>
                 </div>
             </li>

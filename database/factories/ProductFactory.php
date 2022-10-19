@@ -26,6 +26,8 @@ class ProductFactory extends Factory
             'stock' => mt_rand(1,100),
             'description' => $this->faker->sentence(60),
             'detail' => $this->faker->sentence(80),
+            'thumb_img' => 'makanan.jpg',
+            'code_product' => 'P-'.mt_rand(1,99),
             // 'category' => $this->category[mt_rand(1,count($this->category)-1)],
             'category' => $this->category[mt_rand(0,1)],
             'seller_name' => $this->faker->name(),

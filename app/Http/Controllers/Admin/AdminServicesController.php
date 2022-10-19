@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Support\Str;
 use App\Models\ImageProduct;
+use App\Models\ImageService;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 
-class AdminProductController extends Controller
+class AdminServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +22,6 @@ class AdminProductController extends Controller
     {
         //
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -30,8 +30,9 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        return view('admin.addproduct',[
-            'id_prod' => Product::orderBy('id', 'desc')->first()
+        return view('admin.addservice', [
+            'title' => 'Add Service',
+            'id_serv' => Service::orderBy('id', 'desc')->first()
         ]);
     }
 
@@ -46,11 +47,10 @@ class AdminProductController extends Controller
         $validatedProduct = $request->validate([
             'name' => 'required|unique:products',
             'price' => 'required',
-            'stock' => 'required',
             'thumb_img' => 'required',
             'images' => 'required',
             'category' => 'required',
-            'code_product' => 'required',
+            'code_service' => 'required',
             'description' => 'required',
             'detail' => 'required',
             'seller_name' => 'required',
@@ -84,26 +84,25 @@ class AdminProductController extends Controller
         $validatedProduct['name'] = strtolower($request->name);
         $validatedProduct['slug'] = Str::slug($request->name, '-');
         
-        Product::create($validatedProduct);
+        Service::create($validatedProduct);
         
         foreach($images as $image){
-            ImageProduct::insert([
+            ImageService::insert([
                 'name' => implode('|', $image),
-                'code_product' => $request->code_product
+                'code_service' => $request->code_service
             ]);
         }
-        Alert::toast('Berhasil Menambah Product!', 'success');
-        return redirect('/dashboard/products/create');
-
+        Alert::toast('Berhasil Menambah Service!', 'success');
+        return redirect('/dashboard/services/create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Service $service)
     {
         //
     }
@@ -111,10 +110,10 @@ class AdminProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Service $service)
     {
         //
     }
@@ -123,10 +122,10 @@ class AdminProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -134,10 +133,10 @@ class AdminProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Service $service)
     {
         //
     }

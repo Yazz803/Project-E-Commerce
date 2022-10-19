@@ -17,13 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('code_service');
+            $table->string('thumb_img');
             $table->string('price');
             $table->text('description');
             $table->text('detail');
             $table->string('seller_name');
             $table->string('seller_num');
             $table->enum('category', ['progtech', 'design']);
-            $table->enum('tag',['pplg', 'mplb', 'tkjt', 'dkv', 'bdp', 'kln', 'hotel']);
+            $table->enum('tag',['pplg', 'mplb', 'tkjt', 'dkv', 'bdp', 'kln', 'htl']);
             $table->timestamps();
         });
     }

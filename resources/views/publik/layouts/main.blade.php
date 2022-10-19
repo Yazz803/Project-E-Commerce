@@ -8,6 +8,9 @@
 
 		<title>Wikrama's Shop | {{ $title }}</title>
 
+		{{-- Icon --}}
+		<link rel="icon" href="/assets/img/logo-wk.png">
+
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -34,6 +37,30 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+		<style>
+			body{
+				font-weight: 500;
+			}
+			body::before {
+				content: '';
+				background-image: linear-gradient(
+					rgba(255, 255, 255, 0.9),
+					rgba(255, 255, 255, 0.9)
+				),
+				url(/assets/img/bg.jpg) ;
+				background-repeat: no-repeat;
+				background-size: cover;
+				height: 100%;
+				width: 100%;
+				background-position: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				z-index: -1;
+			}
+		</style>
 
     </head>
 	<body>
