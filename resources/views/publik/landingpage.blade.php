@@ -238,12 +238,14 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/assets/img/pplg.jpg" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name"><a href="#">{{ $service->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h4>
-												<p class="text-truncate">{{ $service->description }}</p>
+												<div class="text-truncate">
+													{!! $service->description !!}
+												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="/service/{{ $service->slug }}">

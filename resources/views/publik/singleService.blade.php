@@ -148,7 +148,9 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $food->description }}</p>
+									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
+										{!! $food->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach
@@ -177,7 +179,9 @@
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{{ $drink->description }}</p>
+									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
+										{!! $drink->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach
