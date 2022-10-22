@@ -1,7 +1,9 @@
 ## The Web is Still Under Development!
 
 ## Installation
-- Clone Repo ```git clone https://github.com/Yazz803/Project-E-Commerce```
+- Open Git Bash/Terminal/CMD and CD(change directory) to your Document folder or anywhere you want
+- Clone Repo ```git clone https://github.com/Yazz803/Project-E-Commerce.git```
+- Run ```cd Project-E-Commerce```
 - Run ```composer install``` (if composer install doesn't work, try ```composer update```)
 - Run ```cp .env.example .env```
 - Create new database for this project and setup your DB in file ```.env```
