@@ -5,7 +5,7 @@
 - Run ```composer install``` (if composer install doesn't work, try ```composer update```)
 - Run ```cp .env.example .env```
 - Create new database for this project and setup your DB in file ```.env```
-- Download SB Admin Dashboard [Here(https://startbootstrap.com/theme/sb-admin-2)]
+- Download SB Admin Dashboard [Here](https://startbootstrap.com/theme/sb-admin-2)
 - Extract file and copy folder ```css, img(optional), js, scss, and vendor```
 - Then paste in laravel folder ```public/assets``` (you have to create new folder in public folder and name it 'assets')
 - Run ```php artisan key:generate```
