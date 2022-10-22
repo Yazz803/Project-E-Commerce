@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\ImageProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -19,7 +20,9 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.listproducts', [
+            'products' => Product::orderBy('created_at', 'desc')->paginate(10)
+        ]);
     }
     
 
@@ -139,6 +142,17 @@ class AdminProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $all_img_product = ImageProduct::all();
+        foreach($all_img_product as $img){
+            if($img->code_product == $product->code_product){
+                File::delete('images/'.$img->name);
+            }
+        }
+        File::delete('images/'.$product->thumb_img);
+        ImageProduct::where('code_product', $product->code_product)->delete();
+        Product::where('id', $product->id)->delete();
+
+        Alert::Toast('Berhasil dihapus!', 'success');
+        return back();
     }
 }

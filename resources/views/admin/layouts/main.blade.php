@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/trix.css">
+    <link rel="stylesheet" href="/assets/css/adminStyle.css">
     <style>
         /* menghilangkan fitur upload gambar di trix-nya */
         .trix-button-group.trix-button-group--file-tools {
@@ -87,8 +88,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Product & Service:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-eye"></i> List Products</a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-eye"></i> List Services</a>
+                        <a class="collapse-item" href="/dashboard/products"><i class="fas fa-fw fa-eye"></i> List Products</a>
+                        <a class="collapse-item" href="/dashboard/services"><i class="fas fa-fw fa-eye"></i> List Services</a>
                     </div>
                 </div>
             </li>

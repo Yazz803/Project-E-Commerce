@@ -64,13 +64,6 @@
 							</ul>
 
 							<ul class="product-links">
-								<li style="font-weight: bold;">Social Media Seller:</li>
-								<li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
-							</ul>
-
-							<ul class="product-links">
 								<li style="font-weight: bold;">Nomor Seller:</li>
 								<li><a href="#">{{ $service->seller_num }}</a></li>
 							</ul>

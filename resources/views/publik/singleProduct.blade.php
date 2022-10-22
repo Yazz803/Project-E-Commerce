@@ -66,24 +66,17 @@
 							</div>
 							
 							<ul class="product-links">
-								<li>Category:</li>
+								<li style="font-weight: bold;">Category:</li>
 								<li><a href="#">{{ $product->category }}</a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Penjual:</li>
+								<li style="font-weight: bold;">Penjual:</li>
 								<li><a href="#">{{ $product->seller_name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Social Media Seller:</li>
-								<li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
-							</ul>
-
-							<ul class="product-links">
-								<li>Nomor Seller:</li>
+								<li style="font-weight: bold;">Nomor Seller:</li>
 								<li><a href="#">{{ $product->seller_num }}</a></li>
 							</ul>
 
@@ -106,7 +99,7 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div class="col-lg-8" style="text-align: justify; font-size: 2.5vh;">
+										<div style="text-align: justify; font-size: 16px; margin: 0 20px;">
 											{!! $product->description !!}
 										</div>
 									</div>
@@ -116,7 +109,7 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div class="col-md-8" style="text-align: justify; font-size: 2.5vh;">
+										<div style="text-align: justify; font-size: 16px; margin: 0 20px">
 											<p>{!! $product->detail !!}</p>
 										</div>
 									</div>
@@ -155,7 +148,7 @@
 							@foreach($foods as $food)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/products.png" alt="">
+									<img src="/images/{{ $food->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
@@ -186,7 +179,7 @@
 							@foreach($drinks as $drink)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/products.png" alt="">
+									<img src="/images/{{ $drink->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
@@ -209,19 +202,21 @@
                             <div id="slick-nav-5" class="products-slick-nav"></div>
                         </div>
                     </div>
-
+					
                     <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
+						<div>
 							<!-- product widget -->
 							@foreach($services as $service)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/animeduduk.jpg" alt="">
+									<img src="/images/{{ $service->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
+									<h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
-									<p class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">{!! $service->description !!}</p>
+									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
+										{!! $service->description !!}
+									</div>
                                 </div>
                             </div>
 							@endforeach

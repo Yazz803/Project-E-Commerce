@@ -42,4 +42,3 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/dashboard/products', AdminProductController::class);
 Route::resource('/dashboard/services', AdminServicesController::class);
-Route::get('/dashboard/products/checkSlug', [AdminProductController::class, 'checkSlug'])->middleware('auth');

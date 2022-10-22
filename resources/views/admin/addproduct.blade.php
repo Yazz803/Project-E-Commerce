@@ -20,7 +20,7 @@
                 {!! $message !!}
             </p>
             @enderror
-            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Rp. xxx.xxx (isi angkanya saja)" value="{{ old('price') }}">
+            <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Rp. xxx.xxx (isi angkanya saja)" value="{{ old('price') }}">
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="exampleInputPassword1" class="font-weight-bold @error('stock') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Stock</label>
