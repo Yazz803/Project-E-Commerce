@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Dashboard Admin Wikrama Shop</title>
 
     <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js"></script>
     <!-- Custom fonts for this template-->

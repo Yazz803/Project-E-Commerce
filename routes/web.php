@@ -39,8 +39,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::resource('/dashboard/products', AdminProductController::class)->middleware('auth');
-Route::resource('/dashboard/services', AdminServicesController::class)->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
+Route::resource('/dashboard/products', AdminProductController::class)->middleware('admin');
+Route::resource('/dashboard/services', AdminServicesController::class)->middleware('admin');
 
 Route::post('/', [PagesController::class, 'search']);
