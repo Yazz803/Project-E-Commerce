@@ -129,7 +129,7 @@
 									@else
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 											<i class="fa fa-user-o"></i>
-											<span>{{ strtoupper(auth()->user()->username) }}</span>
+											<span>{{ auth()->user()->full_name }}</span>
 										</a>
 
 										<div class="cart-dropdown">
@@ -214,6 +214,7 @@
 									<input type="text" name="username" placeholder="Username" required="">
 									<input type="email" name="email" placeholder="Email" required="">
 									<input type="password" name="password" placeholder="Password" required="">
+									<input type="hidden" name="full_name" value="{{ "User".mt_rand(1,10000) }}">
 									<button type="submit">Sign up</button>
 								</form>
 							</div>

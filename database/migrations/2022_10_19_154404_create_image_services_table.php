@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('image_services', function (Blueprint $table) {
             $table->id();
             $table->string('code_service');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }

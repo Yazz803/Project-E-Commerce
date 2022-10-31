@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('name');
             $table->string('slug');
             $table->string('code_service');
-            $table->string('thumb_img');
+            $table->string('thumb_img')->nullable();
             $table->string('price');
             $table->text('description');
             $table->text('detail');
-            $table->string('seller_name');
-            $table->string('seller_num');
             $table->enum('category', ['progtech', 'design']);
             $table->enum('tag',['pplg', 'mplb', 'tkjt', 'dkv', 'bdp', 'kln', 'htl']);
             $table->timestamps();

@@ -94,18 +94,6 @@
             {!! $message !!}
         </p>
         @enderror
-        <input type="hidden" name="seller_name" value="{{ auth()->user()->username }}">
-        @error('seller_name')
-        <p class="text-danger ">
-            {!! $message !!}
-        </p>
-        @enderror
-        <input type="hidden" name="seller_num" value="{{ uniqId() }}">
-        @error('seller_num')
-        <p class="text-danger ">
-            {!! $message !!}
-        </p>
-        @enderror
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

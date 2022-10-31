@@ -40,5 +40,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::resource('/dashboard/products', AdminProductController::class);
-Route::resource('/dashboard/services', AdminServicesController::class);
+Route::resource('/dashboard/products', AdminProductController::class)->middleware('auth');
+Route::resource('/dashboard/services', AdminServicesController::class)->middleware('auth');
+
+Route::post('/', [PagesController::class, 'search']);

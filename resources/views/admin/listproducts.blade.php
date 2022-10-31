@@ -2,6 +2,7 @@
 
 @section('content')
     
+@if($products->count())
     <div class="container">
         <div class="row">
             {{-- List Product --}}
@@ -18,7 +19,7 @@
                         <hr>
                         <div class="action-button d-flex justify-content-around">
                             <a href="/product/{{ $product->slug }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="#" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                            <a href="/dashboard/products/{{ $product->id }}/edit" class="btn btn-success"><i class="fa fa-edit"></i></a>
                             <form action="/dashboard/products/{{ $product->id }}" method="post">
                                 @method('delete')
                                 @csrf
@@ -32,5 +33,10 @@
             {{-- /List Product --}}
         </div>
     </div>
+@else
+    <center>
+        <h1>Tidak ada Product!</h1>
+    </center>
+@endif
 
 @endsection

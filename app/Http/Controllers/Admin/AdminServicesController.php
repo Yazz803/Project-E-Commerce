@@ -20,7 +20,9 @@ class AdminServicesController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.listservices', [
+            'services' => Service::orderBy('created_at', 'desc')->paginate(10)
+        ]);
     }
 
     /**
@@ -50,11 +52,10 @@ class AdminServicesController extends Controller
             'thumb_img' => 'required',
             'images' => 'required',
             'category' => 'required',
+            'tag' => 'required',
             'code_service' => 'required',
             'description' => 'required',
             'detail' => 'required',
-            'seller_name' => 'required',
-            'seller_num' => 'required',
         ]);
 
         if ($request->file('thumb_img')){
@@ -81,6 +82,7 @@ class AdminServicesController extends Controller
             }
         }
 
+        $validatedProduct['user_id'] = auth()->user()->id;
         $validatedProduct['name'] = strtolower($request->name);
         $validatedProduct['slug'] = Str::slug($request->name, '-');
         
@@ -104,7 +106,7 @@ class AdminServicesController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        
     }
 
     /**
@@ -115,7 +117,9 @@ class AdminServicesController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('admin.editservice', [
+            'service' => $service,
+        ]);
     }
 
     /**
@@ -127,7 +131,59 @@ class AdminServicesController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $validatedProduct = $request->validate([
+            'name' => 'required|unique:products',
+            'price' => 'required',
+            // 'thumb_img' => 'required',
+            // 'images' => 'required',
+            'category' => 'required',
+            'tag' => 'required',
+            'code_service' => 'required',
+            'description' => 'required',
+            'detail' => 'required',
+        ]);
+
+        
+        if ($request->file('thumb_img')){
+            $image = $request->file('thumb_img');
+            $imageName = 'Product_'.uniqId().'.'.$image->extension();
+            $img = Image::make($image->path());
+            $img->fit(600, 360, function($const){
+                $const->upsize();
+            })->save(public_path('/images/'.$imageName));
+            $validatedProduct['thumb_img'] = $imageName;
+        }
+
+        $images = [];
+        if ($request->images){
+            foreach($request->images as $image){
+                $imageName = 'Product_'.uniqId().'.'.$image->extension();
+                // $image->move(public_path('images'), $imageName);
+                $img = Image::make($image->path());
+                // size 5:3
+                $img->fit(600, 360, function($const){
+                    $const->upsize();
+                })->save(public_path('images/'.$imageName));
+                $images[]['name'] = $imageName;
+            }
+        }
+
+        $validatedProduct['user_id'] = auth()->user()->id;
+        $validatedProduct['name'] = strtolower($request->name);
+        $validatedProduct['slug'] = Str::slug($request->name, '-');
+        
+        Service::where('id', $service->id)->update($validatedProduct);
+        
+        if($request->images){
+            foreach($images as $image){
+                ImageService::insert([
+                    'name' => implode('|', $image),
+                    'code_service' => $request->code_service
+                ]);
+            }
+        }
+        Alert::toast('Berhasil Mengubah Service!', 'success');
+        return redirect('/dashboard/services/'.$service->id.'/edit');
     }
 
     /**
@@ -138,6 +194,9 @@ class AdminServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        // destroy field in database
+        $service->delete();
+
+        return back();
     }
 }

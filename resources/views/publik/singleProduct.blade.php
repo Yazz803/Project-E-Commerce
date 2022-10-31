@@ -72,12 +72,12 @@
 
 							<ul class="product-links">
 								<li style="font-weight: bold;">Penjual:</li>
-								<li><a href="#">{{ $product->seller_name }}</a></li>
+								<li><a href="#">{{ $product->user->full_name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
 								<li style="font-weight: bold;">Nomor Seller:</li>
-								<li><a href="#">{{ $product->seller_num }}</a></li>
+								<li><a href="#">{{ $product->user->no_hp }}</a></li>
 							</ul>
 
 						</div>

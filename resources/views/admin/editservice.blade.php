@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
-    <form action="/dashboard/services" method="POST" enctype="multipart/form-data">
+    <form action="/dashboard/services/{{ $service->id }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="name" class="font-weight-bold @error('name') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Service Title</label>
             @error('name')
@@ -11,7 +12,7 @@
                 {{ $message }}
             </p>
             @enderror
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Web Developer" value="{{ old('name') }}">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Web Developer" value="{{ $service->name }}">
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="exampleInputPassword1" class="font-weight-bold @error('price') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Price</label>
@@ -20,7 +21,7 @@
                 {!! $message !!}
             </p>
             @enderror
-            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Rp. xxx.xxx (isi angkanya saja)" value="{{ old('price') }}">
+            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Rp. xxx.xxx (isi angkanya saja)" value="{{ $service->price }}">
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="exampleFormControlSelect1" class="font-weight-bold @error('category') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Category</label>
@@ -30,6 +31,7 @@
             </p>
             @enderror
             <select class="form-control @error('category') is-invalid @enderror" name="category" id="exampleFormControlSelect1">
+              <option value="{{ $service->category }}">{{ ucfirst($service->category) }}</option>
               <option value="progtech">Programming & Technology</option>
               <option value="design">Design Grafis</option>
             </select>
@@ -42,7 +44,7 @@
             </p>
             @enderror
             <select class="form-control @error('tag') is-invalid @enderror" name="tag" id="exampleFormControlSelect1">
-              <option value="" selected>Silahkan Pilih Service dari jurusan apa</option>
+              <option value="{{ $service->tag }}" selected>{{ strtoupper($service->tag)."(Data yg sekarang)" }}</option>
               <option value="pplg">PPLG</option>
               <option value="mplb">MPLB</option>
               <option value="tkjt">TKJT</option>
@@ -83,7 +85,7 @@
             @error('description')
             <p class="text-danger font-weight-bold">{{ $message }}</p>
             @enderror
-            <input id="description" type="hidden" name="description" value="{{ old('description') }}">
+            <input id="description" type="hidden" name="description" value="{{ $service->description }}">
             <trix-editor input="description"></trix-editor>
         </div>
         <div class="form-group" style="margin-top: 30px;">
@@ -91,15 +93,11 @@
             @error('detail')
             <p class="text-danger font-weight-bold">{{ $message }}</p>
             @enderror
-            <input id="detail" type="hidden" name="detail" value="{{ old('detail') }}">
+            <input id="detail" type="hidden" name="detail" value="{{ $service->detail }}">
             <trix-editor input="detail"></trix-editor>
         </div>
         {{-- code_service --}}
-        @if($id_serv == NULL)
-        <input type="hidden" name="code_service" value="P-1">
-        @else
-        <input type="hidden" name="code_service" value="{{ 'P-'.$id_serv->id+1 }}">
-        @endif
+        <input type="hidden" name="code_service" value="{{ 'P-'.$service->id }}">
         @error('code_service')
         <p class="text-danger ">
             {!! $message !!}
