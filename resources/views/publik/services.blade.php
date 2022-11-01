@@ -189,7 +189,7 @@
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/animeduduk.jpg" alt="" style="object-fit: cover;">
+                                        <img src="/images/{{ $design->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="#">{{ $design->name }}</a></h3>

@@ -78,7 +78,6 @@
                 id="inputImage"
                 multiple 
                 class="form-control @error('images') is-invalid @enderror">
-
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="body" class="form-label font-weight-bold @error('description') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Description</label>

@@ -119,6 +119,7 @@ class AdminServicesController extends Controller
     {
         return view('admin.editservice', [
             'service' => $service,
+            'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
         ]);
     }
 
@@ -195,6 +196,7 @@ class AdminServicesController extends Controller
     public function destroy(Service $service)
     {
         // destroy field in database
+        Alert::toast('Berhasil Menghapus', 'success');
         $service->delete();
 
         return back();

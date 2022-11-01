@@ -141,8 +141,6 @@ class AdminProductController extends Controller
             'code_product' => 'required',
             'description' => 'required',
             'detail' => 'required',
-            'seller_name' => 'required',
-            'seller_num' => 'required',
         ]);
 
         if ($request->file('thumb_img')){
@@ -169,16 +167,19 @@ class AdminProductController extends Controller
             }
         }
 
+        $validatedProduct['user_id'] = auth()->user()->id;
         $validatedProduct['name'] = strtolower($request->name);
         $validatedProduct['slug'] = Str::slug($request->name, '-');
         
         $product->update($validatedProduct);
         
-        foreach($images as $image){
-            ImageProduct::insert([
-                'name' => implode('|', $image),
-                'code_product' => $request->code_product
-            ]);
+        if($request->images){
+            foreach($images as $image){
+                ImageProduct::insert([
+                    'name' => implode('|', $image),
+                    'code_product' => $request->code_product
+                ]);
+            }
         }
         Alert::toast('Berhasil Mengubah Product!', 'success');
         return redirect('/dashboard/products/'.$product->id.'/edit');

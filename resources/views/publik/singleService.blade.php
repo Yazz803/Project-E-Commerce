@@ -197,7 +197,7 @@
 							@foreach($services as $service)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/animeduduk.jpg" alt="">
+									<img src="/images/{{ $service->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
