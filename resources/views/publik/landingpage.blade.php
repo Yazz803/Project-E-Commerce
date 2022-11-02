@@ -12,7 +12,7 @@
 						<ul class="hot-deal-countdown">
 							<li>
 								<div>
-									<h3><img src="https://img.icons8.com/office/40/000000/kawaii-bread-1.png"/></h3>
+									<h3><img src="https://img.icons8.com/office/40/000000/kawaii-bread-1.png" loading="lazy"/></h3>
 								</div>
 							</li>
 							<li>

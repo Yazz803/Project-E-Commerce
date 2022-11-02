@@ -2281,6 +2281,9 @@ textarea.input {
   .section-tab-nav li {
     margin-top: 10px;
   }
+  .product-cart {
+    width: 100%;
+  }
 
 }
 
@@ -2300,4 +2303,50 @@ textarea.input {
   .card {
     width: 185px;
   }
+  .list-product {
+    display: block !important;
+  }
+  .product-cart {
+    margin-bottom: 15px;
+    width: 100% !important;
+  }
+}
+
+
+/* My Style */
+
+.list-product {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-cart {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 15px;
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.product-cart .text-product {
+  padding: 10px;
+}
+.text-product {
+  width: 80%;
+}
+.text-product > h3 {
+  font-size: 20px;
+}
+.product-cart > img {
+  border-radius: 10px 0 0 10px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.update-cart {
+  border: none;
+  border-radius: 5px;
+  background-color: #06283D;
+  color: white;
 }

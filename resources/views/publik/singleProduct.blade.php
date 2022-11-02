@@ -49,21 +49,21 @@
 							</div>
 							<div class="text-truncate" style="text-align: left; margin-bottom:20px;">{!! $product->description !!}</div>
 
-							<div class="add-to-cart">
-								<div class="qty-label">
-									Qty
-									<div class="input-number">
-										<form action="">
-											<input type="number" value="1" max="{{ $product->stock }}">
-										</form>
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+							<form action="/order" method="POST">
+								@csrf
+								<div class="add-to-cart">
+									<div class="qty-label">
+										Qty
+										<div class="input-number">
+												<input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">
+												<input type="hidden" name="product_id" value="{{ $product->id }}">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
 									</div>
+									<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 								</div>
-								<a href="#" data-toggle="modal" data-target="#largeModal">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-								</a>
-							</div>
+							</form>
 							
 							<ul class="product-links">
 								<li style="font-weight: bold;">Category:</li>

@@ -22,6 +22,7 @@
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/trix.css">
     <link rel="stylesheet" href="/assets/css/adminStyle.css">
+    <link rel="stylesheet" href="/assets/css/carousels.css">
     <style>
         /* menghilangkan fitur upload gambar di trix-nya */
         .trix-button-group.trix-button-group--file-tools {

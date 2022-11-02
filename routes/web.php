@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use App\Models\Product;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\PagesController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\User\RegisterController;
-use App\Http\Controllers\User\PagesController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
-use App\Http\Controllers\Admin\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,5 @@ Route::resource('/dashboard/products', AdminProductController::class)->middlewar
 Route::resource('/dashboard/services', AdminServicesController::class)->middleware('admin');
 
 Route::post('/', [PagesController::class, 'search']);
+
+Route::post('/order', [OrderController::class, 'store']);

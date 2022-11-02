@@ -7,15 +7,32 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-md-7">
 						{{-- Product --}}
-
+						<div class="product-cart">
+							<img src="/assets/img/animeduduk.jpg" width="100px" alt="">
+							<div class="text-product">
+								<h3 class="product-name">Es jeruk 2x</h3>
+								<h4 class="product-price">Rp 5.000 &rarr; Rp 10.000</h4>
+								<form action="">
+									<div class="add-to-cart" style="display: flex; justify-content: space-between;">
+										<div class="qty-label">
+											<div class="input-number">
+													Jumlah <input type="number" value="1" max="99" style="width: 100px !important;">
+												<span class="qty-up">+</span>
+												<span class="qty-down">-</span>
+											</div>
+										</div>
+										<button type="submit" class="update-cart">Update</button>
+									</div>
+								</form>
+							</div>
+						</div>
 						{{-- /Product --}}
 					</div>
 
 					<!-- Order Details -->
-					<div class="col-md-5 order-details">
+					<div class="col-md-5 order-details" style="background-color:white;">
 						<div class="section-title text-center">
 							<h3 class="title">Your Order</h3>
 						</div>
