@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\ImageProduct;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -17,6 +18,8 @@ class ProductController extends Controller
      */
     public function index(Product $product)
     {
+        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
+        auth()->check() == true ? $check = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $product->id)->get() : $check = [];
         return view('publik.singleProduct', [
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
@@ -24,6 +27,8 @@ class ProductController extends Controller
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
             'images' => ImageProduct::where('code_product', $product->code_product)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
+            'ttl_orders' => $ttl_orders,
+            'check' => $check,
         ]);
     }
 

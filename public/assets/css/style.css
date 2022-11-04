@@ -1717,7 +1717,7 @@ textarea.input {
   position: relative;
   text-align: center;
   padding: 15px 0px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 #product-tab .tab-nav:after {
@@ -2321,9 +2321,10 @@ textarea.input {
 }
 
 .product-cart {
+  position: relative;
   width: 70%;
   margin: auto;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   display: flex;
   background-color: white;
   border: 1px solid black;
@@ -2348,5 +2349,14 @@ textarea.input {
   border: none;
   border-radius: 5px;
   background-color: #06283D;
+  color: white;
+}
+.cancel-product-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #D10024;
   color: white;
 }

@@ -113,7 +113,7 @@
 									<a href="/shopping-cart">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
-										<div class="qty">0</div>
+										<div class="qty">{{ $ttl_orders }}</div>
 									</a>
 									@endif
 								</div>

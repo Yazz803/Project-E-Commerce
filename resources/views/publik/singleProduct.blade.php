@@ -41,7 +41,7 @@
 
 					<!-- Product details -->
 					<div class="col-md-5">
-						<div class="product-details">
+						<div class="product-details" style="background-color: white;padding: 10px;">
 							<h2 class="product-name">{{ $product->name }}</h2>
 							<div>
 								<h3 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h3>
@@ -49,7 +49,7 @@
 							</div>
 							<div class="text-truncate" style="text-align: left; margin-bottom:20px;">{!! $product->description !!}</div>
 
-							<form action="/order" method="POST">
+							{{-- <form action="/order" method="POST">
 								@csrf
 								<div class="add-to-cart">
 									<div class="qty-label">
@@ -62,6 +62,32 @@
 										</div>
 									</div>
 									<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								</div>
+							</form> --}}
+							<form action="/order" method="POST">
+								@csrf
+								@foreach($check as $c)
+								@if($c->product_id == $product->id && $c->user_id == auth()->user()->id)
+									@method('PUT')
+								@endif
+								@endforeach
+								<div class="add-to-cart">
+									<div class="qty-label">
+										Qty
+										<div class="input-number">
+												<input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">
+												<input type="hidden" name="product_id" value="{{ $product->id }}">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+									</div>
+									@if(!auth()->check())
+									<a href="#" data-toggle="modal" data-target="#largeModal">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</a>
+									@else
+									<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									@endif
 								</div>
 							</form>
 							
@@ -95,11 +121,11 @@
 							<!-- /product tab nav -->
 
 							<!-- product tab content -->
-							<div class="tab-content">
+							<div class="tab-content" style="background-color: white;">
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 0 20px;">
+										<div style="text-align: justify; font-size: 16px; margin: 20px 20px;">
 											{!! $product->description !!}
 										</div>
 									</div>
@@ -131,7 +157,7 @@
     <!-- SECTION -->
     <div class="section">
         <!-- container -->
-        <div class="container" style="border-top: 2px solid #8D99AE;">
+        <div class="container" style="border-top: 2px solid #8D99AE;background-color: white;">
             <!-- row -->
             <div class="row" style="margin-top: 50px">
                 <div class="col-md-4 col-xs-6">

@@ -47,3 +47,5 @@ Route::resource('/dashboard/services', AdminServicesController::class)->middlewa
 Route::post('/', [PagesController::class, 'search']);
 
 Route::post('/order', [OrderController::class, 'store']);
+Route::put('/order', [OrderController::class, 'update']);
+Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy']);
