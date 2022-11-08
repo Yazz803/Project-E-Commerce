@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\ImageService;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
-use App\Models\ImageService;
 
 class ServiceController extends Controller
 {
@@ -49,11 +50,13 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
+        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         return view('publik.singleService',[
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'service' => $service,
             'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
             'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            'ttl_orders' => $ttl_orders,
             'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
         ]);

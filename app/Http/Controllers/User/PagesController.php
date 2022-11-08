@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Service;
@@ -61,7 +62,7 @@ class PagesController extends Controller
 
     public function shoppingcart()
     {
-        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_products = 0;
+        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         $user_order_id = Order::where('user_id', auth()->user()->id)->get();
         // $hasil = [];
         // foreach($user_order_id as $user_order){
@@ -74,6 +75,15 @@ class PagesController extends Controller
             'quantity' => $user_order_id,
             // 'products' => $hasil,
             'orders' => Order::where('user_id', auth()->user()->id)->get(),
+        ]);
+    }
+
+    public function edit(User $user){
+        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
+        return view('publik.profile',[
+            'ttl_orders' => $ttl_orders,
+            'title' => 'Edit Profile',
+            'user' => $user,
         ]);
     }
 }

@@ -75,7 +75,14 @@
 									<div class="qty-label">
 										Qty
 										<div class="input-number">
-												<input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">
+											{{-- @foreach($check as $c)
+											@if($c->product_id == $product->id && $c->user_id == auth()->user()->id)	
+												<input type="number" name="quantity" value="{{ $product->order->quantity }}" min="1" max="{{ $product->stock }}">
+											@endif
+											@endforeach --}}
+											{{-- @dd($quantity) --}}
+											{{-- @dd($product) --}}
+												<input type="number" name="quantity" value="{{ $quantity }}" min="1" max="{{ $product->stock }}" style="font-weight: bold;">
 												<input type="hidden" name="product_id" value="{{ $product->id }}">
 											<span class="qty-up">+</span>
 											<span class="qty-down">-</span>

@@ -13,6 +13,7 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
+use App\Http\Controllers\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,8 @@ Route::post('/', [PagesController::class, 'search']);
 Route::post('/order', [OrderController::class, 'store']);
 Route::put('/order', [OrderController::class, 'update']);
 Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy']);
+Route::get('/dashboard/list-orders', [OrderController::class, 'index'])->middleware('admin');
+Route::get('/profile/edit', [ProfileController::class, 'edit']);
+// Route::resource('/profile', ProfileController::class);
+Route::get('/profile', [ProfileController::class, 'edit']);
+Route::put('/profile', [ProfileController::class, 'update']);

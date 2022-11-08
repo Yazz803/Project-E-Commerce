@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\ImageProduct;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\ImageProduct;
-use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,17 @@ class ProductController extends Controller
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         auth()->check() == true ? $check = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $product->id)->get() : $check = [];
+        $spesificQuantity = Order::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+        if($spesificQuantity == NULL){
+            $quantity = 1;
+        }else{
+            $quantity = $spesificQuantity->quantity;
+        }
+        if(auth()->check() == true && $spesificQuantity == NULL){
+            // $quantity = $spesificQuantity;
+            $spesificQuantity == NULL ? $quantity = 1 : $quantity = $spesificQuantity->quantity;
+        }
+        // $quantity = $spesificQuantity->quantity;
         return view('publik.singleProduct', [
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
@@ -29,6 +41,10 @@ class ProductController extends Controller
             'services' => Service::inRandomOrder()->take(5)->get(),
             'ttl_orders' => $ttl_orders,
             'check' => $check,
+            // get quantity from order where order id and product id is same
+            'quantity' => $quantity,
+            // 'quantity' => Order::where('product_id', $product->id)->orWhere('user_id', auth()->user()->id)->get(),
+            // 'quantity' => Order::where('product_id', $product->id)->first(),
         ]);
     }
 

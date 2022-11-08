@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,7 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.listorder', [
+            'orderUser' => Order::all()
+        ]);
     }
 
     /**
@@ -50,8 +53,13 @@ class OrderController extends Controller
         // }else{
         //     Order::create($validatedData);
         // }
-        
-            Order::create($validatedData);
+            
+        // mengurangi stock sesuai dengan quantitynya
+        $product = Product::find($validatedData['product_id']);
+        $product->stock -= $validatedData['quantity'];
+        $product->save();
+
+        Order::create($validatedData);
 
         Alert::success('Berhasil Memesan', 'Silahkan check shopping cart anda :)');
         return back();
@@ -95,17 +103,32 @@ class OrderController extends Controller
             'quantity' => 'required',
         ]);
 
-            $validatedData['quantity'] += $request->quantity;
+            // $validatedData['quantity'] += $request->quantity;
             // order udah jadi array
             $order = Order::where('product_id', $request->product_id)->orWhere('user_id', auth()->user()->id)->get();
             foreach($order as $o){
                 if($o->product_id == $request->product_id && $o->user_id == auth()->user()->id){
-                    $o->quantity += $request->quantity;
-                    $o->save();
+                    if($o->quantity == $request->quantity){
+                        Alert::warning('Tidak ada pesanan yang ditambah!');
+                        return back();
+                    }else{
+                        Alert::success('Berhasil Update Pesanan');
+                        // jika quantitynya dikurangi, maka stocknya bertambah, jika quantitynya ditambah, maka stocknya berkurang
+                        if($o->quantity > $request->quantity){
+                            $product = Product::where('id', $request->product_id)->first();
+                            $product->stock += ($o->quantity - $request->quantity);
+                            $product->save();
+                        }else{
+                            $product = Product::where('id', $request->product_id)->first();
+                            $product->stock -= ($request->quantity - $o->quantity);
+                            $product->save();
+                        }
+                        $o->quantity = $request->quantity;
+                        $o->save();
+                    }
                 }
             }
-
-            Alert::success('Berhasil Menambah Pesanan', 'Silahkan check shopping cart anda :)');
+            
             return back();
     }
 
@@ -117,8 +140,13 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+            // menambah stock product sesuai dengan quantitynya
+            $product = Product::where('id', $order->product_id)->first();
+            $product->stock += $order->quantity;
+            $product->save();
+            
             $order->where('id', $order->id)->delete();
-            Alert::success('Berhasil Menghapus Pesanan', 'Silahkan check shopping cart anda :)');
+            Alert::success('Berhasil Menghapus Pesanan');
             return back();
     }
 }

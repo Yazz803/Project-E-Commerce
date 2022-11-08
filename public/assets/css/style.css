@@ -86,7 +86,7 @@ a:hover, a:focus {
 ul, ol {
   margin: 0;
   padding: 0;
-  list-style: none
+  /* list-style: none */
 }
 
 /*----------------------------*\
@@ -2301,7 +2301,7 @@ textarea.input {
   }
 
   .card {
-    width: 185px;
+    width: 170px;
   }
   .list-product {
     display: block !important;
@@ -2309,6 +2309,10 @@ textarea.input {
   .product-cart {
     margin-bottom: 15px;
     width: 100% !important;
+  }
+
+  .form-profile {
+    width: 80% !important;
   }
 }
 
@@ -2322,7 +2326,7 @@ textarea.input {
 
 .product-cart {
   position: relative;
-  width: 70%;
+  width: 75%;
   margin: auto;
   margin-bottom: 25px;
   display: flex;
@@ -2359,4 +2363,36 @@ textarea.input {
   border-radius: 5px;
   background-color: #D10024;
   color: white;
+}
+
+.edit-profile {
+  background-color: white;
+}
+
+.edit-profile > h1 {
+  text-align: center;
+}
+
+.edit-profile center > img {
+  display: block;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.form-profile {
+  width: 40%;
+  margin: auto;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.text-danger {
+  color: red !important;
+}
+
+.font-weight-bold {
+  font-weight: bold;
 }

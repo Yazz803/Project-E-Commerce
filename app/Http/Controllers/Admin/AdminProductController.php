@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\ImageProduct;
@@ -203,6 +204,7 @@ class AdminProductController extends Controller
         File::delete('images/'.$product->thumb_img);
         ImageProduct::where('code_product', $product->code_product)->delete();
         Product::where('id', $product->id)->delete();
+        Order::where('product_id', $product->id)->delete();
 
         Alert::Toast('Berhasil dihapus!', 'success');
         return back();

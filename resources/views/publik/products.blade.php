@@ -200,7 +200,7 @@
                             <div class="card">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/assets/img/bannerMinuman.jpg" alt="" style="object-fit: cover;">
+                                        <img src="/images/{{ $drink->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>

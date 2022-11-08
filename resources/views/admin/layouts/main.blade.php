@@ -95,7 +95,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/dashboard/list-orders">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>List Orders</span>
                 </a>

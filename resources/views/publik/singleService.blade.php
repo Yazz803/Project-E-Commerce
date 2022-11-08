@@ -136,7 +136,7 @@
 							@foreach($foods as $food)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/products.png" alt="">
+									<img src="/images/{{ $food->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
@@ -144,6 +144,7 @@
 									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
 										{!! $food->description !!}
 									</div>
+									
                                 </div>
                             </div>
 							@endforeach
@@ -167,7 +168,7 @@
 							@foreach($drinks as $drink)
                             <div class="product-widget" style="border-bottom: 1px solid #ccc">
                                 <div class="product-img">
-									<img src="/assets/img/bannerMinuman.jpg" alt="">
+									<img src="/images/{{ $drink->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>

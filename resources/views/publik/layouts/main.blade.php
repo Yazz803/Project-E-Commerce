@@ -134,7 +134,7 @@
 
 										<div class="cart-dropdown">
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/edit/{{ auth()->user()->username }}" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="/profile/{{ auth()->user()->username }}/edit" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
 											</div>
 											@if(auth()->user()->role == 'admin')
 											<div class="cart-list">
