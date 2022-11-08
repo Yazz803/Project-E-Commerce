@@ -7,11 +7,13 @@
 - Run ```composer install``` (if composer install doesn't work, try ```composer update```)
 - Run ```cp .env.example .env```
 - Create new database for this project and setup your DB in file ```.env```
+- Change DB_DATABASE=(your database name)  ```e.g(DB_DATABASE=db_wikrama_shop)```
 - Download SB Admin Dashboard [Here](https://startbootstrap.com/theme/sb-admin-2)
-- Extract file and copy folder ```css, img(optional), js, scss, and vendor```
+- Extract file and copy folder ```vendor```
 - Then paste in laravel folder ```public/assets``` (you have to create new folder in public folder and name it 'assets')
 - Run ```php artisan key:generate```
 - Run ```php artisan migrate --seed```
+- Run ```php artisan serve``` 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
