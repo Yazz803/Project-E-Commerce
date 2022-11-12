@@ -50,4 +50,8 @@ class User extends Authenticatable
     // {
     //     return 'username';   
     // }
+
+    public function checkout(){
+        return $this->hasMany(Checkout::class);
+    }
 }

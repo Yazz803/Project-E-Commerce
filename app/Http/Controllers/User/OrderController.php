@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Checkout;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $allCheckout = Checkout::all();
         return view('admin.listorder', [
-            'orderUser' => Order::all()
+            'orderUser' => Checkout::all()
         ]);
     }
 
@@ -53,11 +55,21 @@ class OrderController extends Controller
         // }else{
         //     Order::create($validatedData);
         // }
+
+        $validatedData['code_order'] = uniqid();
+
+        $allOrder = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $request->product_id)->get();
+        foreach($allOrder as $all){
+            if($all->user_id == auth()->user()->id){
+                $code_order = $all->code_order;
+                $validatedData['code_order'] = $code_order;
+            }
+        }
             
         // mengurangi stock sesuai dengan quantitynya
-        $product = Product::find($validatedData['product_id']);
-        $product->stock -= $validatedData['quantity'];
-        $product->save();
+        // $product = Product::find($validatedData['product_id']);
+        // $product->stock -= $validatedData['quantity'];
+        // $product->save();
 
         Order::create($validatedData);
 
@@ -114,15 +126,15 @@ class OrderController extends Controller
                     }else{
                         Alert::success('Berhasil Update Pesanan');
                         // jika quantitynya dikurangi, maka stocknya bertambah, jika quantitynya ditambah, maka stocknya berkurang
-                        if($o->quantity > $request->quantity){
-                            $product = Product::where('id', $request->product_id)->first();
-                            $product->stock += ($o->quantity - $request->quantity);
-                            $product->save();
-                        }else{
-                            $product = Product::where('id', $request->product_id)->first();
-                            $product->stock -= ($request->quantity - $o->quantity);
-                            $product->save();
-                        }
+                        // if($o->quantity > $request->quantity){
+                        //     $product = Product::where('id', $request->product_id)->first();
+                        //     $product->stock += ($o->quantity - $request->quantity);
+                        //     $product->save();
+                        // }else{
+                        //     $product = Product::where('id', $request->product_id)->first();
+                        //     $product->stock -= ($request->quantity - $o->quantity);
+                        //     $product->save();
+                        // }
                         $o->quantity = $request->quantity;
                         $o->save();
                     }

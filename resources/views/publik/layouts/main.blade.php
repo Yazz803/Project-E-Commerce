@@ -134,7 +134,7 @@
 
 										<div class="cart-dropdown">
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/profile/{{ auth()->user()->username }}/edit" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="/profile" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
 											</div>
 											@if(auth()->user()->role == 'admin')
 											<div class="cart-list">
@@ -142,6 +142,9 @@
 											</div>
 											@else
 											@endif
+											<div class="cart-list">
+												<h5 style="margin-bottom: 0;"><a href="/checkout" style="font-weight: bold;"><i class="fa fa-shopping-cart fa-lg" style="padding-right:10px;"></i>List Checkout</a></h5>
+											</div>
 											<div class="cart-list">
 												<h5 style="margin-bottom: 0;"><a href="/statuspesanan/" style="font-weight: bold;"><i class="fa fa-check-square fa-lg" style="padding-right:10px;"></i> Status Orders</a></h5>
 											</div>
@@ -182,13 +185,13 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;">Home</a></li>
-						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;">Products</a></li>
-						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;">Services</a></li>
-						@if(Request::is('service/*') || Request::is('product/*'))
+						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
+						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
+						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
+						{{-- @if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
-						@endif
+						@endif --}}
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -212,7 +215,13 @@
 									@csrf
 									<label for="chk" aria-hidden="true">Sign up</label>
 									<input type="text" name="username" placeholder="Username" required="">
+									@error('username')
+									<p style="color: red;font-weight:bold; text-align:center">{{ $message }}</p>
+									@enderror
 									<input type="email" name="email" placeholder="Email" required="">
+									@error('email')
+									<p style="color: red;font-weight:bold; text-align:center">{{ $message }}</p>
+									@enderror
 									<input type="password" name="password" placeholder="Password" required="">
 									<input type="hidden" name="full_name" value="{{ "User".mt_rand(1,10000) }}">
 									<button type="submit">Sign up</button>

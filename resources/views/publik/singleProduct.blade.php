@@ -6,7 +6,7 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">
+				<div class="row" style="background-color:white;padding-top:20px;">
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
@@ -41,9 +41,9 @@
 
 					<!-- Product details -->
 					<div class="col-md-5">
-						<div class="product-details" style="background-color: white;padding: 10px;">
+						<div class="product-details">
 							<h2 class="product-name">{{ $product->name }}</h2>
-							<div>
+							<div id="here">
 								<h3 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h3>
 								<span class="product-available">Stock : {{ $product->stock }}</span>
 							</div>
@@ -75,14 +75,7 @@
 									<div class="qty-label">
 										Qty
 										<div class="input-number">
-											{{-- @foreach($check as $c)
-											@if($c->product_id == $product->id && $c->user_id == auth()->user()->id)	
-												<input type="number" name="quantity" value="{{ $product->order->quantity }}" min="1" max="{{ $product->stock }}">
-											@endif
-											@endforeach --}}
-											{{-- @dd($quantity) --}}
-											{{-- @dd($product) --}}
-												<input type="number" name="quantity" value="{{ $quantity }}" min="1" max="{{ $product->stock }}" style="font-weight: bold;">
+												<input type="number" name="quantity" value="{{ $quantity }}" min="1" max="{{ $product->stock + $quantity }}" style="font-weight: bold;">
 												<input type="hidden" name="product_id" value="{{ $product->id }}">
 											<span class="qty-up">+</span>
 											<span class="qty-down">-</span>
@@ -132,7 +125,7 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 20px 20px;">
+										<div style="text-align: justify; font-size: 16px; margin: 20px 20px;padding: 10px;list-style:circle !important;">
 											{!! $product->description !!}
 										</div>
 									</div>
@@ -142,7 +135,7 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 0 20px">
+										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;">
 											<p>{!! $product->detail !!}</p>
 										</div>
 									</div>

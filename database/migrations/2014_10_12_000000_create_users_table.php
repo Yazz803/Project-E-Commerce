@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
+            $table->foreignId('checkout_id');
             $table->string('full_name')->nullable();
             $table->string('email')->unique();
             $table->enum('role', ['super_admin', 'admin', 'user'])->default('user');

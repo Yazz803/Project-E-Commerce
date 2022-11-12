@@ -150,14 +150,16 @@
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div>
-						{{-- input orders --}}
-						{{-- <input type="hidden" name="" value="{{ $ }}"> --}}
-						{{-- /input orders --}}
-						<center>
-							<button type="submit" class="primary-btn order-submit">Checkout!</button>
-						</center>
+						<form action="/checkout" method="POST">
+							@csrf
+							{{-- input orders --}}
+							{{-- <input type="hidden" name="total_price" value="{{ $jml_order }}"> --}}
+							{{-- /input orders --}}
+							<center>
+								<button type="submit" class="primary-btn order-submit">Checkout!</button>
+							</center>
+						</form>
 					</div>
-					</form>
 					<!-- /Order Details -->
 				</div>
 				<!-- /row -->

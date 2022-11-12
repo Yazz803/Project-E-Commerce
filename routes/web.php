@@ -13,7 +13,9 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\QuantityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,10 @@ use App\Http\Controllers\User\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::match('GET', 'product', function(){return redirect('/products');});
+Route::match(['GET', 'POST'], 'register', function(){return redirect('/');});
+Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
 
 Route::get('/', [PagesController::class, 'index'])->name('login');
 Route::get('/products', [PagesController::class, 'products']);
@@ -55,3 +61,6 @@ Route::get('/profile/edit', [ProfileController::class, 'edit']);
 // Route::resource('/profile', ProfileController::class);
 Route::get('/profile', [ProfileController::class, 'edit']);
 Route::put('/profile', [ProfileController::class, 'update']);
+
+Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::post('/checkout', [CheckoutController::class, 'store']);

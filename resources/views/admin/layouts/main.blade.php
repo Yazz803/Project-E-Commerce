@@ -12,6 +12,7 @@
     <title>Dashboard Admin Wikrama Shop</title>
 
     <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

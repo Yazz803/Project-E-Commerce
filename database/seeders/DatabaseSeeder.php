@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ImageProduct;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Service;
@@ -67,5 +69,58 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => bcrypt('password')
         ]);
+
+        Product::create([
+            'user_id' => 1,
+            'name' => 'Bolsu Wikrama',
+            'code_product' => 'P-1',
+            'thumb_img' => 'Product_636b3c317433a.jpg',
+            'slug' => 'bolsu-wikrama',
+            'price' => 1000,
+            'stock' => 99,
+            'description' => '<div>alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld v</div>',
+            'detail' => '<div>alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld</div>',
+            'category' => 'foods'
+        ]);
+
+        ImageProduct::create([
+            'code_product' => 'P-1',
+            'name' => 'Product_636b3c319bad5.jpg'
+        ]);
+        ImageProduct::create([
+            'code_product' => 'P-1',
+            'name' => 'Product_636b3c31a9a47.jpg'
+        ]);
+        ImageProduct::create([
+            'code_product' => 'P-1',
+            'name' => 'Product_636b3c31c4480.png'
+        ]);
+
+        Product::create([
+            'user_id' => 1,
+            'name' => 'Ferol Risol',
+            'code_product' => 'P-2',
+            'thumb_img' => 'Product_636b3c6db35fd.jpg',
+            'slug' => 'ferol-risol',
+            'price' => 3000,
+            'stock' => 50,
+            'description' => '<div>alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld v</div>',
+            'detail' => '<div>alsdnlksandlaksndlkasnld alsdnlksandlaksndlkasnld</div>',
+            'category' => 'foods'
+        ]);
+
+        ImageProduct::create([
+            'code_product' => 2,
+            'name' => 'Product_636b3c6de2bd4.jpg'
+        ]);
+        ImageProduct::create([
+            'code_product' => 2,
+            'name' => 'Product_636b3c6e08090.jpg'
+        ]);
+        ImageProduct::create([
+            'code_product' => 2,
+            'name' => 'Product_636b3c6e28fa1.jpg'
+        ]);
+
     }
 }

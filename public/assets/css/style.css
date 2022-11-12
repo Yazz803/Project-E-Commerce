@@ -84,9 +84,9 @@ a:hover, a:focus {
 }
 
 ul, ol {
-  margin: 0;
+  margin: 10px 15px;
   padding: 0;
-  /* list-style: none */
+  /* list-style: none; */
 }
 
 /*----------------------------*\
@@ -1564,6 +1564,10 @@ textarea.input {
 	Product details
 \*----------------------------*/
 
+.product-details > ul {
+  margin: 0;
+}
+
 .product-details .product-name {
   text-transform: uppercase;
   font-size: 18px;
@@ -2121,6 +2125,12 @@ textarea.input {
   margin: 0px 0px 30px;
 }
 
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .footer-links li+li {
   margin-top: 15px;
 }
@@ -2231,6 +2241,9 @@ textarea.input {
   margin: 15px 0px;
 }
 
+.header-logo-res {
+  display: none;
+}
 /*=========================================================
 	13 -> RESPONSIVE
 ===========================================================*/
@@ -2245,17 +2258,23 @@ textarea.input {
     float: none !important;
     margin-top: 5px;
   }
+
   .header-logo {
     float: none;
-    text-align: center;
   }
-  .header-logo .logo-wk {
-    width: 70px;
-    margin: auto;
+  .logo {
+    justify-content: center;
   }
-  .header-logo .logo {
-    display: inline-block;
+  .header-logo .logo img {
+    display: none;
   }
+  
+  .main-nav {
+    float: none;
+    display: flex;
+    justify-content: space-around;
+  }
+
   #product-imgs {
     margin-bottom: 60px;
     margin-top: 15px;
@@ -2395,4 +2414,22 @@ textarea.input {
 
 .font-weight-bold {
   font-weight: bold;
+}
+
+#navigation {
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 101010;
+}
+.sticky-margin {
+  margin: 95px 0 30px 0 !important;
 }

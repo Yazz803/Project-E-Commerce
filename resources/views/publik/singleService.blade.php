@@ -7,7 +7,7 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">
+				<div class="row" style="background-color: white; padding: 20px 0;">
 					<!-- Service main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
@@ -65,7 +65,7 @@
 
 							<ul class="product-links">
 								<li style="font-weight: bold;">Nomor Seller:</li>
-								<li><a href="#">{{ $service->user->no_hp }}</a></li>
+								<li><a href="#">{{ wordwrap($service->user->no_hp, 4, '-', true) }}</a></li>
 							</ul>
 
 						</div>
@@ -119,7 +119,7 @@
     <!-- SECTION -->
     <div class="section">
         <!-- container -->
-        <div class="container" style="border-top: 2px solid #8D99AE;">
+        <div class="container" style="border-top: 2px solid #8D99AE; background-color: white;">
             <!-- row -->
             <div class="row" style="margin-top: 50px">
                 <div class="col-md-4 col-xs-6">

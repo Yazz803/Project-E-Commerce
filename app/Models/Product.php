@@ -19,4 +19,8 @@ class Product extends Model
     public function order(){
         return $this->belongsTo(Order::class);
     }
+
+    public function checkout(){
+        return $this->belongsTo(Checkout::class);
+    }
 }
