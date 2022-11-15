@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('checkouts', function (Blueprint $table) {
+        Schema::create('in_orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('checkout_id');
             $table->foreignId('user_id');
-            $table->integer('total_price_checkout');
-            $table->enum('status', ['pending', 'success', 'process', 'done']);
+            $table->foreignId('product_id');
+            $table->integer('quantity');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkouts');
+        Schema::dropIfExists('in_orders');
     }
 };

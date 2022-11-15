@@ -29,7 +29,7 @@
 	<!-- /HOT DEAL SECTION -->
 	
     <!-- SECTION -->
-		<div class="section" id="new-product">
+		<div class="section" id="new-product" style="padding-top:15px !important;padding-bottom-15px !important;">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -91,7 +91,7 @@
 
 
     <!-- SECTION -->
-		<div class="section">
+		<div class="section" style="padding-top:15px !important;padding-bottom-15px !important;">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->

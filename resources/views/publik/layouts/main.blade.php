@@ -146,7 +146,7 @@
 												<h5 style="margin-bottom: 0;"><a href="/checkout" style="font-weight: bold;"><i class="fa fa-shopping-cart fa-lg" style="padding-right:10px;"></i>List Checkout</a></h5>
 											</div>
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/statuspesanan/" style="font-weight: bold;"><i class="fa fa-check-square fa-lg" style="padding-right:10px;"></i> Status Orders</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="/about" style="font-weight: bold;"><i class="fa fa-group fa-lg" style="padding-right:10px;"></i>About Us</a></h5>
 											</div>
 											<div class="cart-list">
 												<h5 style="margin-bottom: 0;"><a href="/logout" style="font-weight: bold;"><i class="fa fa-sign-out fa-lg" style="padding-right:10px;"></i> Logout</a></h5>
@@ -184,7 +184,12 @@
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
+					<ul class="main-nav nav navbar-nav" style="align-items: center">
+						@if(Request::is('checkout/*') || Request::is('product/*') || Request::is('service/*') || Request::is('shopping-cart'))
+						<li class="back">
+							<a href="@if(Request::is('checkout/*')) /checkout @endif @if(Request::is('product/*')) /products @endif @if(Request::is('service/*')) /services @endif @if(Request::is('shopping-cart')) {{ url()->previous() }} @endif" style="background-color:red;color:white;padding:10px;border-radius:10px;font-weight:bold;"><i class="fa fa-arrow-left"></i> Back</a>
+						</li>
+						@endif
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>

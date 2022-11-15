@@ -20,6 +20,10 @@ class Product extends Model
         return $this->belongsTo(Order::class);
     }
 
+    public function in_order(){
+        return $this->belongsTo(Order::class);
+    }
+
     public function checkout(){
         return $this->belongsTo(Checkout::class);
     }

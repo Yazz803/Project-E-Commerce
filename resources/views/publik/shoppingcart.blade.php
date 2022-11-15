@@ -3,7 +3,7 @@
 
 @section('section')
     <!-- SECTION -->
-		<div class="section">
+		<div class="section" id="section" style="margin-top: 30px">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -55,7 +55,7 @@
 										<div class="qty-label">
 											<div class="input-number">
 												<input type="hidden" name="product_id" value="{{ $order->product->id }}">
-													Jumlah <input type="number" name="quantity" value="{{ $order->quantity }}" min="1" max="{{ $order->product->stock + $order->quantity }}" style="width: 100px !important;font-weight:bold;">
+													Jumlah <input type="number" name="quantity" value="{{ $order->quantity }}" min="1" max="{{ $order->product->stock }}" style="width: 100px !important;font-weight:bold;">
 												<span class="qty-up">+</span>
 												<span class="qty-down">-</span>
 											</div>
@@ -75,8 +75,6 @@
 					</div>
 
 					<!-- Order Details -->
-					<form action="/checkout" method="POST">
-					@csrf
 					<div class="col-md-5 order-details" style="background-color:white;">
 						<div class="section-title text-center">
 							<h3 class="title">Your Order</h3>
@@ -167,4 +165,28 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+
+		<script>
+            // Sticky navbar
+            // When the user scrolls the page, execute myFunction
+            window.onscroll = function() {myFunction()};
+    
+            // Get the navbar
+            var navbar = document.getElementById("navigation");
+            var section = document.getElementById("section")
+    
+            // Get the offset position of the navbar
+            var sticky = navbar.offsetTop;
+    
+            // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+            function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+                section.classList.add("sticky-margin-items")
+            } else {
+                navbar.classList.remove("sticky");
+                section.classList.remove("sticky-margin-items")
+            }
+            }
+        </script>
 @endsection

@@ -13,6 +13,7 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
+use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\QuantityController;
@@ -60,7 +61,10 @@ Route::get('/dashboard/list-orders', [OrderController::class, 'index'])->middlew
 Route::get('/profile/edit', [ProfileController::class, 'edit']);
 // Route::resource('/profile', ProfileController::class);
 Route::get('/profile', [ProfileController::class, 'edit']);
-Route::put('/profile', [ProfileController::class, 'update']);
+Route::put('/profile', [ProfileController::class, 'update'])->name('update-profile');
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::post('/checkout', [CheckoutController::class, 'store']);
+Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show']);
+
+Route::put('/ubah-status', [StatusController::class, 'update']);

@@ -65,8 +65,12 @@ class ProfileController extends Controller
     public function edit(User $user)
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
+        // $dataProvinsi = file_get_contents('https://yazz803.github.io/api-wilayah-indonesia/api/provinces.json');
+        // $provinsi = json_decode($dataProvinsi, true);
+        
         return view('publik.profile',[
             'ttl_orders' => $ttl_orders,
+            // 'provinsi' => $provinsi,
             'title' => 'Edit Profile',
             'user' => auth()->user(),
         ]);
