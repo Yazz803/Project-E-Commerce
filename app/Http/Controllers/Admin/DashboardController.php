@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\Checkout;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +15,8 @@ class DashboardController extends Controller
             'title' => 'Dashboard Admin',
             'foods' => Product::where('category', 'foods')->get(),
             'drinks' => Product::where('category', 'drinks')->get(),
-            'services' => Service::all()
+            'services' => Service::all(),
+            'pendingOrders' => Checkout::where('status', 'pending')->get(),
         ]);
     }
 }

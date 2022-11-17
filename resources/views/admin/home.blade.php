@@ -20,11 +20,11 @@
                             <div class="col mr-2">
                                 <div class="text-lg  text-center font-weight-bold text-warning text-uppercase mb-1">
                                     Pending Orders</div>
-                                <div class="h5 mb-0 font-weight-bold text-danger text-center">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-danger text-center">{{ $pendingOrders->count() }}</div>
                             </div>
                         </div>
                         <center class="mt-4">
-                            <a href="/dashboard/products" class="text-uppercase btn btn-warning" style="font-weight: bold">Detail</a>
+                            <a href="/dashboard/list-orders" class="text-uppercase btn btn-warning" style="font-weight: bold">Detail</a>
                         </center>
                     </div>
                 </div>

@@ -17,6 +17,9 @@
             <th scope="col">No.</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Payment Method</th>
+            <th scope="col">Pengiriman</th>
             <th scope="col">Total Price</th>
             <th scope="col" class="text-center">Actions</th>
           </tr>
@@ -31,6 +34,9 @@
             <th scope="row">{{ $no++ }}</th>
             <td>{{ $order->user->full_name }}</td>
             <td>{{ $order->user->email }}</td>
+            <td>{{ $order->user->no_hp }}</td>
+            <td>Bank BRI</td>
+            <td>COD</td>
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="d-flex justify-content-around">
               <a href="" class="btn btn-light"><i class="fa fa-eye"></i></a>
@@ -55,6 +61,7 @@
             <th scope="col">No.</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Payment Method</th>
             <th scope="col">Total Price</th>
             <th scope="col" class="text-center">Actions</th>
           </tr>
@@ -100,6 +107,7 @@
             <th scope="col">No.</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Payment Method</th>
             <th scope="col">Total Price</th>
             <th scope="col" class="text-center">Actions</th>
           </tr>
@@ -138,6 +146,7 @@
             <th scope="col">No.</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Payment Method</th>
             <th scope="col">Total Price</th>
             <th scope="col" class="text-center">Actions</th>
           </tr>

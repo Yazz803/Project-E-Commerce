@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\ImageProduct;
 use Illuminate\Http\Request;
+use App\Models\MethodPayment;
 
 class PagesController extends Controller
 {
@@ -75,6 +76,7 @@ class PagesController extends Controller
             'quantity' => $user_order_id,
             // 'products' => $hasil,
             'orders' => Order::where('user_id', auth()->user()->id)->get(),
+            'methodPayments' => MethodPayment::all(),
         ]);
     }
 

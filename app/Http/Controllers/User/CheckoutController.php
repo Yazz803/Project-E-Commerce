@@ -67,8 +67,8 @@ class CheckoutController extends Controller
                 'product_id' => $order->product_id,
                 'quantity' => $order->quantity,
                 'total_price' => $order->product->price * $order->quantity,
-                'created_at' => now(),
-                'updated_at' => now()
+                // 'created_at' => now(),
+                // 'updated_at' => now()
             ];
             $product = Product::find($order->product_id);
             $product->stock -= $order->quantity;

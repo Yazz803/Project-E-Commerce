@@ -81,7 +81,7 @@
                 </div>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('dashboard/products') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-file"></i>
@@ -95,13 +95,19 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('dashboard/method-payments/*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/method-payments">
+                    <i class="fas fa-fw fa-duotone fa-money-bill"></i>
+                    <span>Method Payments</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('dashboard/list-order') ? 'active' : '' }}">
                 <a class="nav-link" href="/dashboard/list-orders">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>List Orders</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('dashboard/log-user') ? 'active' : '' }}">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Log User Orders</span>

@@ -193,6 +193,7 @@
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
+						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
 						{{-- @if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>

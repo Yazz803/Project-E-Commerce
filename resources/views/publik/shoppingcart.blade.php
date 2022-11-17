@@ -109,37 +109,25 @@
 								<div><strong class="order-total">{{ 'Rp '. number_format($jml_order, 0, ',', '.') }}</strong></div>
 							</div>
 						</div>
+						<div class="order-col">
+							<div><strong>PAYMENT METHOD</strong></div>
+						</div>
 						<div class="payment-method">
+							@foreach($methodPayments as $methodPayment)
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1">
-								<label for="payment-1">
+								<a href="">
+									<i class="fa fa-info-circle"></i>
+								</a>
+								<input type="radio" name="payment" id="payment-{{ $methodPayment->id }}">
+								<label for="payment-{{ $methodPayment->id }}">
 									<span></span>
-									Direct Bank Transfer
+									{{ $methodPayment->name }}
 								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
+								{{-- <div class="caption">
+									{!! $methodPayment->description !!}
+								</div> --}}
 							</div>
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-2">
-								<label for="payment-2">
-									<span></span>
-									Cheque Payment
-								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-3">
-								<label for="payment-3">
-									<span></span>
-									Paypal System
-								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
+							@endforeach
 						</div>
 						<div class="input-checkbox">
 							<input type="checkbox" id="terms">

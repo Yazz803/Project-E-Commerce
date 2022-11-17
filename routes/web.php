@@ -13,6 +13,7 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
+use App\Http\Controllers\Admin\MethodPaymentController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProfileController;
@@ -68,3 +69,5 @@ Route::post('/checkout', [CheckoutController::class, 'store']);
 Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show']);
 
 Route::put('/ubah-status', [StatusController::class, 'update']);
+
+Route::resource('/dashboard/method-payments', MethodPaymentController::class)->middleware('admin');
