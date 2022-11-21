@@ -82,9 +82,29 @@
 										</div>
 									</div>
 									@if(!auth()->check())
-									<a href="#" data-toggle="modal" data-target="#largeModal">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									<a href="#" onclick="return loginDulu()">
+										<button type="button" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 									</a>
+									<script>
+										function loginDulu(){
+											Swal.fire({
+												title: 'Kamu Harus Login Dulu',
+												backgroundOpacity: .5,
+												position: 'left-start',
+												// width: 300,
+												icon: 'warning',
+												showCancelButton: true,
+												confirmButtonColor: '#3085d6',
+												cancelButtonColor: '#d33',
+												confirmButtonText: 'Login',
+												cancelButtonText: 'Tidak'
+												}).then((result) => {
+												if (result.isConfirmed) {
+													window.location.href= '{{ route("login.index") }}'
+												}
+											})
+										}
+									</script>
 									@else
 									<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 									@endif

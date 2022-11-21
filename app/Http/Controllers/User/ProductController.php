@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         auth()->check() == true ? $check = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $product->id)->get() : $check = [];
-        $spesificQuantity = Order::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+        auth()->check() == true ? $spesificQuantity = Order::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first() : $spesificQuantity = NULL;
         if($spesificQuantity == NULL){
             $quantity = 1;
         }else{

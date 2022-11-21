@@ -63,7 +63,7 @@ class AdminProductController extends Controller
             $image = $request->file('thumb_img');
             $imageName = 'Product_'.uniqId().'.'.$image->extension();
             $img = Image::make($image->path());
-            $img->fit(600, 360, function($const){
+            $img->fit(500, 500, function($const){
                 $const->upsize();
             })->save(public_path('/images/'.$imageName));
             $validatedProduct['thumb_img'] = $imageName;
@@ -75,8 +75,8 @@ class AdminProductController extends Controller
                 $imageName = 'Product_'.uniqId().'.'.$image->extension();
                 // $image->move(public_path('images'), $imageName);
                 $img = Image::make($image->path());
-                // size 5:3
-                $img->fit(600, 360, function($const){
+                // size 1:1
+                $img->fit(500, 500, function($const){
                     $const->upsize();
                 })->save(public_path('images/'.$imageName));
                 $images[]['name'] = $imageName;
@@ -145,10 +145,12 @@ class AdminProductController extends Controller
         ]);
 
         if ($request->file('thumb_img')){
+            // hapus dulu, baru upload yang baru
+            File::delete('images/'.$product->thumb_img);
             $image = $request->file('thumb_img');
             $imageName = 'Product_'.uniqId().'.'.$image->extension();
             $img = Image::make($image->path());
-            $img->fit(600, 360, function($const){
+            $img->fit(500, 500, function($const){
                 $const->upsize();
             })->save(public_path('/images/'.$imageName));
             $validatedProduct['thumb_img'] = $imageName;
@@ -156,12 +158,18 @@ class AdminProductController extends Controller
 
         $images = [];
         if ($request->images){
+            // menghapus thumb image dan menggantikannya dengan yang baru
+            $old_img = ImageProduct::where('code_product', $product->code_product)->get();
+            foreach($old_img as $image){
+                File::delete('images/'.$image->name);
+            }
+            ImageProduct::where('code_product', $product->code_product)->delete();
             foreach($request->images as $image){
                 $imageName = 'Product_'.uniqId().'.'.$image->extension();
                 // $image->move(public_path('images'), $imageName);
                 $img = Image::make($image->path());
-                // size 5:3
-                $img->fit(600, 360, function($const){
+                // size 1:1
+                $img->fit(500, 500, function($const){
                     $const->upsize();
                 })->save(public_path('images/'.$imageName));
                 $images[]['name'] = $imageName;

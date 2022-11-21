@@ -31,6 +31,8 @@
 		<link type="text/css" rel="stylesheet" href="/assets/css/style.css"/>
 		<link rel="stylesheet" href="/assets/css/login.css">
 
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>

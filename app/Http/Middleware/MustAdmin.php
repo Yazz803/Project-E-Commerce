@@ -17,7 +17,8 @@ class MustAdmin
     public function handle(Request $request, Closure $next)
     {
         if(!auth()->check() || auth()->user()->role != 'admin'){
-            return redirect()->route('login');
+            // return redirect()->route('login.index');
+            return back();
         }
         return $next($request);
     }

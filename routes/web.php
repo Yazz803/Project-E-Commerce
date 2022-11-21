@@ -31,7 +31,7 @@ use App\Http\Controllers\User\QuantityController;
 */
 
 Route::match('GET', 'product', function(){return redirect('/products');});
-// Route::match(['GET', 'POST'], 'register', function(){return redirect('/');});
+Route::match(['GET'], 'order', function(){return back();});
 Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
 
 // PagesController Route

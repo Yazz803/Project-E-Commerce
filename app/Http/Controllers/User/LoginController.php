@@ -39,6 +39,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         Alert::toast('Anda telah logout!', 'warning');
-        return redirect('/');
+        return back();
     }
 }
