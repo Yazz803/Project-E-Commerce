@@ -40,7 +40,7 @@
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="d-flex justify-content-around">
               <a href="" class="btn btn-light"><i class="fa fa-eye"></i></a>
-              <form action="/ubah-status" method="POST">
+              <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
@@ -79,14 +79,14 @@
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="d-flex justify-content-around">
               <a href="" class="btn btn-light"><i class="fa fa-eye"></i></a>
-              <form action="/ubah-status" method="POST">
+              <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
                 <input type="hidden" name="status" value="pending">
                 <button typep="submit" class="btn btn-danger"><i class="fa fa-arrow-left"></i></button>
               </form>
-              <form action="/ubah-status" method="POST">
+              <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
@@ -125,7 +125,7 @@
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="d-flex justify-content-around">
               <a href="" class="btn btn-light"><i class="fa fa-eye"></i></a>
-              <form action="/ubah-status" method="POST">
+              <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
@@ -164,7 +164,7 @@
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="d-flex justify-content-around">
               <a href="" class="btn btn-light"><i class="fa fa-eye"></i></a>
-              <form action="/ubah-status" method="POST">
+              <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">

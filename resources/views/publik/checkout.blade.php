@@ -34,7 +34,7 @@
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">Bank BRI</span></p>
 													<p style="margin-bottom: 20px;">Total Harga : <span style="font-weight: bold;">Rp {{ number_format($checkout->total_price_checkout, 0, ',', '.') }}</span></p>
 													<div class="" style="margin-bottom: 10px">
-														<a href="/checkout/{{ $checkout->id }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
+														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
 														<a href="/checkout/{{ $checkout->id }}" style="background-color: red;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-close"></i> Cancel</a>
 													</div>
 												</div>
@@ -70,7 +70,7 @@
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">Bank BRI</span></p>
 													<p style="margin-bottom: 20px;">Total Harga : <span style="font-weight: bold;">Rp {{ number_format($checkout->total_price_checkout, 0, ',', '.') }}</span></p>
 													<div class="" style="margin-bottom: 10px">
-														<a href="/checkout/{{ $checkout->id }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
+														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
 													</div>
 												</div>
 											</div>
@@ -102,7 +102,7 @@
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">Bank BRI</span></p>
 													<p style="margin-bottom: 20px;">Total Harga : <span style="font-weight: bold;">Rp {{ number_format($checkout->total_price_checkout, 0, ',', '.') }}</span></p>
 													<div class="" style="margin-bottom: 10px">
-														<a href="/checkout/{{ $checkout->id }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
+														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
 													</div>
 												</div>
 											</div>
@@ -131,7 +131,7 @@
 													<h3 class="product-name" style="font-size: 20px !important;">Pesanan kamu #{{ $loop->iteration }} <span style="color:green;">(Sudah Bayar)</span></h3>
 													{{-- <p>{{ $order->created_at->hour. ':' . $order->created_at->minute . ':' . $order->created_at->second }}</p> --}}
 													<p>Dipesan tanggal : {{ $checkout->created_at->format('d/m/Y'). ' '. $checkout->created_at->format('H:i:s') }}</p>
-													<a href="/checkout/{{ $checkout->id }}" style="border: 2px solid #dd7082;padding:3px 5px;border-radius:5px;">Lihat Pesanan</a>
+													<a href="{{ route('checkout.show', $checkout->id) }}" style="border: 2px solid #dd7082;padding:3px 5px;border-radius:5px;">Lihat Pesanan</a>
 												</div>
 											</div>
 											{{-- <div class="product-cart">

@@ -14,7 +14,7 @@
 						<div class="product-cart">
 							<img src="/images/{{ $order->product->thumb_img }}" width="100px" alt="">
 							<div class="text-product">
-								<a href="/product/{{ $order->product->slug }}"><h3 class="product-name" style="font-size: 20px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
+								<a href="{{ route('product.show', $order->product->slug) }}"><h3 class="product-name" style="font-size: 20px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
 								<h4 class="product-price">Rp {{ number_format($order->product->price,0, ',', '.') }} <span style="color: #D10024;font-size:12px;">(STOCK: {{ $order->product->stock }})</span> </h4>
 								<div class="text-truncate" style="text-align: left" >
                                     {!! $order->product->description !!}
@@ -42,7 +42,7 @@
 								@foreach($orders as $order)
 								<div class="order-col">
 									<div>
-										<a href="/product/{{ $order->product->slug }}">
+										<a href="{{ route('product.show', $order->product->slug) }}">
 											{{ $order->quantity . 'x ' . $order->product->name }}
 										</a>
 									</div>

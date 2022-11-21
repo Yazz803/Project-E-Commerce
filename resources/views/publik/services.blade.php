@@ -60,14 +60,14 @@
 												</div>
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="#">{{ $service->name }}</a></h3>
+												<h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}++</h4>
 												<div class="text-truncate">
 													{!! $service->description !!}
 												</div>
 											</div>
 											<div class="add-to-cart">
-                                                <a href="/service/{{ $service->slug }}">
+                                                <a href="{{ route('service.show', $service->slug) }}">
                                                     <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                                 </a>
 											</div>
@@ -115,14 +115,14 @@
                                         <img src="/images/{{ $progtech->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ $progtech->name }}</a></h3>
+                                        <h3 class="product-name"><a href="{{ route('service.show', $progtech->slug) }}">{{ $progtech->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($progtech->price,0,',','.') }}</h4>
 										<div class="text-truncate">
 											{!! $service->description !!}
 										</div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/service/{{ $progtech->slug }}">
+                                        <a href="{{ route('service.show', $progtech->slug) }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>
@@ -192,14 +192,14 @@
                                         <img src="/images/{{ $design->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="#">{{ $design->name }}</a></h3>
+                                        <h3 class="product-name"><a href="{{ route('service.show', $design->slug) }}">{{ $design->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($design->price,0,',','.') }}</h4>
 										<div class="text-truncate">
 											{!! $design->description !!}
 										</div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/service/{{ $design->slug }}">
+                                        <a href="{{ route('service.show', $design->slug) }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>

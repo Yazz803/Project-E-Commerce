@@ -54,13 +54,13 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="{{ route('dashboard.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('pages.index') }}">
                     <i class="fas fa-fw fa-arrow-left"></i>
                     <span>Landing Page</span>
                 </a>
@@ -75,8 +75,8 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Add Product & Service:</h6>
-                        <a class="collapse-item" href="/dashboard/products/create"><i class="fas fa-fw fa-plus"></i> Add Product</a>
-                        <a class="collapse-item" href="/dashboard/services/create"><i class="fas fa-fw fa-plus"></i> Add Service</a>
+                        <a class="collapse-item" href="{{ route('products.create') }}"><i class="fas fa-fw fa-plus"></i> Add Product</a>
+                        <a class="collapse-item" href="{{ route('services.create') }}"><i class="fas fa-fw fa-plus"></i> Add Service</a>
                     </div>
                 </div>
             </li>
@@ -90,19 +90,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Product & Service:</h6>
-                        <a class="collapse-item" href="/dashboard/products"><i class="fas fa-fw fa-eye"></i> List Products</a>
-                        <a class="collapse-item" href="/dashboard/services"><i class="fas fa-fw fa-eye"></i> List Services</a>
+                        <a class="collapse-item" href="{{ route('products.index') }}"><i class="fas fa-fw fa-eye"></i> List Products</a>
+                        <a class="collapse-item" href="{{ route('services.index') }}"><i class="fas fa-fw fa-eye"></i> List Services</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item {{ Request::is('dashboard/method-payments/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard/method-payments">
+                <a class="nav-link" href="{{ route('method-payments.index') }}">
                     <i class="fas fa-fw fa-duotone fa-money-bill"></i>
                     <span>Method Payments</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('dashboard/list-order') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard/list-orders">
+                <a class="nav-link" href="{{ route('order.index') }}">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>List Orders</span>
                 </a>
@@ -363,7 +363,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{ route('login.logout') }}">Logout</a>
                 </div>
             </div>
         </div>

@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         ImageProduct::create([
-            'code_product' => 2,
+            'code_product' => 2, 
             'name' => 'Product_636b3c6de2bd4.jpg'
         ]);
         ImageProduct::create([

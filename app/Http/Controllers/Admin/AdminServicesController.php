@@ -95,7 +95,7 @@ class AdminServicesController extends Controller
             ]);
         }
         Alert::toast('Berhasil Menambah Service!', 'success');
-        return redirect('/dashboard/services/create');
+        return redirect()->route('services.create');
     }
 
     /**
@@ -184,7 +184,7 @@ class AdminServicesController extends Controller
             }
         }
         Alert::toast('Berhasil Mengubah Service!', 'success');
-        return redirect('/dashboard/services/'.$service->id.'/edit');
+        return redirect()->route('services.edit', $service->id);
     }
 
     /**

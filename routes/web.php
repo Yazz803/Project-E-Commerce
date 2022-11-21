@@ -31,43 +31,50 @@ use App\Http\Controllers\User\QuantityController;
 */
 
 Route::match('GET', 'product', function(){return redirect('/products');});
-Route::match(['GET', 'POST'], 'register', function(){return redirect('/');});
+// Route::match(['GET', 'POST'], 'register', function(){return redirect('/');});
 Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
 
-Route::get('/', [PagesController::class, 'index'])->name('login');
-Route::get('/products', [PagesController::class, 'products']);
-Route::get('/product/{product:slug}', [ProductController::class, 'index']);
+// PagesController Route
+Route::get('/', [PagesController::class, 'index'])->name('pages.index');
+Route::get('/products', [PagesController::class, 'products'])->name('pages.products');
+Route::get('/services', [PagesController::class, 'services'])->name('pages.services');
+Route::get('/store', [PagesController::class, 'store'])->name('pages.store');
+Route::get('/shopping-cart', [PagesController::class, 'shoppingcart'])->name('pages.shoppingcart');
 
-Route::get('/services', [PagesController::class, 'services']);
-Route::get('/service/{service:slug}', [ServiceController::class, 'show']);
+// ProductController Route
+Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('/store', [PagesController::class, 'store']);
-Route::get('/shopping-cart', [PagesController::class, 'shoppingcart']);
+// ServiceController Route
+Route::get('/service/{service:slug}', [ServiceController::class, 'show'])->name('service.show');
 
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/logout', [LoginController::class, 'logout']);
+// LoginController Route
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login.index');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+
+// RegisterController Route
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('register.index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+// Admin Route
+Route::group(['middleware' => 'admin', 'prefix' => 'dashboard'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/products', AdminProductController::class);
+    Route::resource('/services', AdminServicesController::class);
+    Route::resource('/method-payments', MethodPaymentController::class);
+    Route::get('/list-orders', [OrderController::class, 'index'])->name('order.index');
+    Route::put('/ubah-status', [StatusController::class, 'update'])->name('status.update');
+});
+
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::put('/order', [OrderController::class, 'update'])->name('order.update');
+Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy'])->name('order.destroy');
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show'])->name('checkout.show');
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
-Route::resource('/dashboard/products', AdminProductController::class)->middleware('admin');
-Route::resource('/dashboard/services', AdminServicesController::class)->middleware('admin');
-
-Route::post('/', [PagesController::class, 'search']);
-
-Route::post('/order', [OrderController::class, 'store']);
-Route::put('/order', [OrderController::class, 'update']);
-Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy']);
-Route::get('/dashboard/list-orders', [OrderController::class, 'index'])->middleware('admin');
-Route::get('/profile/edit', [ProfileController::class, 'edit']);
-// Route::resource('/profile', ProfileController::class);
-Route::get('/profile', [ProfileController::class, 'edit']);
-Route::put('/profile', [ProfileController::class, 'update'])->name('update-profile');
-
-Route::get('/checkout', [CheckoutController::class, 'index']);
-Route::post('/checkout', [CheckoutController::class, 'store']);
-Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show']);
-
-Route::put('/ubah-status', [StatusController::class, 'update']);
-
-Route::resource('/dashboard/method-payments', MethodPaymentController::class)->middleware('admin');

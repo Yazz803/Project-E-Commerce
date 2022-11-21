@@ -50,7 +50,7 @@ class MethodPaymentController extends Controller
 
         Alert::success('Success', 'Method Payment has been added');
 
-        return redirect('/dashboard/methodPayments');
+        return redirect()->route('method-payments.index');
         
     }
 
@@ -97,7 +97,7 @@ class MethodPaymentController extends Controller
 
         Alert::success('Success', 'Method Payment has been updated');
 
-        return redirect('/dashboard/method-payments');
+        return redirect()->route('method-payments.index');
     }
 
     /**

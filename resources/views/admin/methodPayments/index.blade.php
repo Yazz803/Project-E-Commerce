@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <a href="/dashboard/method-payments/create" class="btn btn-primary mb-4">Add Method Payments</a>
+    <a href="{{ route('method-payments.create') }}" class="btn btn-primary mb-4">Add Method Payments</a>
 
     <table class="table">
         <thead>
@@ -22,8 +22,8 @@
                 {!! $methodPayment->description !!}
             </td>
             <td>
-              <form action="/dashboard/method-payments/{{ $methodPayment->id }}" method="POST">
-                <a href="/dashboard/method-payments/{{ $methodPayment->id }}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+              <form action="{{ route('method-payments.destroy', $methodPayment->id) }}" method="POST">
+                <a href="{{ route('method-payments.edit', $methodPayment->id) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>

@@ -960,7 +960,7 @@ textarea.input {
   width: 100%;
   border-radius: 5px 5px 0 0;
   border-bottom: #256D85 solid 1px;
-  height: 200px;
+  /* height: 200px; */
 }
 
 .product .product-img .product-label {

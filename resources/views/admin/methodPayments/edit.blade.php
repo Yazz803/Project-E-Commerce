@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
-    <form action="/dashboard/method-payments/{{ $methodPayment->id }}" method="POST">
+    <form action="{{ route('method-payments.update', $methodPayment->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

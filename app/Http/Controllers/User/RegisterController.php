@@ -8,6 +8,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
+    public function index()
+    {
+        return view('publik.login.register', [
+            'title' => 'Register',
+        ]);
+    }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -21,8 +27,10 @@ class RegisterController extends Controller
 
         User::create($validatedData);
 
-        Alert::success('Register Berhasil!');
+        Alert::toast('Register Berhasil! Silahkan Login :)', 'success');
 
-        return back();
+        return redirect()->route('login.index');
     }
+
+    //
 }

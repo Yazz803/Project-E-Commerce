@@ -96,7 +96,7 @@ class AdminProductController extends Controller
             ]);
         }
         Alert::toast('Berhasil Menambah Product!', 'success');
-        return redirect('/dashboard/products/create');
+        return redirect()->route('products.create');
 
     }
 
@@ -183,7 +183,7 @@ class AdminProductController extends Controller
             }
         }
         Alert::toast('Berhasil Mengubah Product!', 'success');
-        return redirect('/dashboard/products/'.$product->id.'/edit');
+        return redirect()->route('products.edit', $product->id);
 
     }
 

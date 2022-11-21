@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="form-add-product col-lg-6 m-auto">
-    <form action="/dashboard/method-payments" method="POST">
+    <form action="{{ route('method-payments.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="name" class="font-weight-bold @error('name') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Nama Pembayaran</label>

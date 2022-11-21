@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login.index', [
+        return view('publik.login.login', [
             'title' => 'Login'
         ]);
     }
@@ -24,11 +24,10 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials, $request->get('remember'))){
             $request->session()->regenerate();  
-            Alert::success('Login Berhasil!', ' ');
             return redirect()->intended('/');
         }
 
-        Alert::warning('Login Gagal!', 'Silahkan masukan email dan password yang benar');
+        Alert::toast('Login Gagal! Silahkan masukan email dan password yang benar', 'error');
 
         return back();
     }

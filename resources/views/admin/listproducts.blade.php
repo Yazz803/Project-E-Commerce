@@ -18,9 +18,9 @@
                         </div>
                         <hr>
                         <div class="action-button d-flex justify-content-around">
-                            <a href="/product/{{ $product->slug }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="/dashboard/products/{{ $product->id }}/edit" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                            <form action="/dashboard/products/{{ $product->id }}" method="post">
+                            <a href="{{ route('product.show', $product->slug) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                            <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>

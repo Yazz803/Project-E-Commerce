@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
-    <form action="/dashboard/products/{{ $product->id }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">

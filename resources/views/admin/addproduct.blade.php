@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
-    <form action="/dashboard/products" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name" class="font-weight-bold @error('name') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Product Name</label>

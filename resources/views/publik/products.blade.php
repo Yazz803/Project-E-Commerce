@@ -60,14 +60,14 @@
 												</div>
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="/product/{{ $product->slug }}">{{ $product->name }}</a></h3>
+												<h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
 												<div class="text-truncate">
 													{!! $product->description !!}
 												</div>
 											</div>
 											<div class="add-to-cart">
-                                                <a href="/product/{{ $product->slug }}">
+                                                <a href="{{ route('product.show', $product->slug) }}">
                                                     <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                                 </a>
 											</div>
@@ -126,14 +126,14 @@
 										@endforeach --}}
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
+                                        <h3 class="product-name"><a href="{{ route('product.show', $food->slug) }}">{{ $food->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
                                         <div class="text-truncate">
 											{!! $food->description !!}
 										</div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/product/{{ $food->slug }}">
+                                        <a href="{{ route('product.show', $food->slug) }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>
@@ -203,14 +203,14 @@
                                         <img src="/images/{{ $drink->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
+                                        <h3 class="product-name"><a href="{{ route('product.show', $drink->slug) }}">{{ $drink->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
                                         <div class="text-truncate">
 											{!! $drink->description !!}
 										</div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/product/{{ $drink->slug }}">
+                                        <a href="{{ route('product.show', $drink->slug) }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>

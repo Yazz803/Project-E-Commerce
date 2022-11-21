@@ -122,7 +122,7 @@
                                 {{-- Account --}}
                                 <div class="dropdown">
 									@if(!auth()->check())
-									<a href="#" data-toggle="modal" data-target="#largeModal">
+									<a href="/login">
 										<i class="fa fa-user-o"></i>
 										<span>My Account</span>
 									</a>
@@ -134,22 +134,22 @@
 
 										<div class="cart-dropdown">
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/profile" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="{{ route('profile.edit') }}" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
 											</div>
 											@if(auth()->user()->role == 'admin')
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/dashboard" style="font-weight: bold;"><i class="fa fa-server fa-lg" style="padding-right:10px;"></i> Admin Dashoard</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="{{ route('dashboard.index') }}" style="font-weight: bold;"><i class="fa fa-server fa-lg" style="padding-right:10px;"></i> Admin Dashoard</a></h5>
 											</div>
 											@else
 											@endif
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/checkout" style="font-weight: bold;"><i class="fa fa-shopping-cart fa-lg" style="padding-right:10px;"></i>List Checkout</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="{{ route('checkout.index') }}" style="font-weight: bold;"><i class="fa fa-shopping-cart fa-lg" style="padding-right:10px;"></i>List Checkout</a></h5>
 											</div>
 											<div class="cart-list">
 												<h5 style="margin-bottom: 0;"><a href="/about" style="font-weight: bold;"><i class="fa fa-group fa-lg" style="padding-right:10px;"></i>About Us</a></h5>
 											</div>
 											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/logout" style="font-weight: bold;"><i class="fa fa-sign-out fa-lg" style="padding-right:10px;"></i> Logout</a></h5>
+												<h5 style="margin-bottom: 0;"><a href="{{ route('login.logout') }}" style="font-weight: bold;"><i class="fa fa-sign-out fa-lg" style="padding-right:10px;"></i> Logout</a></h5>
 											</div>
 										</div>
 
@@ -190,9 +190,9 @@
 							<a href="@if(Request::is('checkout/*')) /checkout @endif @if(Request::is('product/*')) /products @endif @if(Request::is('service/*')) /services @endif @if(Request::is('shopping-cart')) {{ url()->previous() }} @endif" style="background-color:red;color:white;padding:10px;border-radius:10px;font-weight:bold;"><i class="fa fa-arrow-left"></i> Back</a>
 						</li>
 						@endif
-						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
-						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="/products" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
-						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
+						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('pages.index') }}" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
+						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ route('pages.products') }}" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
+						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="{{ route('pages.services') }}" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
 						{{-- @if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
@@ -206,51 +206,6 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-
-		{{-- LOGIN --}}
-		
-		<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="main">  	
-						<button type="button" class="close tombol-close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
-						<input type="checkbox" id="chk" aria-hidden="true">
-				
-							<div class="signup">
-								<form class="login-form" action="/register" method="POST">
-									@csrf
-									<label for="chk" aria-hidden="true">Sign up</label>
-									<input type="text" name="username" placeholder="Username" required="">
-									@error('username')
-									<p style="color: red;font-weight:bold; text-align:center">{{ $message }}</p>
-									@enderror
-									<input type="email" name="email" placeholder="Email" required="">
-									@error('email')
-									<p style="color: red;font-weight:bold; text-align:center">{{ $message }}</p>
-									@enderror
-									<input type="password" name="password" placeholder="Password" required="">
-									<input type="hidden" name="full_name" value="{{ "User".mt_rand(1,10000) }}">
-									<button type="submit">Sign up</button>
-								</form>
-							</div>
-				
-							<div class="login">
-								<form class="login-form" action="/login" method="POST">
-									@csrf
-									<label for="chk" aria-hidden="true">Login</label>
-									<input type="email" name="email" placeholder="Email" required="">
-									<input type="password" name="password" placeholder="Password" required="">
-									{{-- Remember me --}}
-									<input type="hidden" name="remember" value="1" required>
-									<button type="submit">Login</button>
-								</form>
-							</div>
-					</div>
-				</div>
-			</div>
-		</div>
-  
-		{{-- /LOGIN --}}
 
         {{-- SECTION --}}
         @yield('section')

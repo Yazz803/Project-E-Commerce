@@ -6,7 +6,7 @@
     <center>
         <img src="/assets/img/undraw_profile.svg" alt="">
     </center>
-    <form action="/profile" method="POST" class="form-profile">
+    <form action="{{ route('profile.update') }}" method="POST" class="form-profile">
         @csrf
         @method('PUT')
         <div class="form-group">

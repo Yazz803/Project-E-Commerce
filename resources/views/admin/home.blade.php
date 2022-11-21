@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <center class="mt-4">
-                            <a href="/dashboard/list-orders" class="text-uppercase btn btn-warning" style="font-weight: bold">Detail</a>
+                            <a href="{{ route('order.index') }}" class="text-uppercase btn btn-warning" style="font-weight: bold">Detail</a>
                         </center>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <center class="mt-4">
-                            <a href="/dashboard/products" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
+                            <a href="{{ route('products.index') }}" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
                         </center>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <center class="mt-4">
-                            <a href="/dashboard/products" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
+                            <a href="{{ route('products.index') }}" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
                         </center>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <center class="mt-4">
-                            <a href="/dashboard/services" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
+                            <a href="{{ route('services.index') }}" class="text-uppercase btn btn-primary" style="font-weight: bold">Detail</a>
                         </center>
                     </div>
                 </div>

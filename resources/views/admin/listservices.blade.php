@@ -18,9 +18,9 @@
                         </div>
                         <hr>
                         <div class="action-button d-flex justify-content-around">
-                            <a href="/service/{{ $service->slug }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                            <a href="/dashboard/services/{{ $service->id }}/edit" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                            <form action="/dashboard/services/{{ $service->id }}" method="post">
+                            <a href="{{ route('service.show', $service->slug) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('services.edit', $service->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                            <form action="{{ route('services.destroy', $service->id) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" onclick="return confirm('hapus?')" class="btn btn-danger"><i class="fa fa-trash"></i></button>

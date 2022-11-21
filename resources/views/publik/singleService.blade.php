@@ -139,7 +139,7 @@
 									<img src="/images/{{ $food->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a href="/product/{{ $food->slug }}">{{ $food->name }}</a></h3>
+                                    <h3 class="product-name"><a href="{{ route('product.show', $food->slug) }}">{{ $food->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
 									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
 										{!! $food->description !!}
@@ -171,7 +171,7 @@
 									<img src="/images/{{ $drink->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a href="/product/{{ $drink->slug }}">{{ $drink->name }}</a></h3>
+                                    <h3 class="product-name"><a href="{{ route('product.show', $drink->slug) }}">{{ $drink->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
 									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
 										{!! $drink->description !!}
@@ -201,7 +201,7 @@
 									<img src="/images/{{ $service->thumb_img }}" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a href="/service/{{ $service->slug }}">{{ $service->name }}</a></h3>
+                                    <h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
                                     <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
 									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
 										{!! $service->description !!}
