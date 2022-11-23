@@ -38,9 +38,11 @@
                 {!! $message !!}
             </p>
             @enderror
-            <select class="form-control @error('category') is-invalid @enderror" name="category" id="exampleFormControlSelect1">
-              <option value="foods">Foods</option>
-              <option value="drinks">Drinks</option>
+            <select class="form-control @error('category') is-invalid @enderror" name="category_product_id" id="exampleFormControlSelect1">
+                <option value="" selected>Pilih Category</option>
+            @foreach($categories as $category)
+              <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+            @endforeach
             </select>
         </div>
         <div class="form-group" style="margin-top: 30px;">

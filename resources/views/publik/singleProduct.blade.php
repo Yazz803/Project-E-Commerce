@@ -113,7 +113,7 @@
 							
 							<ul class="product-links">
 								<li style="font-weight: bold;">Category:</li>
-								<li><a href="#">{{ $product->category }}</a></li>
+								<li><a href="#">{{ $product->categoryProduct->name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -173,8 +173,65 @@
 		</div>
 		<!-- /SECTION -->
 
+		<!-- SECTION -->
+			<div class="section" id="new-product" style="padding-top: 0 !important;">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+
+						<!-- section title -->
+						<div class="col-md-12">
+							<div class="section-title">
+								<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Random Products</h3>
+							</div>
+						</div>
+						<!-- /section title -->
+
+						<!-- Products tab & slick -->
+						<div class="col-md-12">
+							<div class="row">
+								<div class="products-tabs">
+									<!-- tab -->
+									<div id="tab1" class="tab-pane active">
+										<div class="products-slick" data-nav="#slick-nav-1">
+											@foreach($products as $product)
+											<!-- product -->
+											<div class="product">
+												<div class="product-img">
+													<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+													<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+													<div class="text-truncate">
+														{!! $product->description !!}
+													</div>
+												</div>
+												<div class="add-to-cart">
+													<a href="{{ route('product.show', $product->slug) }}">
+														<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+													</a>
+												</div>
+											</div>
+											<!-- /product -->
+											@endforeach
+										</div>
+										<div id="slick-nav-1" class="products-slick-nav"></div>
+									</div>
+									<!-- /tab -->
+								</div>
+							</div>
+						</div>
+						<!-- Products tab & slick -->
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+		<!-- /SECTION -->
 		
-    <!-- SECTION -->
+    {{-- <!-- SECTION -->
     <div class="section">
         <!-- container -->
         <div class="container" style="border-top: 2px solid #8D99AE;background-color: white;">
@@ -276,7 +333,7 @@
         </div>
         <!-- /container -->
     </div>
-    <!-- /SECTION -->
+    <!-- /SECTION --> --}}
 
 	<script>
 		// Sticky navbar

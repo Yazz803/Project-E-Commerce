@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\ImageProduct;
 use Illuminate\Http\Request;
+use App\Models\CategoryProduct;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -67,8 +68,10 @@ class ProductController extends Controller
         return view('publik.singleProduct', [
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
-            'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
-            'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            'category_products' => CategoryProduct::all(),
+            'products' => Product::inRandomOrder()->get(),
+            // 'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
+            // 'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
             'images' => ImageProduct::where('code_product', $product->code_product)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
             'ttl_orders' => $ttl_orders,

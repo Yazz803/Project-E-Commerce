@@ -4,6 +4,12 @@
     
 @if($products->count())
     <div class="container">
+        <style>
+            .pagination{
+                justify-content: center;
+            }
+        </style>
+        {{ $products->links() }}
         <div class="row">
             {{-- List Product --}}
             @foreach($products as $product)
@@ -32,7 +38,8 @@
             @endforeach
             {{-- /List Product --}}
         </div>
-    </div>
+        {{ $products->links() }}
+    </>
 @else
     <center>
         <h1>Tidak ada Product!</h1>

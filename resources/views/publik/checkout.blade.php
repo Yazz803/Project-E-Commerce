@@ -28,7 +28,7 @@
 											@if($checkout->status == 'pending')
 											<div class="product-cart" style="width: 50%;">
 												<div class="text-product" style="width: 100%; position: relative;">
-													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;">Pesanan kamu #{{ $loop->iteration }} <span style="color: white;position: absolute;right:10px;background-color:red;border-radius:10px;padding: 5px 10px;font-size:14px;">{{ ucfirst($checkout->status) }}</span></h3>
+													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;">Pesanan kamu #{{ $loop->iteration }} <span style="color: white;position: absolute;right:10px;background-color:red;border-radius:10px;padding: 5px 10px;font-size:14px;">Menunggu Konfirmasi</span></h3>
 													{{-- <p>{{ $order->created_at->hour. ':' . $order->created_at->minute . ':' . $order->created_at->second }}</p> --}}
 													<p style="margin-bottom: 0;">Dipesan tanggal : <span style="font-weight: bold">{{ $checkout->created_at->format('d/m/Y'). ' '. $checkout->created_at->format('H:i:s') }}</span></p>
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">Bank BRI</span></p>

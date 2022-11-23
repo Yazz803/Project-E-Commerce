@@ -4,10 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\ImageProduct;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\CategoryProduct;
+use App\Models\ImageProduct;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Product::factory(20)->create();
+        // Product::factory(30)->create();
         
         // Service::factory()->create([
         //     'name' => 'Web Developer',
@@ -68,6 +69,22 @@ class DatabaseSeeder extends Seeder
             'email' => 'yazzhanz@gmail.com',
             'role' => 'admin',
             'password' => bcrypt('password')
+        ]);
+
+        CategoryProduct::create([
+            'name' => 'foods',
+            'slug' => 'foods',
+            'slogan' => 'Nikmati Sesukamu!',
+            'thumb_img' => 'bannermakanan.jpg',
+            'ttl_product' => 0
+        ]);
+
+        CategoryProduct::create([
+            'name' => 'drinks',
+            'slug' => 'drinks',
+            'slogan' => 'Teguk yang bagus untuk saat-saat yang menyenangkan',
+            'thumb_img' => 'bannerminuman.jpg',
+            'ttl_product' => 0
         ]);
 
         // Product::create([
@@ -121,6 +138,8 @@ class DatabaseSeeder extends Seeder
         //     'code_product' => 'P-2',
         //     'name' => 'Product_636b3c6e28fa1.jpg'
         // ]);
+
+        $this->command->info('Berhasil Menambah Data Dummy');
 
     }
 }

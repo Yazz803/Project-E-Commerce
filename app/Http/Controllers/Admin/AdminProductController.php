@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
+use App\Models\CategoryProduct;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Str;
@@ -22,7 +24,7 @@ class AdminProductController extends Controller
     public function index()
     {
         return view('admin.listproducts', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(10)
+            'products' => Product::orderBy('created_at', 'desc')->paginate(12)
         ]);
     }
     
@@ -35,7 +37,8 @@ class AdminProductController extends Controller
     public function create()
     {
         return view('admin.addproduct',[
-            'id_prod' => Product::orderBy('id', 'desc')->first()
+            'id_prod' => Product::orderBy('id', 'desc')->first(),
+            'categories' => CategoryProduct::all(),
         ]);
     }
 
@@ -53,7 +56,7 @@ class AdminProductController extends Controller
             'stock' => 'required',
             'thumb_img' => 'required',
             'images' => 'required',
-            'category' => 'required',
+            'category_product_id' => 'required',
             'code_product' => 'required',
             'description' => 'required',
             'detail' => 'required'
@@ -95,6 +98,14 @@ class AdminProductController extends Controller
                 'code_product' => $request->code_product
             ]);
         }
+
+        // setiap nambah product, ttl_product di table category akan bertambah 1
+        $category = CategoryProduct::find($request->category_product_id);
+        if($category){
+            $category->ttl_product = $category->ttl_product + 1;
+            $category->save();
+        }
+
         Alert::toast('Berhasil Menambah Product!', 'success');
         return redirect()->route('products.create');
 
@@ -209,6 +220,10 @@ class AdminProductController extends Controller
                 File::delete('images/'.$img->name);
             }
         }
+        // mengurangi ttl_product di table Category sebanyak 1 kali
+        $category = CategoryProduct::find($product->categoty_id);
+        $category->ttl_product = $category->ttl_product - 1;
+        $category->save();
         File::delete('images/'.$product->thumb_img);
         ImageProduct::where('code_product', $product->code_product)->delete();
         Product::where('id', $product->id)->delete();

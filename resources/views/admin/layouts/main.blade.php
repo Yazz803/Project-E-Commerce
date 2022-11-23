@@ -77,6 +77,8 @@
                         <h6 class="collapse-header">Add Product & Service:</h6>
                         <a class="collapse-item" href="{{ route('products.create') }}"><i class="fas fa-fw fa-plus"></i> Add Product</a>
                         <a class="collapse-item" href="{{ route('services.create') }}"><i class="fas fa-fw fa-plus"></i> Add Service</a>
+                        <a class="collapse-item" href="{{ route('category-products.index') }}"><i class="fas fa-fw fa-plus"></i> Category Products</a>
+                        <a class="collapse-item" href="{{ route('category-services.index') }}"><i class="fas fa-fw fa-plus"></i> Category Service</a>
                     </div>
                 </div>
             </li>
@@ -95,7 +97,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item {{ Request::is('dashboard/method-payments/*') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/method-payments') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('method-payments.index') }}">
                     <i class="fas fa-fw fa-duotone fa-money-bill"></i>
                     <span>Method Payments</span>

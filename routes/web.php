@@ -13,11 +13,15 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MethodPaymentController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\QuantityController;
+use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\CategoryServiceController;
+use App\Http\Controllers\User\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +68,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'dashboard'], function () {
     Route::resource('/method-payments', MethodPaymentController::class);
     Route::get('/list-orders', [OrderController::class, 'index'])->name('order.index');
     Route::put('/ubah-status', [StatusController::class, 'update'])->name('status.update');
+    Route::resource('/category-products', CategoryProductController::class)->except('show');
+    Route::resource('/category-services', CategoryServiceController::class)->except('show');
 });
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
@@ -78,3 +84,4 @@ Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.s
 Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show'])->name('checkout.show');
 
 
+Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);

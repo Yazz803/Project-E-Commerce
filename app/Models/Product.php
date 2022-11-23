@@ -27,4 +27,12 @@ class Product extends Model
     public function checkout(){
         return $this->belongsTo(Checkout::class);
     }
+
+    public function categoryProduct(){
+        return $this->belongsTo(CategoryProduct::class);
+    }
+
+    public function categoryService(){
+        return $this->belongsTo(CategoryService::class);
+    }
 }

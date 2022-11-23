@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Category;
+use App\Models\CategoryProduct;
+use App\Models\CategoryService;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
@@ -18,6 +21,7 @@ class PagesController extends Controller
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         return view('publik.landingpage',[
             'title' => 'Landing Page',
+            'category_products' => CategoryProduct::all(),
             'newest' => Product::orderBy('id','desc')->take(8)->get(),
             'products' => Product::inRandomOrder()->get(),
             'services' => Service::inRandomOrder()->get(),
@@ -31,8 +35,9 @@ class PagesController extends Controller
         return view('publik.products', [
             'title' => 'Products',
             'products' => Product::orderBy('created_at', 'desc')->take(8)->get(),
-            'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8, ['*'], 'foods'),
-            'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8, ['*'], 'drinks'),
+            'category_products' => CategoryProduct::all(),
+            // 'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8, ['*'], 'foods'),
+            // 'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8, ['*'], 'drinks'),
             'images' => ImageProduct::all(),
             'singleimage' => ImageProduct::orderBy('id', 'desc')->take(1)->get(),
             'ttl_orders' => $ttl_orders,
@@ -45,8 +50,9 @@ class PagesController extends Controller
         return view('publik.services',[
             'title' => 'Services',
             'services' => Service::orderBy('id', 'desc')->take(8)->get(),
-            'progtechs' => Service::where('category','progtech')->orderBy('id','desc')->paginate(8),
-            'designs' => Service::where('category','design')->orderBy('id','desc')->paginate(8),
+            'category_services' => CategoryService::all(),
+            // 'progtechs' => Service::where('category','progtech')->orderBy('id','desc')->paginate(8),
+            // 'designs' => Service::where('category','design')->orderBy('id','desc')->paginate(8),
             'ttl_orders' => $ttl_orders,
         ]);
     }
@@ -73,6 +79,7 @@ class PagesController extends Controller
         return view('publik.shoppingcart',[
             'title' => 'Selamat Datang di Shopping Cart',
             'ttl_orders' => $ttl_orders,
+            'category_products' => CategoryProduct::all(),
             'quantity' => $user_order_id,
             // 'products' => $hasil,
             'orders' => Order::where('user_id', auth()->user()->id)->get(),
@@ -84,6 +91,7 @@ class PagesController extends Controller
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         return view('publik.profile',[
             'ttl_orders' => $ttl_orders,
+            'category_products' => CategoryProduct::all(),
             'title' => 'Edit Profile',
             'user' => $user,
         ]);

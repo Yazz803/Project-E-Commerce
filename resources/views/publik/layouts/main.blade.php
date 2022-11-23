@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,6 +62,51 @@
 				bottom: 0;
 				z-index: -1;
 			}
+
+			/* HOT DEAL */
+			
+			#hot-deal.section {
+			padding: 60px 0px;
+			margin: 30px 0px;
+			background-color: #E4E7ED;
+			background-image: 
+			linear-gradient(
+				rgba(44, 44, 44, 0.322),
+				rgba(51, 51, 51, 0.349)
+			)
+			,url('/assets//img/GedungWikrama.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			}
+
+			#hot-deal4.section {
+			padding: 60px 0px;
+			margin: 30px 0px;
+			background-color: #E4E7ED;
+			background-image: 
+			linear-gradient(
+				rgba(44, 44, 44, 0.322),
+				rgba(51, 51, 51, 0.349)
+			)
+			,url('/assets/img/pplg.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			}
+
+			#hot-deal5.section {
+			padding: 60px 0px;
+			margin: 30px 0px;
+			background-color: #E4E7ED;
+			background-image: 
+			linear-gradient(
+				rgba(44, 44, 44, 0.322),
+				rgba(51, 51, 51, 0.349)
+			)
+			,url('/assets/img/animeduduk.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			}
+
 		</style>
 
     </head>
@@ -92,12 +137,27 @@
 							<div class="header-search">
                                 <center>
                                     <form>
-                                        <input class="input" placeholder="Search here">
+                                        <input type="text" class="input" placeholder="Search here" name="search" id="search" autocomplete="off">
                                         <button class="search-btn" style="border-radius: 0 2px 2px 0;"><i class="fa fa-search"></i></button>
                                     </form>
                                 </center>
 							</div>
 						</div>
+						<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js">
+						</script>
+						<script type="text/javascript">
+							var route = "{{ url('autocomplete-search') }}";
+							$('#search').typeahead({
+								source: function (query, process) {
+									return $.get(route, {
+										query: query
+									}, function (data) {
+										return process(data);
+									});
+								}
+							});
+						</script>
 						<!-- /SEARCH BAR -->
 
 						<!-- ACCOUNT -->
@@ -195,7 +255,7 @@
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('pages.index') }}" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ route('pages.products') }}" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="{{ route('pages.services') }}" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
-						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
+						<li class="{{ Request::is('categories') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
 						{{-- @if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>

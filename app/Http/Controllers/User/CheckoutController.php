@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Order;
+use App\Models\InOrder;
 use App\Models\Product;
 use App\Models\Checkout;
-use App\Models\InOrder;
 use Illuminate\Http\Request;
+use App\Models\CategoryProduct;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
@@ -19,6 +20,7 @@ class CheckoutController extends Controller
         return view('publik.checkout', [
             'title' => 'Checkout',
             'ttl_orders' => $ttl_orders,
+            'category_products' => CategoryProduct::all(),
             'checkouts' => Checkout::where('user_id', auth()->user()->id)->get(),
             'orderUser' => Checkout::all()
         ]);
@@ -88,6 +90,7 @@ class CheckoutController extends Controller
         $allCheckout = Checkout::all();
         return view('publik.product-checkout', [
             'title' => 'Checkout',
+            'category_products' => CategoryProduct::all(),
             // 'single_checkout' => $checkout,
             'ttl_orders' => $ttl_orders,
             'orders' => InOrder::where('user_id', auth()->user()->id)->where('checkout_id', $checkout->id)->get(),
