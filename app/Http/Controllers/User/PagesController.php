@@ -57,6 +57,17 @@ class PagesController extends Controller
         ]);
     }
 
+    public function categories()
+    {
+        return view('publik.categories',[
+            'title' => 'Categories',
+            'category_products' => CategoryProduct::all(),
+            'category_services' => CategoryService::all(),
+            'products' => Product::inRandomOrder()->get(),
+            'services' => Service::inRandomOrder()->get(),
+        ]);
+    }
+
     public function product()
     {
         return view('publik.singleProduct');

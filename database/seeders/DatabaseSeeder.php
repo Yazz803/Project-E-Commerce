@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\CategoryProduct;
+use App\Models\CategoryService;
 use App\Models\ImageProduct;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Product::factory(30)->create();
+        Product::factory(30)->create();
+        Service::factory(30)->create();
         
         // Service::factory()->create([
         //     'name' => 'Web Developer',
@@ -84,6 +86,22 @@ class DatabaseSeeder extends Seeder
             'slug' => 'drinks',
             'slogan' => 'Teguk yang bagus untuk saat-saat yang menyenangkan',
             'thumb_img' => 'bannerminuman.jpg',
+            'ttl_product' => 0
+        ]);
+
+        CategoryProduct::create([
+            'name' => 'kerajinan',
+            'slug' => 'kerajinan',
+            'slogan' => 'Buat semenarik mungkin',
+            'thumb_img' => 'bgwkshop.jpg',
+            'ttl_product' => 0
+        ]);
+
+        CategoryService::create([
+            'name' => 'Programming',
+            'slug' => 'programming',
+            'slogan' => 'Wajib Ngulik',
+            'thumb_img' => 'pplg.jpg',
             'ttl_product' => 0
         ]);
 

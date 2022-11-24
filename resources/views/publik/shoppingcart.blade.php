@@ -46,7 +46,7 @@
 							</div>
 							<img src="/images/{{ $order->product->thumb_img }}" width="100px" alt="">
 							<div class="text-product">
-								<a href="{{ route('product.show', $order->product->slug) }}"><h3 class="product-name" style="font-size: 20px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
+								<a href="{{ route('product.show', $order->product->slug) }}"><h3 class="product-name" style="font-size: 14px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
 								<h4 class="product-price">Rp {{ number_format($order->product->price,0, ',', '.') }} <span style="color: #D10024;font-size:12px;">(STOCK: {{ $order->product->stock }})</span> </h4>
 								<form action="/order" method="POST">
 									@csrf
@@ -55,7 +55,7 @@
 										<div class="qty-label">
 											<div class="input-number">
 												<input type="hidden" name="product_id" value="{{ $order->product->id }}">
-													Jumlah <input type="number" name="quantity" value="{{ $order->quantity }}" min="1" max="{{ $order->product->stock }}" style="width: 100px !important;font-weight:bold;">
+													Jumlah <input type="number" name="quantity" value="{{ $order->quantity }}" min="1" max="{{ $order->product->stock }}" style="width: 70px !important;font-weight:bold;">
 												<span class="qty-up">+</span>
 												<span class="qty-down">-</span>
 											</div>

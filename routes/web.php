@@ -21,6 +21,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\QuantityController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CategoryServiceController;
+use App\Http\Controllers\User\MenuController;
 use App\Http\Controllers\User\SearchController;
 
 /*
@@ -42,8 +43,7 @@ Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
 Route::get('/', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/products', [PagesController::class, 'products'])->name('pages.products');
 Route::get('/services', [PagesController::class, 'services'])->name('pages.services');
-Route::get('/store', [PagesController::class, 'store'])->name('pages.store');
-Route::get('/shopping-cart', [PagesController::class, 'shoppingcart'])->name('pages.shoppingcart');
+Route::get('/categories', [PagesController::class, 'categories'])->name('pages.categories');
 
 // ProductController Route
 Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
@@ -72,16 +72,23 @@ Route::group(['middleware' => 'admin', 'prefix' => 'dashboard'], function () {
     Route::resource('/category-services', CategoryServiceController::class)->except('show');
 });
 
-Route::post('/order', [OrderController::class, 'store'])->name('order.store');
-Route::put('/order', [OrderController::class, 'update'])->name('order.update');
-Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy'])->name('order.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/shopping-cart', [PagesController::class, 'shoppingcart'])->name('pages.shoppingcart');
 
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+    Route::put('/order', [OrderController::class, 'update'])->name('order.update');
+    Route::delete('/cancel-order/{order:id}',[OrderController::class, 'destroy'])->name('order.destroy');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show'])->name('checkout.show');
+    
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    
+    Route::get('/menu-utama', [MenuController::class, 'index'])->name('menu.utama');
+});
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);

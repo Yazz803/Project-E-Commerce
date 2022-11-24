@@ -54,11 +54,12 @@ class ServiceController extends Controller
         return view('publik.singleService',[
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'service' => $service,
-            'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
-            'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
+            // 'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
+            // 'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
             'ttl_orders' => $ttl_orders,
             'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
-            'services' => Service::inRandomOrder()->take(5)->get(),
+            'services' => Service::inRandomOrder()->get(),
+            'products' => Product::inRandomOrder()->get()
         ]);
     }
 

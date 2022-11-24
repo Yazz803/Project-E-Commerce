@@ -17,7 +17,7 @@ class ProductFactory extends Factory
     // private $category = ['foods', 'drinks'];
     private $Products = ['Bolsu', 'Mie Ayam', 'Corndog', 'Sandwich', 'Bread', 'Cookies', 'Onde-Onde', 'Donut', 'Seblak'];
     private $category = ['foods', 'drinks'];
-    private $thumb_img = ['bannermakanan.jpg', 'bannerminuman.jpg', 'pplg.jpg'];
+    private $thumb_img = ['bannermakanan2.jpg', 'bannerminuman2.jpg'];
     public function definition()
     {
         return [

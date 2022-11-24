@@ -96,9 +96,9 @@
         </div>
         {{-- code_service --}}
         @if($id_serv == NULL)
-        <input type="hidden" name="code_service" value="P-1">
+        <input type="hidden" name="code_service" value="S-1">
         @else
-        <input type="hidden" name="code_service" value="{{ 'P-'.$id_serv->id+1 }}">
+        <input type="hidden" name="code_service" value="{{ 'S-'.$id_serv->id+1 }}">
         @endif
         @error('code_service')
         <p class="text-danger ">

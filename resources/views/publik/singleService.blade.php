@@ -55,7 +55,7 @@
 							
 							<ul class="product-links">
 								<li style="font-weight: bold;">Category:</li>
-								<li><a href="#">{{ $service->category }}</a></li>
+								<li><a href="#">{{ $service->categoryService->name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -104,6 +104,74 @@
 								</div>
 								<!-- /tab2  -->
 							</div>
+
+							<div class="diskusi">
+								<!-- section title -->
+								<div class="col-md-12">
+									<div class="section-title col-md-8" style="display: flex;justify-content:space-between;align-items:center;">
+										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Diskusi</h4>
+										<a href=""><u>Lihat Semua</u>(1)</a>
+									</div>
+								</div>
+								<!-- /section title -->
+								<div class="col-md-8">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/anime7.webp" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
+												<p>Costumer</p>
+											</div>
+										</div>
+										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="diskusi2" >
+								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:30px;margin-bottom: 50px;">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/2.jpg" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;color: red;">Khairul Rasyid Shiddiq <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
+												<p style="color:red;">Seller</p>
+											</div>
+										</div>
+										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+							
+							<div class="diskusi">
+								<div class="col-md-8">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/anime7.webp" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
+												<p>Costumer</p>
+											</div>
+										</div>
+										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="diskusi2" >
+								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:30px;margin-bottom: 50px;">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/2.jpg" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;color: red;">Khairul Rasyid Shiddiq <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
+												<p style="color:red;">Seller</p>
+											</div>
+										</div>
+										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
 							<!-- /product tab content  -->
 						</div>
 					</div>
@@ -117,109 +185,62 @@
 
 		
     <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container" style="border-top: 2px solid #8D99AE; background-color: white;">
-            <!-- row -->
-            <div class="row" style="margin-top: 50px">
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Foods</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-3" class="products-slick-nav"></div>
-                        </div>
-                    </div>
+			<div class="section" id="new-product" style="padding-top: 0 !important;">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
-							<!-- product widget -->
-							@foreach($foods as $food)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $food->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="{{ route('product.show', $food->slug) }}">{{ $food->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
-										{!! $food->description !!}
-									</div>
-									
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Drinks</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-4" class="products-slick-nav"></div>
-                        </div>
-                    </div>
+						<!-- section title -->
+						<div class="col-md-12">
+							<div class="section-title">
+								<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Rekomendasi Untuk Kamu</h3>
+							</div>
+						</div>
+						<!-- /section title -->
 
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
-							<!-- product widget -->
-							@foreach($drinks as $drink)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $drink->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="{{ route('product.show', $drink->slug) }}">{{ $drink->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
-										{!! $drink->description !!}
+						<!-- Products tab & slick -->
+						<div class="col-md-12">
+							<div class="row">
+								<div class="products-tabs">
+									<!-- tab -->
+									<div id="tab1" class="tab-pane active">
+										<div class="products-slick" data-nav="#slick-nav-1">
+											@foreach($products as $product)
+											<!-- product -->
+											<div class="product">
+												<div class="product-img">
+													<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+													<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+													<div class="text-truncate">
+														{!! $product->description !!}
+													</div>
+												</div>
+												<div class="add-to-cart">
+													<a href="{{ route('product.show', $product->slug) }}">
+														<button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
+													</a>
+												</div>
+											</div>
+											<!-- /product -->
+											@endforeach
+										</div>
+										<div id="slick-nav-1" class="products-slick-nav"></div>
 									</div>
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Services</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-5" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
-							<!-- product widget -->
-							@foreach($services as $service)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $service->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
-									<div class="text-truncate" style="text-align: left;-webkit-line-clamp:1;">
-										{!! $service->description !!}
-									</div>
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /SECTION -->
+									<!-- /tab -->
+								</div>
+							</div>
+						</div>
+						<!-- Products tab & slick -->
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+		<!-- /SECTION -->
 
 
 	<script>

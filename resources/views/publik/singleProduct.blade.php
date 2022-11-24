@@ -126,6 +126,14 @@
 								<li><a href="#">{{ $product->user->no_hp }}</a></li>
 							</ul>
 
+							@if(empty($product->order->quantity))
+							<ul class="product-links">
+								<li style="font-weight: bold;color:red;"><i class="fa fa-info-circle"></i> Kamu sudah memesan product ini (order : {{ $quantity }})</li>
+							</ul>
+							@else
+
+							@endif
+
 						</div>
 					</div>
 					<!-- /Product details -->
@@ -145,7 +153,7 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 20px 20px;padding: 10px;list-style:circle !important;">
+										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;list-style:circle !important;">
 											{!! $product->description !!}
 										</div>
 									</div>
@@ -155,12 +163,80 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;">
-											<p>{!! $product->detail !!}</p>
+										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;list-style:circle !important;">
+											{!! $product->detail !!}
 										</div>
 									</div>
 								</div>
 								<!-- /tab2  -->
+							</div>
+
+							<div class="diskusi">
+								<!-- section title -->
+								<div class="col-md-12">
+									<div class="section-title col-md-8" style="display: flex;justify-content:space-between;align-items:center;">
+										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Diskusi</h4>
+										<a href=""><u>Lihat Semua</u>(1)</a>
+									</div>
+								</div>
+								<!-- /section title -->
+								<div class="col-md-8">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/anime7.webp" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar</p>
+												<p>Costumer</p>
+											</div>
+										</div>
+										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="diskusi2" >
+								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:60px;margin-bottom: 50px;">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/2.jpg" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Khairul Rasyid Shiddiq</p>
+												<p>Seller</p>
+											</div>
+										</div>
+										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="diskusi">
+								<div class="col-md-8">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/anime7.webp" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar</p>
+												<p>Costumer</p>
+											</div>
+										</div>
+										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="diskusi2">
+								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:60px">
+									<div class="diskusi-head">
+										<div class="diskusi-profile">
+											<img src="/assets/img/2.jpg" width="50px" alt="">
+											<div class="diskusi-profile-text">
+												<p class="font-weight-bold" style="margin-bottom: 0;">Khairul Rasyid Shiddiq</p>
+												<p>Seller</p>
+											</div>
+										</div>
+										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+									</div>
+								</div>
 							</div>
 							<!-- /product tab content  -->
 						</div>
@@ -183,7 +259,7 @@
 						<!-- section title -->
 						<div class="col-md-12">
 							<div class="section-title">
-								<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Random Products</h3>
+								<h3 class="title"><i class="fa fa-circle" style="color: #06283D"></i> Rekomendasi Untuk Kamu</h3>
 							</div>
 						</div>
 						<!-- /section title -->

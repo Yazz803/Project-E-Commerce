@@ -11,7 +11,7 @@ class CategoryService extends Model
     
     protected $guarded = ['id'];
     
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function services(){
+        return $this->hasMany(Service::class);
     }
 }

@@ -506,29 +506,31 @@ textarea.input {
 \*----------------------------*/
 
 .header-ctn {
-  float: right;
-  padding: 15px 0px;
+  /* float: right; */
+  display: flex;
+  justify-content: end;
+  padding: 25px 0px;
 }
 
 .header-ctn>div {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .header-ctn>div+div {
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 
 .header-ctn>div>a {
   display: block;
   position: relative;
-  width: 90px;
+  width: 60px;
   text-align: center;
   color: #FFF;
 }
 
 .header-ctn>div>a>i {
   display: block;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .header-ctn>div>a>span {
@@ -537,7 +539,7 @@ textarea.input {
 
 .header-ctn>div>a>.qty {
   position: absolute;
-  right: 15px;
+  right: 0px;
   top: -10px;
   width: 20px;
   height: 20px;
@@ -1225,10 +1227,12 @@ textarea.input {
   height: 20px;
   display: inline-block !important;
   margin: 0px 2px;
+  background-color: gray;
 }
 
 .products-slick-nav .slick-prev:before, .products-slick-nav .slick-next:before {
   font-size: 14px;
+  color: white;
 }
 
 /*=========================================================
@@ -2267,6 +2271,30 @@ textarea.input {
   .form-profile {
     width: 80% !important;
   }
+
+  .menu-user {
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .menu-user h4, .menu {
+    margin-left: -30px;
+  }
+
+  /* .sticky {
+    top: inherit !important;
+    width: 100%;
+    z-index: 101010;
+  }
+
+  #navigation {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 101010;
+  } */
+  
 }
 
 
@@ -2320,19 +2348,10 @@ textarea.input {
 
 .edit-profile {
   background-color: white;
-}
-
-.edit-profile > h1 {
-  text-align: center;
-}
-
-.edit-profile center > img {
-  display: block;
-  margin: auto;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-profile {
@@ -2371,6 +2390,10 @@ textarea.input {
   margin: 95px 0 0 0 !important;
 }
 
+.sticky-margin-categories {
+  margin: 75px 0 0 0 !important;
+}
+
 .copyright {
   margin: 0 0;
 }
@@ -2388,4 +2411,33 @@ textarea.input {
 
 .section-title .title {
   margin-top: 15px;
+}
+
+/* Diskusi Chat */
+.diskusi-profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.diskusi-profile img {
+  border-radius: 50%;
+}
+.diskusi-chat {
+  
+}
+
+.menu-user {
+  margin-top: 20px;
+  border-left: 3px solid rgba(128, 128, 128, 0.377);
+  border-right: 3px solid rgba(128, 128, 128, 0.322);
+  margin-bottom: 50px;
+}
+
+.menu {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.menu > i {
+  margin-right: 15px;
 }

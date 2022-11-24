@@ -163,65 +163,79 @@
 						<!-- ACCOUNT -->
 						<div class="col-lg-3 clearfix">
 							<div class="header-ctn">
+								{{-- <!-- Notification -->
+								<div>
+									@if(!auth()->check())
+									<a href="#" onclick="return loginDulu()" data-toggle="modal" data-target="#largeModal">
+										<i class="fa fa-bell"></i>
+									</a>
+									@else
+									<a href="/notification">
+										<i class="fa fa-bell"></i>
+										@php
+											auth()->check() == true ? $ttl_orders = \App\Models\Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
+										@endphp
+										@if($ttl_orders > 0)
+										<div class="qty">{{ $ttl_orders }}</div>
+										@endif
+									</a>
+									@endif
+								</div>
+								<!-- /Notification --> --}}
+
 								<!-- Cart -->
 								<div>
 									@if(!auth()->check())
-									<a href="#" data-toggle="modal" data-target="#largeModal">
+									<a href="#" onclick="return loginDulu()" data-toggle="modal" data-target="#largeModal">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">0</div>
 									</a>
 									@else
 									<a href="/shopping-cart">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										@php
+											auth()->check() == true ? $ttl_orders = \App\Models\Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
+										@endphp
+										@if($ttl_orders > 0)
 										<div class="qty">{{ $ttl_orders }}</div>
+										@endif
 									</a>
 									@endif
 								</div>
 								<!-- /Cart -->
 
+                                {{-- Checkout --}}
+                                <div class="dropdown">
+									<a @if(!auth()->user()) href="#" onclick="return loginDulu()" @else href="/checkout" @endif>
+										<i class="fa fa-file-text"></i>
+									</a>
+								</div>
+                                {{-- /checkot --}}
+
                                 {{-- Account --}}
                                 <div class="dropdown">
 									@if(!auth()->check())
 									<a href="/login">
-										<i class="fa fa-user-o"></i>
-										<span>My Account</span>
+										<i class="fa fa-user-circle"></i>
 									</a>
 									@else
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-											<i class="fa fa-user-o"></i>
-											<span>{{ auth()->user()->full_name }}</span>
-										</a>
-
-										<div class="cart-dropdown">
-											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="{{ route('profile.edit') }}" style="font-weight: bold;"><i class="fa fa-user-o fa-lg" style="padding-right:10px;"></i> My Profile</a></h5>
-											</div>
-											@if(auth()->user()->role == 'admin')
-											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="{{ route('dashboard.index') }}" style="font-weight: bold;"><i class="fa fa-server fa-lg" style="padding-right:10px;"></i> Admin Dashoard</a></h5>
-											</div>
-											@else
-											@endif
-											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="{{ route('checkout.index') }}" style="font-weight: bold;"><i class="fa fa-shopping-cart fa-lg" style="padding-right:10px;"></i>List Checkout</a></h5>
-											</div>
-											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="/about" style="font-weight: bold;"><i class="fa fa-group fa-lg" style="padding-right:10px;"></i>About Us</a></h5>
-											</div>
-											<div class="cart-list">
-												<h5 style="margin-bottom: 0;"><a href="{{ route('login.logout') }}" style="font-weight: bold;"><i class="fa fa-sign-out fa-lg" style="padding-right:10px;"></i> Logout</a></h5>
-											</div>
-										</div>
 
 									@endif
 								</div>
                                 {{-- /Account --}}
 
+								@if(auth()->check())
+                                {{-- List --}}
+                                <div class="dropdown">
+									<a href="{{ route('menu.utama') }}">
+										<i class="fa fa-list"></i>
+									</a>
+								</div>
+                                {{-- /List --}}
+								@endif
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
-									<a href="#">
+									<a href="{{ route('profile.index') }}">
 										<i class="fa fa-bars"></i>
 										<span>Menu</span>
 									</a>
@@ -248,14 +262,14 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav" style="align-items: center">
 						@if(Request::is('checkout/*') || Request::is('product/*') || Request::is('service/*') || Request::is('shopping-cart'))
-						<li class="back">
+						{{-- <li class="back">
 							<a href="@if(Request::is('checkout/*')) /checkout @endif @if(Request::is('product/*')) /products @endif @if(Request::is('service/*')) /services @endif @if(Request::is('shopping-cart')) {{ url()->previous() }} @endif" style="background-color:red;color:white;padding:10px;border-radius:10px;font-weight:bold;"><i class="fa fa-arrow-left"></i> Back</a>
-						</li>
+						</li> --}}
 						@endif
 						<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('pages.index') }}" style="font-weight: bold;"><i class="fa fa-home"></i> Home</a></li>
 						<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ route('pages.products') }}" style="font-weight: bold;"><i class="fa fa-shopping-bag"></i> Products</a></li>
 						<li class="{{ Request::is('services') ? 'active' : '' }}"><a href="{{ route('pages.services') }}" style="font-weight: bold;"><i class="fa fa-group"></i> Services</a></li>
-						<li class="{{ Request::is('categories') ? 'active' : '' }}"><a href="/services" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
+						<li class="{{ Request::is('categories') ? 'active' : '' }}"><a href="{{ route('pages.categories') }}" style="font-weight: bold;"><i class="fa fa-group"></i> Categories</a></li>
 						{{-- @if(Request::is('service/*') || Request::is('product/*'))
 						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
 						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
@@ -294,7 +308,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-3 col-xs-6">
+						{{-- <div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
@@ -303,7 +317,7 @@
 									<li><a href="#">Services</a></li>
 								</ul>
 							</div>
-						</div>
+						</div> --}}
 
 						<div class="clearfix visible-xs"></div>
 
@@ -370,5 +384,25 @@
 		<script src="/assets/js/jquery.zoom.min.js"></script>
 		<script src="/assets/js/main.js"></script>
 		<script src="/assets/js/login.js"></script>
+		<script>
+			function loginDulu(){
+				Swal.fire({
+					title: 'Kamu Harus Login Dulu',
+					backgroundOpacity: .5,
+					position: 'left-start',
+					// width: 300,
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Login',
+					cancelButtonText: 'Tidak'
+					}).then((result) => {
+					if (result.isConfirmed) {
+						window.location.href= '{{ route("login.index") }}'
+					}
+				})
+			}
+		</script>
 	</body>
 </html>

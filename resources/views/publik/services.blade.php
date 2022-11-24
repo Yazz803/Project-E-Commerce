@@ -63,21 +63,21 @@
 								<!-- tab -->
 								<div id="tab{{ $category->id }}" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-{{ $category->id }}">
-										@foreach($category->products->shuffle() as $product)
+										@foreach($category->services->shuffle() as $service)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
-												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
+												<h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
+												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}</h4>
 												<div class="text-truncate">
-													{!! $product->description !!}
+													{!! $service->description !!}
 												</div>
 											</div>
 											<div class="add-to-cart">
-                                                <a href="{{ route('product.show', $product->slug) }}">
+                                                <a href="{{ route('service.show', $service->slug) }}">
                                                     <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                                 </a>
 											</div>
