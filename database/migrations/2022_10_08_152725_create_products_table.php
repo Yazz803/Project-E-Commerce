@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('category_product_id');
-            $table->foreignId('category_service_id');
             $table->string('name');
             $table->string('code_product');
             $table->string('thumb_img')->nullable();

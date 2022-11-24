@@ -29,7 +29,7 @@
                 {!! $message !!}
             </p>
             @enderror
-            <select class="form-control @error('category') is-invalid @enderror" name="category" id="exampleFormControlSelect1">
+            <select class="form-control @error('category') is-invalid @enderror" name="category_service_id" id="exampleFormControlSelect1">
               <option value="progtech">Programming & Technology</option>
               <option value="design">Design Grafis</option>
             </select>

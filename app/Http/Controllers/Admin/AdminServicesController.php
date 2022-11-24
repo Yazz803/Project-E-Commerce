@@ -51,7 +51,7 @@ class AdminServicesController extends Controller
             'price' => 'required',
             'thumb_img' => 'required',
             'images' => 'required',
-            'category' => 'required',
+            'category_service_id' => 'required',
             'tag' => 'required',
             'code_service' => 'required',
             'description' => 'required',
