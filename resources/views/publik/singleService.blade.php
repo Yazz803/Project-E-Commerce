@@ -110,118 +110,100 @@
 								<div class="col-md-12">
 									<div class="section-title col-md-8" style="display: flex;justify-content:space-between;align-items:center;">
 										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Diskusi</h4>
-										<a href=""><u>Lihat Semua</u>(1)</a>
+										<a href="#"><u>Total Diskusi</u>({{ $service->commentServices->count() }})</a>
 									</div>
 								</div>
+								@foreach($service->commentServices()->orderBy('created_at', 'desc')->get() as $comment)
 								<!-- /section title -->
 								<div class="col-md-8">
 									<div class="diskusi-head">
 										<div class="diskusi-profile">
 											<img src="/assets/img/anime7.webp" width="50px" alt="">
 											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
+												<p class="font-weight-bold" style="margin-bottom: 0;">{{ $comment->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $comment->created_at->diffForHumans() }}</span></p>
+												@if($comment->user->role == 'admin')
+												<p style="color: red">Seller</p>
+												@else
 												<p>Costumer</p>
+												@endif
+											</div>
+											@if(auth()->check())
+												@if($comment->user->id == auth()->user()->id)
+												<form action="{{ route('comment.product.destroy', $comment->id) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button class="chat-delete">
+														<p><i class="fa fa-trash fa-lg"></i> </p>
+													</button>
+												</form>
+												@endif
+											@endif
+										</div>
+										@php
+											$chatToggle = $comment->user->username . mt_rand(1,999);
+											$chatInput = $comment->user->username . mt_rand(1,999);
+										@endphp
+										<p style="margin-top: 8px;">{{ $comment->message }}</p>
+										@foreach($comment->commentReplyServices()->get() as $reply)
+										<div class="diskusi2" >
+											<div class="col-md-12" style="border-left: 3px solid gray !important; margin-left:15px;margin-bottom: 10px;padding-right: 0 !important">
+												<div class="diskusi-head">
+													<div class="diskusi-profile">
+														<img src="/assets/img/anime7.webp" width="50px" alt="">
+														<div class="diskusi-profile-text">
+															<p class="font-weight-bold" style="margin-bottom: 0;">{{ $reply->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $reply->created_at->diffForHumans() }}</span></p>
+															@if($reply->user->role == 'admin')
+															<p style="color:red;">Seller</p>
+															@else
+															<p>Costumer</p>
+															@endif
+														</div>
+														@if(auth()->check())
+															@if($reply->user->id == auth()->user()->id)
+															<form action="{{ route('comment.service.reply.destroy', $reply->id) }}" method="POST">
+																@csrf
+																@method('DELETE')
+																<button class="chat-delete">
+																	<p><i class="fa fa-trash fa-lg"></i> </p>
+																</button>
+															</form>
+															@endif
+														@endif
+													</div>
+													<p style="margin-top:8px;">{{ $reply->message }}</p>
+												</div>
 											</div>
 										</div>
-										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-										<button class="chat-toggle" id="chat-toggle-reply">
-											<p><i class="fa fa-comments-o fa-lg"></i> Balas Komentar</p>
+										@endforeach
+										@if(auth()->check())
+										<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="{{ $chatToggle }}" @endif>
+											<p><i class="fa fa-comments-o fa-lg"></i> Reply</p>
 										</button>
-										<form action="">
-											<button class="chat-delete">
-												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
-											</button>
-										</form>
-										<form action="" style="margin-bottom: 10px">
-											<div class="chat-input" id="chat-input-reply">
-												<input type="text" placeholder="Masukan Komentar">
+										<form action="{{ route('comment.service.reply.store', $comment->id) }}" method="POST" style="margin-bottom: 10px;">
+											@csrf
+											<div class="chat-input" id="{{ $chatInput }}">
+												<input type="hidden" name="service_id" value="{{ $service->id }}">
+												<input type="text" name="message" placeholder="Masukan Komentar" autocomplete="off">
 												<button type="submit">
 													<i class="fa fa-send icon-chat"></i>
 												</button>
 											</div>
 										</form>
+										@endif
 										{{-- Chat Box --}}
 										<script>
-											var chatToggleReply = document.getElementById('chat-toggle-reply')
-											var chatInputReply = document.getElementById('chat-input-reply')
+											var {{ $chatToggle }} = document.getElementById('{{ $chatToggle }}')
+											var {{ $chatInput }} = document.getElementById('{{ $chatInput }}')
 
-											chatToggleReply.addEventListener('click', evt => {
-											chatInputReply.classList.toggle('show-chat-input')
+											{{ $chatToggle }}.addEventListener('click', evt => {
+											{{ $chatInput }}.classList.toggle('show-chat-input')
 											})
 										</script>
 									</div>
 								</div>
-							</div>
 
-							<div class="diskusi2" >
-								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:30px;margin-bottom: 50px;">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/2.jpg" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;color: red;">Khairul Rasyid Shiddiq <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
-												<p style="color:red;">Seller</p>
-											</div>
-										</div>
-										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-										<form action="">
-											<button class="chat-delete" id="chat-toggle-reply">
-												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
-											</button>
-										</form>
-									</div>
-								</div>
-							</div>
-
-								<!-- /section title -->
-								<div class="col-md-8">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/anime7.webp" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
-												<p>Costumer</p>
-											</div>
-										</div>
-										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-										<button class="chat-toggle" id="chat-toggle-reply">
-											<p><i class="fa fa-comments-o fa-lg"></i> Balas Komentar</p>
-										</button>
-										<form action="">
-											<button class="chat-delete" id="chat-toggle-reply">
-												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
-											</button>
-										</form>
-										<form action="" style="margin-bottom: 10px">
-											<div class="chat-input" id="chat-input-reply">
-												<input type="text" placeholder="Masukan Komentar">
-												<button type="submit">
-													<i class="fa fa-send icon-chat"></i>
-												</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-
-							<div class="diskusi2" >
-								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:30px;margin-bottom: 50px;">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/2.jpg" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;color: red;">Khairul Rasyid Shiddiq <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> 2 days ago</span></p>
-												<p style="color:red;">Seller</p>
-											</div>
-										</div>
-										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-										<form action="">
-											<button class="chat-delete" id="chat-toggle-reply">
-												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
-											</button>
-										</form>
-									</div>
-								</div>
+									
+								@endforeach
 							</div>
 
 							</div>
@@ -230,17 +212,20 @@
 
 							<div class="chat-box">
 								<div class="col-md-8">
-									<button class="chat-toggle" id="chat-toggle-send">
+									<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="chat-toggle-send" @endif>
 										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Diskusi</p>
 									</button>
-									<form action="">
+									@auth
+									<form action="{{ route('comment.service.store', $service->id) }}" method="POST">
+										@csrf
 										<div class="chat-input" id="chat-input-send">
-											<input type="text" placeholder="Masukan Pertanyaan/Komentar">
+											<input type="text" name="message" placeholder="Masukan Pertanyaan/Komentar" autocomplete="off">
 											<button type="submit">
 												<i class="fa fa-send icon-chat"></i>
 											</button>
 										</div>
 									</form>
+									@endif
 									{{-- Chat Box --}}
 									<script>
 										var chatToggle = document.getElementById('chat-toggle-send')
@@ -252,7 +237,6 @@
 									</script>
 								</div>
 							</div>
-
 							<!-- /product tab content  -->
 
 						</div>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class CommentService extends Model
 {
     use HasFactory;
 
@@ -15,18 +15,15 @@ class Service extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function categoryService(){
-        return $this->belongsTo(CategoryService::class);
-    }
 
-    public function commentServices()
+    public function service()
     {
-        return $this->hasMany(CommentService::class);
+        return $this->belongsTo(Service::class);
     }
 
     public function commentReplyServices()
     {
         return $this->hasMany(CommentReplyService::class);
     }
+
 }

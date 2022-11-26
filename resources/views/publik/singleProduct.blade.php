@@ -187,7 +187,7 @@
 											</div>
 											@if(auth()->check())
 												@if($comment->user->id == auth()->user()->id)
-												<form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+												<form action="{{ route('comment.product.destroy', $comment->id) }}" method="POST">
 													@csrf
 													@method('DELETE')
 													<button class="chat-delete">
@@ -218,7 +218,7 @@
 														</div>
 														@if(auth()->check())
 															@if($reply->user->id == auth()->user()->id)
-															<form action="{{ route('comment.reply.destroy', $reply->id) }}" method="POST">
+															<form action="{{ route('comment.product.reply.destroy', $reply->id) }}" method="POST">
 																@csrf
 																@method('DELETE')
 																<button class="chat-delete">
@@ -237,7 +237,7 @@
 										<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="{{ $chatToggle }}" @endif>
 											<p><i class="fa fa-comments-o fa-lg"></i> Reply</p>
 										</button>
-										<form action="{{ route('comment.reply.store', $comment->id) }}" method="POST" style="margin-bottom: 10px;">
+										<form action="{{ route('comment.product.reply.store', $comment->id) }}" method="POST" style="margin-bottom: 10px;">
 											@csrf
 											<div class="chat-input" id="{{ $chatInput }}">
 												<input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -274,7 +274,7 @@
 										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Diskusi</p>
 									</button>
 									@auth
-									<form action="{{ route('comment.store', $product->id) }}" method="POST">
+									<form action="{{ route('comment.product.store', $product->id) }}" method="POST">
 										@csrf
 										<div class="chat-input" id="chat-input-send">
 											<input type="text" name="message" placeholder="Masukan Pertanyaan/Komentar" autocomplete="off">

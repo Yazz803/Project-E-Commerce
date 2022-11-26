@@ -26,6 +26,8 @@ use App\Http\Controllers\User\CommentProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CategoryServiceController;
 use App\Http\Controllers\User\CommentReplyProductController;
+use App\Http\Controllers\User\CommentReplyServiceController;
+use App\Http\Controllers\User\CommentServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +43,10 @@ use App\Http\Controllers\User\CommentReplyProductController;
 Route::match('GET', 'product', function(){return redirect('/products');});
 Route::match('GET', 'order', function(){return back();});
 // Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
-Route::match('GET', '/send-comment/{comment_product:id}', function(){return back();});
-Route::match('GET', '/delete-comment/{comment_product:id}', function(){return back();});
-Route::match('GET', '/send-reply/{comment_reply_product:id}', function(){return back();});
-Route::match('GET', '/delete-reply/{comment_reply_product:id}', function(){return back();});
+Route::match('GET', '/send-comment-product/{comment_product:id}', function(){return back();});
+Route::match('GET', '/delete-comment-product/{comment_product:id}', function(){return back();});
+Route::match('GET', '/send-reply-product/{comment_reply_product:id}', function(){return back();});
+Route::match('GET', '/delete-reply-product/{comment_reply_product:id}', function(){return back();});
 
 // PagesController Route
 Route::get('/', [PagesController::class, 'index'])->name('pages.index');
@@ -98,11 +100,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     
     Route::get('/menu-utama', [MenuController::class, 'index'])->name('menu.utama');
-    Route::post('/send-comment/{product:id}', [CommentProductController::class, 'store'])->name('comment.store');
-    Route::delete('/delete-comment/{comment_product:id}', [CommentProductController::class, 'destroy'])->name('comment.destroy');
+    
+    Route::post('/send-comment-product/{product:id}', [CommentProductController::class, 'store'])->name('comment.product.store');
+    Route::delete('/delete-comment-product/{comment_product:id}', [CommentProductController::class, 'destroy'])->name('comment.product.destroy');
 
-    Route::post('/send-reply/{comment_product:id}', [CommentReplyProductController::class, 'store'])->name('comment.reply.store');
-    Route::delete('/delete-reply/{comment_reply_product:id}', [CommentReplyProductController::class, 'destroy'])->name('comment.reply.destroy');
+    Route::post('/send-reply-product/{comment_product:id}', [CommentReplyProductController::class, 'store'])->name('comment.product.reply.store');
+    Route::delete('/delete-reply-product/{comment_reply_product:id}', [CommentReplyProductController::class, 'destroy'])->name('comment.product.reply.destroy');
+
+    Route::post('/send-comment-service/{service:id}', [CommentServiceController::class, 'store'])->name('comment.service.store');
+    Route::delete('/delete-comment-service/{comment_service:id}', [CommentServiceController::class, 'destroy'])->name('comment.service.destroy');
+
+    Route::post('/send-reply-service/{comment_service:id}', [CommentReplyServiceController::class, 'store'])->name('comment.service.reply.store');
+    Route::delete('/delete-reply-service/{comment_reply_service:id}', [CommentReplyServiceController::class, 'destroy'])->name('comment.service.reply.destroy');
 });
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);
