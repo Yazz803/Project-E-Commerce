@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 use App\Models\CategoryProduct;
+use App\Models\MethodPayment;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
@@ -17,15 +18,17 @@ class CheckoutController extends Controller
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         $allCheckout = Checkout::all();
+        $userCheckout = Checkout::where('user_id', auth()->user()->id)->get();
+
         return view('publik.checkout', [
             'title' => 'Checkout',
             'ttl_orders' => $ttl_orders,
             'category_products' => CategoryProduct::all(),
-            'checkouts' => Checkout::where('user_id', auth()->user()->id)->get(),
-            'orderUser' => Checkout::all()
+            'checkouts' => $userCheckout,
+            'orderUser' => Checkout::all(),
         ]);
     }
-    public function store()
+    public function store(Request $request)
     {
         $orders = Order::where('user_id', auth()->user()->id)->get();
         foreach($orders as $order){
@@ -44,11 +47,19 @@ class CheckoutController extends Controller
         }
         $result_total_harga = $total_harga;
 
+
+        $request->validate([
+            'payment' => 'required',
+        ]);
+
         $recordCheckout = [
             'user_id' => auth()->user()->id,
             'total_price_checkout' => $result_total_harga,
             'status' => 'pending',
+            'payment' => $request->payment,
+            'id_pemesanan' => 'INV-' . date('Ymd') . '-' . date('His') . '-' . auth()->user()->id,
         ];
+
         if($orders->count() > 0){
             Checkout::create($recordCheckout);
         }else{
@@ -95,7 +106,9 @@ class CheckoutController extends Controller
             'ttl_orders' => $ttl_orders,
             'orders' => InOrder::where('user_id', auth()->user()->id)->where('checkout_id', $checkout->id)->get(),
             'checkouts' => Checkout::where('user_id', auth()->user()->id)->where('id', $checkout->id)->get(),
-            'orderUser' => Checkout::all()
+            'orderUser' => Checkout::all(),
+            'checkout' => $checkout,
+            'methodPayment' => MethodPayment::where('name', $checkout->payment)->first()
         ]);
     }
 }

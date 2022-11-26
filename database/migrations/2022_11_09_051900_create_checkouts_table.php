@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->integer('total_price_checkout');
+            $table->string('payment');
+            $table->string('id_pemesanan');
             $table->enum('status', ['pending', 'success', 'process', 'done']);
+            $table->dateTime('tgl_konfirmasi')->nullable();
             $table->timestamps();
         });
     }

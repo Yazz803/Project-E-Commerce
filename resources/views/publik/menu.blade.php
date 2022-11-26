@@ -55,7 +55,7 @@
         <div class="pusat-bantuan">
             <a href="#">
                 <div class="menu">
-                    <i class="fa fa-users fa-lg"></i> Bantuan Wikrama Shop Care
+                    <i class="fa fa-bullhorn fa-lg"></i> Costumer Service
                 </div>
             </a>
         </div>

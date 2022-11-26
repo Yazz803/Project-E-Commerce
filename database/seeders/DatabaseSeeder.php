@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\CategoryProduct;
 use App\Models\CategoryService;
 use App\Models\ImageProduct;
+use App\Models\MethodPayment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -119,6 +120,11 @@ class DatabaseSeeder extends Seeder
             'slogan' => 'Wajib Ngulik',
             'thumb_img' => 'pplg.jpg',
             'ttl_product' => 0
+        ]);
+
+        MethodPayment::create([
+            'name' => 'Bank BRI',
+            'description' => "<div>Pembayaran bisa dilakukan melalui salah satu cara dibawah ini:<br><br></div><ul><li><strong>Melalui ATM BRI</strong>, caranya:<ul><li>Masukan <strong>PIN</strong></li><li>Pilih menu <strong>-&gt; TRANSAKSI LAIN -&gt; PEMBAYARAN -&gt; LAINNYA -&gt; BRIVA -&gt;</strong> masukan nomor Virtual Account [<strong>nomor VA</strong>] <strong>-&gt;</strong> masukan jumlah pembayaran</li></ul></li><li><strong>Melalui ATM Bank lain</strong>, caranya:<ul><li>Masukan <strong>PIN</strong></li><li>Pilih menu <strong>-&gt; TRANSAKSI LAIN -&gt; TRANSFER -&gt; KE REKENING BANK LAIN -&gt;</strong> masukan kode Bank BRI '<strong>002</strong>' dan nomor Virtual Account [<strong>nomor VA sekolah</strong>] <strong>-&gt;</strong> masukan jumlah pembayaran</li></ul></li><li><strong>Melalui Teller Bank BRI menggunakan Slip Penyetoran (warna biru)</strong>, caranya:<ul><li>Pada bagian 'Disetor ke' silakan isi <strong>Nomor Rekening</strong> = [<strong>nomor VA</strong>], dan <strong>Nama</strong> = [<strong>nama sekolah]</strong></li></ul></li></ul><div><br>Bukti pembayaran harap di email ke alamat:&nbsp;<strong>muhammadyazidakbar@smkwikrama.sch.id</strong></div>",
         ]);
 
         // Product::create([

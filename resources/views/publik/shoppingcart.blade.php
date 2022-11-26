@@ -104,6 +104,11 @@
 			border-radius: 5px;
 			cursor: pointer;
 		}
+
+		.select-method-payment {
+			width: 100%;
+			padding: 5px 0;
+		}
 	</style>
 
 		<div class="section" id="section" style="margin-top: 30px">
@@ -188,22 +193,21 @@
 								<div><strong class="order-total">{{ 'Rp '. number_format($jml_order, 0, ',', '.') }}</strong></div>
 							</div>
 						</div>
+						
+						<form action="{{ route('checkout.store') }}" method="POST">
+						@csrf
+
 						<div class="order-col">
 							<div><strong>PAYMENT METHOD</strong></div>
 						</div>
 						@foreach($methodPayments as $methodPayment)
 						<div class="payment-method">
 							<div class="payment">
-								<div class="input-radio">
-									<a href="">
-										<i class="fa fa-info-circle"></i>
-									</a>
-									<input type="radio" name="payment" id="payment-{{ $methodPayment->id }}">
-									<label for="payment-{{ $methodPayment->id }}">
-										<span></span>
+								<li>
+									<label for="payment-{{ $methodPayment->id }}" style="font-weight: bold;">
 										{{ $methodPayment->name }}
 									</label>
-								</div>
+								</li>
 							</div>
 							<div class="detail-payment">
 								<div id="myBtn{{ $methodPayment->id }}" style="cursor: pointer;">
@@ -222,7 +226,7 @@
 										{!! $methodPayment->description !!}
 									</div>
 									<div class="modal-footer">
-										<button id="close{{ $methodPayment->id }}">Close</button>
+										<button type="button" id="close{{ $methodPayment->id }}">Close</button>
 									</div>
 								</div>
 							</div>
@@ -256,6 +260,17 @@
 							</script>
 						</div>
 						@endforeach
+						<select name="payment" class="select-method-payment">
+							<option value="" selected>-- Silahkan Pilih Metode Pembayaran --</option>
+							@foreach($methodPayments as $methodPayment)
+							<option value="{{ $methodPayment->name }}">{{ $methodPayment->name }}</option>
+							@endforeach
+						</select>
+
+						@error('payment')
+						<p class="font-weight-bold" style="color: red;">Metode Pembayaran Harus diisi</p>
+						@enderror
+
 						{{-- <div class="input-checkbox">
 							<input type="checkbox" id="terms">
 							<label for="terms">
@@ -263,11 +278,6 @@
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div> --}}
-						<form action="{{ route('checkout.store') }}" method="POST">
-							@csrf
-							{{-- input orders --}}
-							{{-- <input type="hidden" name="total_price" value="{{ $jml_order }}"> --}}
-							{{-- /input orders --}}
 							<center>
 								<button type="submit" class="primary-btn order-submit">Checkout!</button>
 							</center>

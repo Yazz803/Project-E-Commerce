@@ -2272,6 +2272,10 @@ textarea.input {
     width: 100% !important;
   }
 
+  .text-product p {
+    font-size: 13px;
+  }
+
   .form-profile {
     width: 80% !important;
   }
@@ -2525,4 +2529,14 @@ button.chat-delete {
 button.chat-toggle > p,
 button.chat-delete > p {
   margin: 0;
+}
+
+.navbar-nav li a.navbar-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-nav li a.navbar-icon p {
+  margin-bottom: 0;
 }

@@ -66,33 +66,33 @@
                 </a>
             </li>
             <!-- Nav Item - Product Collapse Menu -->
-            <li class="nav-item {{ Request::is('dashboard/products/*') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/products*', 'dashboard/category-services*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Product & Service</span>
+                    <span>Product</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Add Product & Service:</h6>
+                        <h6 class="collapse-header">Menu Product:</h6>
                         <a class="collapse-item" href="{{ route('products.create') }}"><i class="fas fa-fw fa-plus"></i> Add Product</a>
-                        <a class="collapse-item" href="{{ route('services.create') }}"><i class="fas fa-fw fa-plus"></i> Add Service</a>
                         <a class="collapse-item" href="{{ route('category-products.index') }}"><i class="fas fa-fw fa-plus"></i> Category Products</a>
-                        <a class="collapse-item" href="{{ route('category-services.index') }}"><i class="fas fa-fw fa-plus"></i> Category Service</a>
+                        <a class="collapse-item" href="{{ route('products.index') }}"><i class="fas fa-fw fa-eye"></i> List Products</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {{ Request::is('dashboard/products') ? 'active' : '' }}">
+            <!-- Nav Item - Product Collapse Menu -->
+            <li class="nav-item {{ Request::is('dashboard/services*', 'dashboard/category-services*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Pages</span>
+                    aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Service</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">List Product & Service:</h6>
-                        <a class="collapse-item" href="{{ route('products.index') }}"><i class="fas fa-fw fa-eye"></i> List Products</a>
+                        <h6 class="collapse-header">Menu Service:</h6>
+                        <a class="collapse-item" href="{{ route('services.create') }}"><i class="fas fa-fw fa-plus"></i> Service</a>
+                        <a class="collapse-item" href="{{ route('category-services.index') }}"><i class="fas fa-fw fa-plus"></i> Category Service</a>
                         <a class="collapse-item" href="{{ route('services.index') }}"><i class="fas fa-fw fa-eye"></i> List Services</a>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                     <span>Method Payments</span>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('dashboard/list-order') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/list-orders') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('order.index') }}">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>List Orders</span>
