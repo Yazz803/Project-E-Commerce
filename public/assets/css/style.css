@@ -1942,6 +1942,8 @@ textarea.input {
 
 .order-details .payment-method {
   margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .order-details .order-submit {

@@ -29,7 +29,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="/assets/css/style.css"/>
-		<link rel="stylesheet" href="/assets/css/login.css">
+		{{-- <link rel="stylesheet" href="/assets/css/login.css"> --}}
 
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
