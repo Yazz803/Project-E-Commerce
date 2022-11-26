@@ -11,7 +11,7 @@
                 @if($user->no_hp != NULL)
                 <p>{{ $user->no_hp }}</p>
                 @else
-                <p style="color:red;">Silahkan lengkapi No.HP dan Alamat</p>
+                <p style="color:red;">Ayo lengkapi No.HP dan Alamat</p>
                 @endif
             </div>
         </div>
@@ -40,11 +40,11 @@
                     <i class="fa fa-shopping-cart fa-lg"></i> Lihat Orderan kamu
                 </div>
             </a>
-            <a href="#">
+            {{-- <a href="#">
                 <div class="menu">
                     <i class="fa fa-bell-o fa-lg"></i> Notification
                 </div>
-            </a>
+            </a> --}}
             <a href="{{ route('login.logout') }}">
                 <div class="menu">
                     <i class="fa fa-sign-out fa-lg"></i> Logout

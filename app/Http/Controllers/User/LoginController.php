@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         Alert::toast('Login Gagal! Silahkan masukan email dan password yang benar', 'error');
 
-        return back();
+        return redirect()->route('login.index');
     }
 
     public function logout(Request $request)

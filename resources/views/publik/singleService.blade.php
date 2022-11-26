@@ -124,6 +124,31 @@
 											</div>
 										</div>
 										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+										<button class="chat-toggle" id="chat-toggle-reply">
+											<p><i class="fa fa-comments-o fa-lg"></i> Balas Komentar</p>
+										</button>
+										<form action="">
+											<button class="chat-delete">
+												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
+											</button>
+										</form>
+										<form action="" style="margin-bottom: 10px">
+											<div class="chat-input" id="chat-input-reply">
+												<input type="text" placeholder="Masukan Komentar">
+												<button type="submit">
+													<i class="fa fa-send icon-chat"></i>
+												</button>
+											</div>
+										</form>
+										{{-- Chat Box --}}
+										<script>
+											var chatToggleReply = document.getElementById('chat-toggle-reply')
+											var chatInputReply = document.getElementById('chat-input-reply')
+
+											chatToggleReply.addEventListener('click', evt => {
+											chatInputReply.classList.toggle('show-chat-input')
+											})
+										</script>
 									</div>
 								</div>
 							</div>
@@ -139,11 +164,16 @@
 											</div>
 										</div>
 										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+										<form action="">
+											<button class="chat-delete" id="chat-toggle-reply">
+												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
+											</button>
+										</form>
 									</div>
 								</div>
 							</div>
-							
-							<div class="diskusi">
+
+								<!-- /section title -->
 								<div class="col-md-8">
 									<div class="diskusi-head">
 										<div class="diskusi-profile">
@@ -154,6 +184,22 @@
 											</div>
 										</div>
 										<p style="margin-top: 8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+										<button class="chat-toggle" id="chat-toggle-reply">
+											<p><i class="fa fa-comments-o fa-lg"></i> Balas Komentar</p>
+										</button>
+										<form action="">
+											<button class="chat-delete" id="chat-toggle-reply">
+												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
+											</button>
+										</form>
+										<form action="" style="margin-bottom: 10px">
+											<div class="chat-input" id="chat-input-reply">
+												<input type="text" placeholder="Masukan Komentar">
+												<button type="submit">
+													<i class="fa fa-send icon-chat"></i>
+												</button>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -169,10 +215,46 @@
 											</div>
 										</div>
 										<p style="margin-top:8px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+										<form action="">
+											<button class="chat-delete" id="chat-toggle-reply">
+												<p><i class="fa fa-trash fa-lg"></i> Hapus Komen</p>
+											</button>
+										</form>
 									</div>
 								</div>
 							</div>
+
+							</div>
+
+
+
+							<div class="chat-box">
+								<div class="col-md-8">
+									<button class="chat-toggle" id="chat-toggle-send">
+										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Diskusi</p>
+									</button>
+									<form action="">
+										<div class="chat-input" id="chat-input-send">
+											<input type="text" placeholder="Masukan Pertanyaan/Komentar">
+											<button type="submit">
+												<i class="fa fa-send icon-chat"></i>
+											</button>
+										</div>
+									</form>
+									{{-- Chat Box --}}
+									<script>
+										var chatToggle = document.getElementById('chat-toggle-send')
+										var chatInput = document.getElementById('chat-input-send')
+
+										chatToggle.addEventListener('click', evt => {
+										chatInput.classList.toggle('show-chat-input')
+										})
+									</script>
+								</div>
+							</div>
+
 							<!-- /product tab content  -->
+
 						</div>
 					</div>
 					<!-- /product tab -->
@@ -241,7 +323,6 @@
 				<!-- /container -->
 			</div>
 		<!-- /SECTION -->
-
 
 	<script>
 		// Sticky navbar

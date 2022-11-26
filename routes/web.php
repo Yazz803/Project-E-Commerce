@@ -2,27 +2,30 @@
 
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\CommentProduct;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\MenuController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PagesController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\User\SearchController;
+use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ServiceController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\QuantityController;
 use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServicesController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MethodPaymentController;
-use App\Http\Controllers\Admin\StatusController;
-use App\Http\Controllers\User\CheckoutController;
-use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\User\QuantityController;
+use App\Http\Controllers\User\CommentProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CategoryServiceController;
-use App\Http\Controllers\User\MenuController;
-use App\Http\Controllers\User\SearchController;
+use App\Http\Controllers\User\CommentReplyProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +39,12 @@ use App\Http\Controllers\User\SearchController;
 */
 
 Route::match('GET', 'product', function(){return redirect('/products');});
-Route::match(['GET'], 'order', function(){return back();});
-Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
+Route::match('GET', 'order', function(){return back();});
+// Route::match(['GET', 'POST'], 'login', function(){return redirect('/');});
+Route::match('GET', '/send-comment/{comment_product:id}', function(){return back();});
+Route::match('GET', '/delete-comment/{comment_product:id}', function(){return back();});
+Route::match('GET', '/send-reply/{comment_reply_product:id}', function(){return back();});
+Route::match('GET', '/delete-reply/{comment_reply_product:id}', function(){return back();});
 
 // PagesController Route
 Route::get('/', [PagesController::class, 'index'])->name('pages.index');
@@ -89,6 +96,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     
     Route::get('/menu-utama', [MenuController::class, 'index'])->name('menu.utama');
+    Route::post('/send-comment/{product:id}', [CommentProductController::class, 'store'])->name('comment.store');
+    Route::delete('/delete-comment/{comment_product:id}', [CommentProductController::class, 'destroy'])->name('comment.destroy');
+
+    Route::post('/send-reply/{comment_product:id}', [CommentReplyProductController::class, 'store'])->name('comment.reply.store');
+    Route::delete('/delete-reply/{comment_reply_product:id}', [CommentReplyProductController::class, 'destroy'])->name('comment.reply.destroy');
 });
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);
+

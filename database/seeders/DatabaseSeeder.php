@@ -73,6 +73,22 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
+        User::factory()->create([
+            'full_name' => 'Sutaro Putra Pratama',
+            'username' => 'sutaro',
+            'email' => 'sutaro@gmail.com',
+            'role' => 'user',
+            'password' => bcrypt('1234')
+        ]);
+        
+        User::factory()->create([
+            'full_name' => 'Khairul Rasyid Shiddiq',
+            'username' => 'khairul',
+            'email' => 'khairul@gmail.com',
+            'role' => 'user',
+            'password' => bcrypt('1234')
+        ]);
+
         CategoryProduct::create([
             'name' => 'foods',
             'slug' => 'foods',

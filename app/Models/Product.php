@@ -31,4 +31,12 @@ class Product extends Model
     public function categoryProduct(){
         return $this->belongsTo(CategoryProduct::class);
     }
+
+    public function commentProducts(){
+        return $this->hasMany(CommentProduct::class);
+    }
+
+    public function commentReplyProducts(){
+        return $this->hasMany(CommentReplyProduct::class);
+    }
 }

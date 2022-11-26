@@ -69,12 +69,9 @@ class ProductController extends Controller
             'product' => $product,
             'category_products' => CategoryProduct::all(),
             'products' => Product::inRandomOrder()->get(),
-            // 'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),
-            // 'drinks' => Product::where('category', 'drinks')->inRandomOrder()->take(5)->get(),
             'images' => ImageProduct::where('code_product', $product->code_product)->get(),
             'services' => Service::inRandomOrder()->take(5)->get(),
             'check' => $check,
-            // get quantity from order where order id and product id is same
             'quantity' => $quantity,
             // 'quantity' => Order::where('product_id', $product->id)->orWhere('user_id', auth()->user()->id)->get(),
             // 'quantity' => Order::where('product_id', $product->id)->first(),

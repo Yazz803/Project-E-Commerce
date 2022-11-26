@@ -2441,3 +2441,69 @@ textarea.input {
 .menu > i {
   margin-right: 15px;
 }
+
+button.chat-toggle {
+  font-weight: bold;
+  background-color: #06283D;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  float: right;
+  margin-bottom: 10px;
+}
+
+button.chat-delete {
+  font-weight: bold;
+  background-color: red;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.show-chat-input {
+  opacity: 1 !important;
+}
+
+.chat-input {
+  background-color: #06283D;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  opacity: 0;
+  transition: .3s;
+}
+
+.chat-input > input {
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 15px;
+  width: 100%; 
+  border-radius: 5px;
+}
+
+.chat-input > input:focus {
+  border: none;
+}
+
+.chat-input > button {
+  border: none;
+  background-color: #06283D;
+  color: white;
+}
+
+button.chat-toggle > p,
+button.chat-delete > p {
+  margin: 0;
+}

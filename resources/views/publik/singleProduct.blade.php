@@ -126,14 +126,6 @@
 								<li><a href="#">{{ $product->user->no_hp }}</a></li>
 							</ul>
 
-							@if(empty($product->order->quantity))
-							<ul class="product-links">
-								<li style="font-weight: bold;color:red;"><i class="fa fa-info-circle"></i> Kamu sudah memesan product ini (order : {{ $quantity }})</li>
-							</ul>
-							@else
-
-							@endif
-
 						</div>
 					</div>
 					<!-- /Product details -->
@@ -153,7 +145,7 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;list-style:circle !important;">
+										<div class="col-lg-8" style="font-size: 14px; margin: 0 20px;padding: 10px;list-style:circle !important;">
 											{!! $product->description !!}
 										</div>
 									</div>
@@ -163,7 +155,7 @@
 								<!-- tab2  -->
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
-										<div style="text-align: justify; font-size: 16px; margin: 0 20px;padding: 10px;list-style:circle !important;">
+										<div class="col-lg-8" style="font-size: 14px; margin: 0 20px;padding: 10px;list-style:circle !important;">
 											{!! $product->detail !!}
 										</div>
 									</div>
@@ -176,66 +168,131 @@
 								<div class="col-md-12">
 									<div class="section-title col-md-8" style="display: flex;justify-content:space-between;align-items:center;">
 										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Diskusi</h4>
-										<a href=""><u>Lihat Semua</u>(1)</a>
+										<a href="#"><u>Total Diskusi</u>({{ $product->commentProducts->count() }})</a>
 									</div>
 								</div>
+								@foreach($product->commentProducts()->orderBy('created_at', 'desc')->get() as $comment)
 								<!-- /section title -->
 								<div class="col-md-8">
 									<div class="diskusi-head">
 										<div class="diskusi-profile">
 											<img src="/assets/img/anime7.webp" width="50px" alt="">
 											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar</p>
+												<p class="font-weight-bold" style="margin-bottom: 0;">{{ $comment->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $comment->created_at->diffForHumans() }}</span></p>
+												@if($comment->user->role == 'admin')
+												<p style="color: red">Seller</p>
+												@else
 												<p>Costumer</p>
+												@endif
+											</div>
+											@if(auth()->check())
+												@if($comment->user->id == auth()->user()->id)
+												<form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button class="chat-delete">
+														<p><i class="fa fa-trash fa-lg"></i> </p>
+													</button>
+												</form>
+												@endif
+											@endif
+										</div>
+										@php
+											$chatToggle = $comment->user->username . mt_rand(1,999);
+											$chatInput = $comment->user->username . mt_rand(1,999);
+										@endphp
+										<p style="margin-top: 8px;">{{ $comment->message }}</p>
+										@foreach($comment->commentReplyProducts()->get() as $reply)
+										<div class="diskusi2" >
+											<div class="col-md-12" style="border-left: 3px solid gray !important; margin-left:15px;margin-bottom: 10px;padding-right: 0 !important">
+												<div class="diskusi-head">
+													<div class="diskusi-profile">
+														<img src="/assets/img/anime7.webp" width="50px" alt="">
+														<div class="diskusi-profile-text">
+															<p class="font-weight-bold" style="margin-bottom: 0;">{{ $reply->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $reply->created_at->diffForHumans() }}</span></p>
+															@if($reply->user->role == 'admin')
+															<p style="color:red;">Seller</p>
+															@else
+															<p>Costumer</p>
+															@endif
+														</div>
+														@if(auth()->check())
+															@if($reply->user->id == auth()->user()->id)
+															<form action="{{ route('comment.reply.destroy', $reply->id) }}" method="POST">
+																@csrf
+																@method('DELETE')
+																<button class="chat-delete">
+																	<p><i class="fa fa-trash fa-lg"></i> </p>
+																</button>
+															</form>
+															@endif
+														@endif
+													</div>
+													<p style="margin-top:8px;">{{ $reply->message }}</p>
+												</div>
 											</div>
 										</div>
-										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="diskusi2" >
-								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:60px;margin-bottom: 50px;">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/2.jpg" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Khairul Rasyid Shiddiq</p>
-												<p>Seller</p>
+										@endforeach
+										@if(auth()->check())
+										<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="{{ $chatToggle }}" @endif>
+											<p><i class="fa fa-comments-o fa-lg"></i> Reply</p>
+										</button>
+										<form action="{{ route('comment.reply.store', $comment->id) }}" method="POST" style="margin-bottom: 10px;">
+											@csrf
+											<div class="chat-input" id="{{ $chatInput }}">
+												<input type="hidden" name="product_id" value="{{ $product->id }}">
+												<input type="text" name="message" placeholder="Masukan Komentar" autocomplete="off">
+												<button type="submit">
+													<i class="fa fa-send icon-chat"></i>
+												</button>
 											</div>
-										</div>
-										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
+										</form>
+										@endif
+										{{-- Chat Box --}}
+										<script>
+											var {{ $chatToggle }} = document.getElementById('{{ $chatToggle }}')
+											var {{ $chatInput }} = document.getElementById('{{ $chatInput }}')
+
+											{{ $chatToggle }}.addEventListener('click', evt => {
+											{{ $chatInput }}.classList.toggle('show-chat-input')
+											})
+										</script>
 									</div>
 								</div>
+
+									
+								@endforeach
 							</div>
 
-							<div class="diskusi">
+							</div>
+
+
+
+							<div class="chat-box">
 								<div class="col-md-8">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/anime7.webp" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar</p>
-												<p>Costumer</p>
-											</div>
+									<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="chat-toggle-send" @endif>
+										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Diskusi</p>
+									</button>
+									@auth
+									<form action="{{ route('comment.store', $product->id) }}" method="POST">
+										@csrf
+										<div class="chat-input" id="chat-input-send">
+											<input type="text" name="message" placeholder="Masukan Pertanyaan/Komentar" autocomplete="off">
+											<button type="submit">
+												<i class="fa fa-send icon-chat"></i>
+											</button>
 										</div>
-										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-									</div>
-								</div>
-							</div>
+									</form>
+									@endif
+									{{-- Chat Box --}}
+									<script>
+										var chatToggle = document.getElementById('chat-toggle-send')
+										var chatInput = document.getElementById('chat-input-send')
 
-							<div class="diskusi2">
-								<div class="col-md-8" style="border-left: 3px solid gray !important; margin-left:60px">
-									<div class="diskusi-head">
-										<div class="diskusi-profile">
-											<img src="/assets/img/2.jpg" width="50px" alt="">
-											<div class="diskusi-profile-text">
-												<p class="font-weight-bold" style="margin-bottom: 0;">Khairul Rasyid Shiddiq</p>
-												<p>Seller</p>
-											</div>
-										</div>
-										<p style="margin-left:60px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, distinctio. Quos beatae nobis ratione eligendi optio. Quo error tenetur repellat laudantium optio quod ducimus, iusto fuga voluptates reprehenderit quisquam ad!</p>
-									</div>
+										chatToggle.addEventListener('click', evt => {
+										chatInput.classList.toggle('show-chat-input')
+										})
+									</script>
 								</div>
 							</div>
 							<!-- /product tab content  -->
@@ -306,110 +363,6 @@
 				<!-- /container -->
 			</div>
 		<!-- /SECTION -->
-		
-    {{-- <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container" style="border-top: 2px solid #8D99AE;background-color: white;">
-            <!-- row -->
-            <div class="row" style="margin-top: 50px">
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Foods</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-3" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
-							<!-- product widget -->
-							@foreach($foods as $food)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $food->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="{{ route('product.show', $food->slug) }}">{{ $food->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($food->price,0,',','.') }}</h4>
-									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
-										{!! $food->description !!}
-									</div>
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Drinks</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-4" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-                        <div>
-							<!-- product widget -->
-							@foreach($drinks as $drink)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $drink->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="{{ route('product.show', $drink->slug) }}}">{{ $drink->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($drink->price,0,',','.') }}</h4>
-									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
-										{!! $drink->description !!}
-									</div>
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 col-xs-6">
-                    <div class="section-title">
-                        <h4 class="title">Services</h4>
-                        <div class="section-nav">
-                            <div id="slick-nav-5" class="products-slick-nav"></div>
-                        </div>
-                    </div>
-					
-                    <div class="products-widget-slick" data-nav="#slick-nav-3">
-						<div>
-							<!-- product widget -->
-							@foreach($services as $service)
-                            <div class="product-widget" style="border-bottom: 1px solid #ccc">
-                                <div class="product-img">
-									<img src="/images/{{ $service->thumb_img }}" alt="">
-                                </div>
-                                <div class="product-body">
-									<h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
-                                    <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}++</h4>
-									<div class="text-truncate" style="text-align: left; -webkit-line-clamp: 1;">
-										{!! $service->description !!}
-									</div>
-                                </div>
-                            </div>
-							@endforeach
-                            <!-- /product widget -->
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /SECTION --> --}}
 
 	<script>
 		// Sticky navbar

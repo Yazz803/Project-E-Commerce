@@ -23,8 +23,8 @@
         body::before{
             content: '';
             background-image: linear-gradient(
-                rgba(255, 255, 255, 0.336),
-                rgba(255, 255, 255, 0.185)
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2)
             ),
             url('/assets/img/bgwkshop.jpg');
             background-repeat: no-repeat;

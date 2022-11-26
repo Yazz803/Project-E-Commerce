@@ -206,7 +206,13 @@
                                 {{-- Checkout --}}
                                 <div class="dropdown">
 									<a @if(!auth()->user()) href="#" onclick="return loginDulu()" @else href="/checkout" @endif>
+										@php
+											auth()->check() == true ? $ttl_checkouts = \App\Models\Checkout::where('user_id', auth()->user()->id)->count() : $ttl_checkouts = 0;
+										@endphp
 										<i class="fa fa-file-text"></i>
+										@if($ttl_checkouts > 0)
+										<div class="qty">{{ $ttl_checkouts }}</div>
+										@endif
 									</a>
 								</div>
                                 {{-- /checkot --}}

@@ -26,15 +26,16 @@
 										<div style="font-size: 16px;list-style:circle !important;">
 											@foreach($checkouts as $checkout)
 											@if($checkout->status == 'pending')
-											<div class="product-cart" style="width: 50%;">
+											<div class="product-cart" style="width: 50%;margin-top: 10px;">
 												<div class="text-product" style="width: 100%; position: relative;">
-													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;">Pesanan kamu #{{ $loop->iteration }} <span style="color: white;position: absolute;right:10px;background-color:red;border-radius:10px;padding: 5px 10px;font-size:14px;">Menunggu Konfirmasi</span></h3>
+													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;">Pesanan kamu #{{ $loop->iteration }} <span style="color: white;position: absolute;right:-15px;top: -20px;background-color:red;border-radius:10px;padding: 5px 10px;font-size:14px;">Menunggu Konfirmasi</span></h3>
 													{{-- <p>{{ $order->created_at->hour. ':' . $order->created_at->minute . ':' . $order->created_at->second }}</p> --}}
-													<p style="margin-bottom: 0;">Dipesan tanggal : <span style="font-weight: bold">{{ $checkout->created_at->format('d/m/Y'). ' '. $checkout->created_at->format('H:i:s') }}</span></p>
+													<p style="margin-bottom: 0;">Dipesan tanggal : <span style="font-weight: bold">{{ \Carbon\Carbon::parse($checkout->created_at)->format('j F Y |'). ' '. $checkout->created_at->format('H:i') }}</span></p>
+													<p style="margin-bottom: 0;">Code Pemesanan : <span style="font-weight: bold">{{ uniqId() }}</span></p>
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">Bank BRI</span></p>
 													<p style="margin-bottom: 20px;">Total Harga : <span style="font-weight: bold;">Rp {{ number_format($checkout->total_price_checkout, 0, ',', '.') }}</span></p>
 													<div class="" style="margin-bottom: 10px">
-														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
+														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
 														<a href="/checkout/{{ $checkout->id }}" style="background-color: red;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-close"></i> Cancel</a>
 													</div>
 												</div>
