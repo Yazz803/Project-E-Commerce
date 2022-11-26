@@ -24,17 +24,17 @@
             <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Rp. xxx.xxx (isi angkanya saja)" value="{{ $service->price }}">
         </div>
         <div class="form-group" style="margin-top: 30px;">
-            <label for="exampleFormControlSelect1" class="font-weight-bold @error('category') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Category</label>
-            @error('category')
+            <label for="exampleFormControlSelect1" class="font-weight-bold @error('category_service_id') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Category</label>
+            @error('category_service_id')
             <p class="text-danger font-weight-bold">
                 {!! $message !!}
             </p>
             @enderror
-            <select class="form-control @error('category') is-invalid @enderror" name="category" id="exampleFormControlSelect1">
-              <option value="{{ $service->category }}">{{ ucfirst($service->category) }}</option>
-              <option value="progtech">Programming & Technology</option>
-              <option value="design">Design Grafis</option>
-            </select>
+            <select class="form-control @error('category_service_id') is-invalid @enderror" name="category_service_id" id="exampleFormControlSelect1">
+                @foreach($categories as $category)
+                  <option value="{{ $category->id }}" @if($category->id == $service->categoryService->id) selected @endif>{{ ucfirst($category->name) }}</option>
+                @endforeach
+                </select>
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="exampleFormControlSelect1" class="font-weight-bold @error('tag') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Tag</label>

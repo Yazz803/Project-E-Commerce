@@ -5,7 +5,7 @@
 	<style>
 		@foreach($category_services as $category)
 			#{{ str_replace('-', '', $category->slug) }}.section {
-			padding: 60px 0px;
+			padding: 120px 0px;
 			margin: 30px 0px;
 			background-color: #E4E7ED;
 			background-image: 

@@ -33,16 +33,16 @@
             <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="" value="{{ $product->stock }}">
         </div>
         <div class="form-group" style="margin-top: 30px;">
-            <label for="exampleFormControlSelect1" class="font-weight-bold @error('category') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Category</label>
-            @error('category')
+            <label for="exampleFormControlSelect1" class="font-weight-bold @error('category_product_id') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Category</label>
+            @error('category_product_id')
             <p class="text-danger font-weight-bold">
                 {!! $message !!}
             </p>
             @enderror
-            <select class="form-control @error('category') is-invalid @enderror" name="category" id="exampleFormControlSelect1">
-              <option value="{{ $product->category }}">{{ ucfirst($product->category) }}</option>
-              <option value="progtech">Programming & Technology</option>
-              <option value="design">Design Grafis</option>
+            <select class="form-control @error('category_product_id') is-invalid @enderror" name="category_product_id" id="exampleFormControlSelect1">
+            @foreach($categories as $category)
+              <option value="{{ $category->id }}" @if($category->id == $product->categoryProduct->id) selected @endif>{{ ucfirst($category->name) }}</option>
+            @endforeach
             </select>
         </div>
         <div class="form-group" style="margin-top: 30px;">

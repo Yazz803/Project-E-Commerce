@@ -119,7 +119,15 @@ class DatabaseSeeder extends Seeder
             'slug' => 'programming',
             'slogan' => 'Wajib Ngulik',
             'thumb_img' => 'pplg.jpg',
-            'ttl_product' => 0
+            'ttl_service' => 0
+        ]);
+
+        CategoryService::create([
+            'name' => 'Design Grafis',
+            'slug' => 'design-grafis',
+            'slogan' => 'Design grafis! bukan design gratis',
+            'thumb_img' => 'design.jpg',
+            'ttl_service' => 0
         ]);
 
         MethodPayment::create([

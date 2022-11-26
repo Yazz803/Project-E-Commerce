@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Service;
 use Illuminate\Support\Str;
 use App\Models\ImageProduct;
 use App\Models\ImageService;
 use Illuminate\Http\Request;
+use App\Models\CategoryService;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -34,7 +37,8 @@ class AdminServicesController extends Controller
     {
         return view('admin.addservice', [
             'title' => 'Add Service',
-            'id_serv' => Service::orderBy('id', 'desc')->first()
+            'id_serv' => Service::orderBy('id', 'desc')->first(),
+            'categories' => CategoryService::all(),
         ]);
     }
 
@@ -62,7 +66,7 @@ class AdminServicesController extends Controller
             $image = $request->file('thumb_img');
             $imageName = 'Product_'.uniqId().'.'.$image->extension();
             $img = Image::make($image->path());
-            $img->fit(600, 360, function($const){
+            $img->fit(500, 500, function($const){
                 $const->upsize();
             })->save(public_path('/images/'.$imageName));
             $validatedProduct['thumb_img'] = $imageName;
@@ -75,7 +79,7 @@ class AdminServicesController extends Controller
                 // $image->move(public_path('images'), $imageName);
                 $img = Image::make($image->path());
                 // size 5:3
-                $img->fit(600, 360, function($const){
+                $img->fit(500, 500, function($const){
                     $const->upsize();
                 })->save(public_path('images/'.$imageName));
                 $images[]['name'] = $imageName;
@@ -94,6 +98,14 @@ class AdminServicesController extends Controller
                 'code_service' => $request->code_service
             ]);
         }
+
+        // setiap nambah service, ttl_service di table category akan bertambah 1
+        $category = CategoryService::find($request->category_service_id);
+        if($category){
+            $category->ttl_service += 1;
+            $category->save();
+        }
+
         Alert::toast('Berhasil Menambah Service!', 'success');
         return redirect()->route('services.create');
     }
@@ -143,9 +155,22 @@ class AdminServicesController extends Controller
      */
     public function destroy(Service $service)
     {
+        $all_img_product = ImageService::all();
+        foreach($all_img_product as $img){
+            if($img->code_service == $service->code_service){
+                File::delete('images/'.$img->name);
+            }
+        }
+        // mengurangi ttl_service di table Category sebanyak 1 kali
+        $category = Categoryservice::find($service->categoryService->id);
+        $category->ttl_service -= 1;
+        $category->save();
+        File::delete('images/'.$service->thumb_img);
+        Imageservice::where('code_service', $service->code_service)->delete();
+        Service::where('id', $service->id)->delete();
+
         // destroy field in database
         Alert::toast('Berhasil Menghapus', 'success');
-        $service->delete();
 
         return back();
     }

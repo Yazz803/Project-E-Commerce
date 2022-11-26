@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('thumb_img')->nullable();
             $table->string('slug')->unique();
             $table->string('slogan');
-            $table->integer('ttl_product');
+            $table->integer('ttl_service');
             $table->timestamps();
         });
     }

@@ -102,7 +102,7 @@ class AdminProductController extends Controller
         // setiap nambah product, ttl_product di table category akan bertambah 1
         $category = CategoryProduct::find($request->category_product_id);
         if($category){
-            $category->ttl_product = $category->ttl_product + 1;
+            $category->ttl_product += 1;
             $category->save();
         }
 
@@ -133,6 +133,7 @@ class AdminProductController extends Controller
         return view('admin.editproduct', [
             'product' => $product,
             'images' => ImageProduct::where('code_product', $product->code_product)->get(),
+            'categories' => CategoryProduct::all()
         ]);
     }
 
@@ -221,8 +222,8 @@ class AdminProductController extends Controller
             }
         }
         // mengurangi ttl_product di table Category sebanyak 1 kali
-        $category = CategoryProduct::find($product->categoty_id);
-        $category->ttl_product = $category->ttl_product - 1;
+        $category = CategoryProduct::find($product->categoryProduct->id);
+        $category->ttl_product -= 1;
         $category->save();
         File::delete('images/'.$product->thumb_img);
         ImageProduct::where('code_product', $product->code_product)->delete();

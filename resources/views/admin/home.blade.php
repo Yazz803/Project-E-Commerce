@@ -141,7 +141,7 @@
                             <div class="col mr-2">
                                 <div class="text-lg text-center font-weight-bold text-dark text-uppercase mb-1">
                                 Total {{ ucfirst($category->name) }}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{ $category->ttl_product }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{ $category->ttl_service }}</div>
                             </div>
                         </div>
                         <center class="mt-4">
