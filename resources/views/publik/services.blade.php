@@ -31,7 +31,7 @@
 				<div class="col-md-12">
 					<div class="hot-deal">
 						<h2 class="text-uppercase" style="color: white;">{{ $category->slogan }}</h2>
-						<a class="primary-btn cta-btn" href="#new-product">More products</a>
+						<a class="primary-btn cta-btn" href="{{ route('pages.category.service', $category->slug) }}">More products</a>
 					</div>
 				</div>
 			</div>

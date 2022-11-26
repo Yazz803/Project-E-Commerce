@@ -23,7 +23,7 @@
                     <div class="shop-body">
                         <h3>{{ strtoupper($category->name) }}</h3>
                         <p style="color: white;">{{ $category->slogan }}</p>
-                        <a href="{{ route('pages.products') }}" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('pages.category.product', $category->slug) }}" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     <div class="shop-body">
                         <h3>{{ strtoupper($category->name) }}</h3>
                         <p style="color: white;">{{ $category->slogan }}</p>
-                        <a href="{{ route('pages.products') }}" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('pages.category.service', $category->slug) }}" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

@@ -873,7 +873,7 @@ textarea.input {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .card {
   width: 260px;
@@ -2257,9 +2257,11 @@ textarea.input {
     margin-top: 10px;
   }
 
+
   .card {
-    width: 170px;
+    width: 160px;
   }
+
   .list-product {
     display: block !important;
   }
@@ -2303,6 +2305,21 @@ textarea.input {
 .list-product {
   display: flex;
   justify-content: space-between;
+}
+
+.product .add-to-cart.category {
+  display: none;
+}
+
+.product.category {
+  border-radius: 5px;
+}
+
+.product-body .btn-detail {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #06283D;
 }
 
 .product-cart {

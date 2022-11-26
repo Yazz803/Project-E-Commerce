@@ -5,7 +5,7 @@
 	<style>
 		@foreach($category_products as $category)
 			#{{ str_replace('-', '', $category->slug) }}.section {
-			padding: 60px 0px;
+			padding: 120px 0px;
 			margin: 30px 0px;
 			background-color: #E4E7ED;
 			background-image: 
@@ -31,7 +31,7 @@
 				<div class="col-md-12">
 					<div class="hot-deal">
 						<h2 class="text-uppercase" style="color: white;">{{ $category->slogan }}</h2>
-						<a class="primary-btn cta-btn" href="#new-product">More products</a>
+						<a class="primary-btn cta-btn" href="{{ route('pages.category.product', $category->slug) }}">More products</a>
 					</div>
 				</div>
 			</div>

@@ -65,7 +65,7 @@ class CategoryServiceController extends Controller
 
         CategoryService::create($validateData);
         Alert::success('Success', 'Berhasil Menambah Category');
-        return back();
+        return redirect()->route('category-service.index');
     }
 
     /**
@@ -113,8 +113,8 @@ class CategoryServiceController extends Controller
             $image = $request->file('thumb_img');
             $imageName = 'Product_'.uniqId().'.'.$image->extension();
             $img = Image::make($image->path());
-            $img->fit(500, 500, function($const){
-                $const->upsize();
+            $img->resize(1000, 1000, function($const){
+                $const->aspectRatio();
             })->save(public_path('/images/'.$imageName));
             $validateData['thumb_img'] = $imageName;
         }

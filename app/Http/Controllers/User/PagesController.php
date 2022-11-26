@@ -23,8 +23,8 @@ class PagesController extends Controller
             'title' => 'Landing Page',
             'category_products' => CategoryProduct::all(),
             'newest' => Product::orderBy('id','desc')->take(8)->get(),
-            'products' => Product::inRandomOrder()->get(),
-            'services' => Service::inRandomOrder()->get(),
+            'products' => Product::inRandomOrder()->take(10)->get(),
+            'services' => Service::inRandomOrder()->take(10)->get(),
             'ttl_orders' => $ttl_orders,
         ]);
     }
@@ -41,6 +41,25 @@ class PagesController extends Controller
             'images' => ImageProduct::all(),
             'singleimage' => ImageProduct::orderBy('id', 'desc')->take(1)->get(),
             'ttl_orders' => $ttl_orders,
+        ]);
+    }
+
+    public function CategoryProduct(CategoryProduct $categoryProduct)
+    {
+        return view('publik.categoryProduct', [
+            'title' => 'Category Product',
+            'category' => $categoryProduct,
+            'products' => Product::inRandomOrder()->get(),
+            'services' => Service::inRandomOrder()->get(),
+        ]);
+    }
+    public function CategoryService(CategoryService $categoryService)
+    {
+        return view('publik.categoryService', [
+            'title' => 'Category Service',
+            'category' => $categoryService,
+            'products' => Product::inRandomOrder()->get(),
+            'services' => Service::inRandomOrder()->get(),
         ]);
     }
 
@@ -66,16 +85,6 @@ class PagesController extends Controller
             'products' => Product::inRandomOrder()->get(),
             'services' => Service::inRandomOrder()->get(),
         ]);
-    }
-
-    public function product()
-    {
-        return view('publik.singleProduct');
-    }
-
-    public function store()
-    {
-        return view('publik.store');
     }
 
     public function shoppingcart()
