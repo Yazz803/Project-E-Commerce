@@ -5,9 +5,9 @@
     <h3 style="margin-top: 20px;border-bottom: 2px solid gray;" id="section">Menu Utama</h3>
     <div class="col-lg-6 menu-user">
         <div class="diskusi-profile">
-            <img src="/assets/img/anime7.webp" width="50px" alt="">
+            <img src="/images/{{ auth()->user()->photo_profile }}" width="50px" alt="">
             <div class="diskusi-profile-text">
-                <p class="font-weight-bold" style="margin-bottom: 0;">Muhammad Yazid Akbar</p>
+                <p class="font-weight-bold" style="margin-bottom: 0;">{{ auth()->user()->full_name }}</p>
                 @if($user->no_hp != NULL)
                 <p>{{ $user->no_hp }}</p>
                 @else

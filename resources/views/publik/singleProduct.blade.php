@@ -176,7 +176,7 @@
 								<div class="col-md-8">
 									<div class="diskusi-head">
 										<div class="diskusi-profile">
-											<img src="/assets/img/anime7.webp" width="50px" alt="">
+											<img src="/images/{{ $comment->user->photo_profile }}" width="50px" alt="">
 											<div class="diskusi-profile-text">
 												<p class="font-weight-bold" style="margin-bottom: 0;">{{ $comment->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $comment->created_at->diffForHumans() }}</span></p>
 												@if($comment->user->role == 'admin')
@@ -207,7 +207,7 @@
 											<div class="col-md-12" style="border-left: 3px solid gray !important; margin-left:15px;margin-bottom: 10px;padding-right: 0 !important">
 												<div class="diskusi-head">
 													<div class="diskusi-profile">
-														<img src="/assets/img/anime7.webp" width="50px" alt="">
+														<img src="/images/{{ $reply->user->photo_profile }}" width="50px" alt="">
 														<div class="diskusi-profile-text">
 															<p class="font-weight-bold" style="margin-bottom: 0;">{{ $reply->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $reply->created_at->diffForHumans() }}</span></p>
 															@if($reply->user->role == 'admin')

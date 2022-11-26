@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
@@ -16,7 +18,7 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
-        return  view('publik.profile.index', [
+        return  view('publik.profile.edit', [
             'user' => auth()->user(),
             'title' => auth()->user()->username,
         ]);
@@ -71,7 +73,7 @@ class ProfileController extends Controller
         // $dataProvinsi = file_get_contents('https://yazz803.github.io/api-wilayah-indonesia/api/provinces.json');
         // $provinsi = json_decode($dataProvinsi, true);
         
-        return view('publik.profile',[
+        return view('publik.profile.edit',[
             'ttl_orders' => $ttl_orders,
             // 'provinsi' => $provinsi,
             'title' => 'Edit Profile',
@@ -95,7 +97,23 @@ class ProfileController extends Controller
             'email' => 'required',
             'no_hp' => 'required',
             'address' => 'required',
+            'photo_profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->file('photo_profile')){
+            // hapus dulu, baru upload yang baru
+            if($user->photo_profile != 'user.jpg'){
+                File::delete('images/' . $user->photo_profile);
+            }
+            $image = $request->file('photo_profile');
+            $imageName = 'PhotoProfile_'.uniqId().'.'.$image->extension();
+            $img = Image::make($image->path());
+            $img->fit(200, 200, function($const){
+                $const->upsize();
+            })->save(public_path('/images/'.$imageName));
+            $validatedData['photo_profile'] = $imageName;
+        }
+        
         User::where('id', $user->id)->update($validatedData);
         Alert::success('Berhasil Update Profile');
         return back();

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('address')->nullable();
             $table->text('no_hp')->nullable();
+            $table->string('photo_profile')->default('user.jpg')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

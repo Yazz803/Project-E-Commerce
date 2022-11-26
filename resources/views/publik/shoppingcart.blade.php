@@ -271,6 +271,11 @@
 						<p class="font-weight-bold" style="color: red;">Metode Pembayaran Harus diisi</p>
 						@enderror
 
+						<p style="margin-top: 10px">
+							Dikirim ke Alamat : <span class="font-weight-bold">{{ auth()->user()->address }}</span>
+							<a href="{{ route('profile.edit') }}"><i class="fa fa-pencil"></i></a>
+						</p>
+
 						{{-- <div class="input-checkbox">
 							<input type="checkbox" id="terms">
 							<label for="terms">
