@@ -129,7 +129,7 @@
 											</div>
 											@if(auth()->check())
 												@if($comment->user->id == auth()->user()->id)
-												<form action="{{ route('comment.product.destroy', $comment->id) }}" method="POST">
+												<form action="{{ route('comment.service.destroy', $comment->id) }}" method="POST">
 													@csrf
 													@method('DELETE')
 													<button class="chat-delete">
