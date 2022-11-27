@@ -1,4 +1,5 @@
-## The Web is Still Under Development!
+## Horee SELESAI :)
+Untuk Main Feature-nya udah selesai semua, kalo ada yang mau nambahin ide/fitur di web ini, Silahkan kirim sarannya di [sini](https://github.com/Yazz803/Project-E-Commerce/issues) 
 
 ## Installation
 - Open Git Bash/Terminal/CMD and CD(change directory) to your Document folder or anywhere you want
