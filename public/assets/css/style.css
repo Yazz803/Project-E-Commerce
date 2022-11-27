@@ -2447,6 +2447,10 @@ textarea.input {
   margin: 75px 0 0 0 !important;
 }
 
+.sticky-margin-teuing {
+  margin: 120px auto 20px auto !important;
+}
+
 .main-nav li.back {
   margin-top: 10px;
 }

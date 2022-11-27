@@ -2,9 +2,19 @@
 
 @section('content')
 
-    @if($services->count())
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <form class="d-flex w-50 mb-4 m-auto">
+        <input class="form-control me-2" type="text" id="search" name="q" placeholder="Cari Services..." value="{{ request('q') }}" autocomplete="off">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <style>
+        .pagination{
+            justify-content: center;
+        }
+        </style>
+        @if($services->count())
+        {{ $services->links() }}
+        <div class="row mt-4">
             {{-- List Product --}}
             @foreach($services as $service)
             <div class="col-md-4 mb-3">
@@ -32,12 +42,12 @@
             @endforeach
             {{-- /List Product --}}
         </div>
+        @else
+        <center>
+            <h1 class="mt-4">Service Tidak Ditemukan!</h1>
+        </center>
+        @endif
     </div>
-    @else
-    <center>
-        <h1>Tidak ada Service!</h1>
-    </center>
-    @endif
 
     
 @endsection

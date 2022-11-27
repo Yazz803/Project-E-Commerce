@@ -7,10 +7,11 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Service;
-use App\Models\CategoryProduct;
-use App\Models\CategoryService;
+use App\Models\Checkout;
 use App\Models\ImageProduct;
 use App\Models\MethodPayment;
+use App\Models\CategoryProduct;
+use App\Models\CategoryService;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
     {
         Product::factory(30)->create();
         Service::factory(30)->create();
+        // Checkout::factory(50)->create();
         
         // Service::factory()->create([
         //     'name' => 'Web Developer',
@@ -89,6 +91,8 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
             'password' => bcrypt('1234')
         ]);
+
+        User::factory(50)->create();
 
         CategoryProduct::create([
             'name' => 'foods',

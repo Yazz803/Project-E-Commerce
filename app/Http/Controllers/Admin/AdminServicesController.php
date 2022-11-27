@@ -24,7 +24,7 @@ class AdminServicesController extends Controller
     public function index()
     {
         return view('admin.listservices', [
-            'services' => Service::orderBy('created_at', 'desc')->paginate(10)
+            'services' => Service::latest()->filter(request(['q']))->paginate(18)
         ]);
     }
 

@@ -11,6 +11,7 @@ class Checkout extends Model
 
     protected $guarded = ['id'];
 
+
     public function in_order() {
         return $this->hasMany(InOrder::class);
     }

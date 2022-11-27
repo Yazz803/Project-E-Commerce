@@ -24,7 +24,7 @@ class AdminProductController extends Controller
     public function index()
     {
         return view('admin.listproducts', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(12)
+            'products' => Product::latest()->filter(request(['q']))->paginate(18),
         ]);
     }
     

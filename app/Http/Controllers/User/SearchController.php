@@ -25,5 +25,5 @@ class SearchController extends Controller
           $query = $request->get('query');
           $filterResult = Product::where('name', 'LIKE', '%'. $query. '%')->get();
           return response()->json($filterResult);
-    } 
+    }
 }

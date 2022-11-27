@@ -38,6 +38,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['u']) ? $filters['u'] : false){
+            return $query->where('full_name', 'LIKE', '%' . $filters['u'] . '%')
+                        ->orWhere('username', 'LIKE', '%' . $filters['u'] . '%')
+                        ->orWhere('email', 'LIKE', '%' . $filters['u'] . '%')
+                        ->orWhere('no_hp', 'LIKE', '%' . $filters['u'] . '%')
+                        ->orWhere('address', 'LIKE', '%' . $filters['u'] . '%')
+                        ->orWhere('role', 'LIKE', '%' . $filters['u'] . '%');
+        }
+    }
+
     public function products(){
         return $this->hasMany(Product::class);
     }

@@ -55,7 +55,7 @@
 							
 							<ul class="product-links">
 								<li style="font-weight: bold;">Category:</li>
-								<li><a href="#">{{ $service->categoryService->name }}</a></li>
+								<li><a href="{{ route('pages.category.service', $service->categoryService->slug) }}">{{ $service->categoryService->name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -65,7 +65,7 @@
 
 							<ul class="product-links">
 								<li style="font-weight: bold;">Nomor Seller:</li>
-								<li><a href="#">{{ wordwrap($service->user->no_hp, 4, '-', true) }}</a></li>
+								<li><a href="https://wa.me/62{{ ltrim($service->user->no_hp, $service->user->no_hp[0]) }}?text=Selamat%20Datang%20di%20Wikrama%20Shop!%20%F0%9F%98%84%0A%0AService%20%3A{{ str_replace(' ', '%20', ucfirst($service->name)) }}%20%0APesan%20%3A" target="_blank">{{ wordwrap($service->user->no_hp, 4, '-', true)}}</a></li>
 							</ul>
 
 						</div>

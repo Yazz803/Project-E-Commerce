@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\InOrder;
 use App\Models\Product;
@@ -111,15 +112,15 @@ class CheckoutController extends Controller
             'checkouts' => Checkout::where('user_id', auth()->user()->id)->where('id', $checkout->id)->get(),
             'orderUser' => Checkout::all(),
             'checkout' => $checkout,
-            'methodPayment' => MethodPayment::where('name', $checkout->payment)->first()
+            'methodPayment' => MethodPayment::where('name', $checkout->payment)->first(),
+            'nomor_admin' => User::where('role', 'admin')->first(),
         ]);
     }
 
     public function cancelOrder(Checkout $checkout){
 
         $inOrder = InOrder::where('checkout_id', $checkout->id)->where('user_id', auth()->user()->id)->get();
-
-        //ketika user memesar product, stock nya tidak akan berkurang, tapi ketika user melakukan checkout product, maka stock productnya berkurang
+        
         foreach ($inOrder as $order) {
             $product = Product::find($order->product_id);
             $product->stock += $order->quantity;

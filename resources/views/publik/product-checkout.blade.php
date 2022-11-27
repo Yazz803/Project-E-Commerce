@@ -234,7 +234,7 @@
 							</script>
 						</div>
                         <center>
-                            <button type="submit" class="primary-btn order-submit">Chat Seller</button>
+                            <a href="https://wa.me/62{{ ltrim($nomor_admin->no_hp, $nomor_admin->no_hp[0]) }}" class="primary-btn order-submit" target="_blank">Chat Seller</a>
                         </center>
 					</div>
 					<!-- /Order Details -->

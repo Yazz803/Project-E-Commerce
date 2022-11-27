@@ -100,8 +100,21 @@
 					</div>
 					<!-- /product tab -->
 					@else
-					<div class="product-cart">
-						<h3 class="product-name" style="padding: 20px;">Belum ada Checkout!</h3>
+                    <div class="col-md-12" id="container">
+						<div id="product-tab" style="margin-top: 0">
+							<!-- section title -->
+							<div>
+								<div class="section-title">
+									<center>
+										<h3 class="title"><u>Daftar Transaksi</u></h3>
+									</center>
+								</div>
+							</div>
+							<!-- /section title -->
+                        </div>
+                    </div>
+					<div class="product-cart" style="margin-top: 20px">
+						<h3 class="product-name" style="padding: 20px;"><i class="fa fa-info-circle"></i> Belum ada Transaksi!</h3>
 					</div>
 					@endif
             </div>
@@ -233,6 +246,6 @@
 			navbar.classList.remove("sticky");
 			section.classList.remove("sticky-margin-checkout")
 		}
-		}
+    }
 	</script>
 @endsection

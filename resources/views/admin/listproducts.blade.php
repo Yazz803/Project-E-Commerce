@@ -2,13 +2,17 @@
 
 @section('content')
     
-@if($products->count())
-    <div class="container">
-        <style>
-            .pagination{
-                justify-content: center;
-            }
+<div class="container">
+    <form class="d-flex w-50 mb-4 m-auto">
+        <input class="form-control me-2" type="text" id="search" name="q" placeholder="Cari Services..." value="{{ request('q') }}" autocomplete="off">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <style>
+        .pagination{
+            justify-content: center;
+        }
         </style>
+        @if($products->count())
         {{ $products->links() }}
         <div class="row">
             {{-- List Product --}}
@@ -39,11 +43,11 @@
             {{-- /List Product --}}
         </div>
         {{ $products->links() }}
-    </>
-@else
-    <center>
-        <h1>Tidak ada Product!</h1>
-    </center>
-@endif
+        @else
+            <center>
+                <h1 class="mt-4">Product Tidak Ditemukan!</h1>
+            </center>
+        @endif
+    </div>
 
 @endsection

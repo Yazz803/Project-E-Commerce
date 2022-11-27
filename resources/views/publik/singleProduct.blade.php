@@ -113,7 +113,7 @@
 							
 							<ul class="product-links">
 								<li style="font-weight: bold;">Category:</li>
-								<li><a href="#">{{ $product->categoryProduct->name }}</a></li>
+								<li><a href="{{ route('pages.category.product', $product->categoryProduct->slug) }}">{{ $product->categoryProduct->name }}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -123,7 +123,7 @@
 
 							<ul class="product-links">
 								<li style="font-weight: bold;">Nomor Seller:</li>
-								<li><a href="#">{{ $product->user->no_hp }}</a></li>
+								<li><a href="https://wa.me/62{{ ltrim($product->user->no_hp, $product->user->no_hp[0]) }}?text=Selamat%20Datang%20di%20Wikrama%20Shop!%20%F0%9F%98%84%0A%0AProduct%20%3A{{ str_replace(' ', '%20', ucfirst($product->name)) }}%20%0APesan%20%3A" target="_blank">{{ wordwrap($product->user->no_hp, 4, '-', true)}}</a></li>
 							</ul>
 
 						</div>

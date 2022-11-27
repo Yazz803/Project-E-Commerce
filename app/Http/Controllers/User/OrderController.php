@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\Checkout;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Checkout;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,7 +20,8 @@ class OrderController extends Controller
     {
         $allCheckout = Checkout::all();
         return view('admin.listorder', [
-            'orderUser' => Checkout::all()
+            'orderUser' => Checkout::latest()->paginate(15),
+            'users' => User::latest()->filter(request(['u']))->paginate(15)
         ]);
     }
 
