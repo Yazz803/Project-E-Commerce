@@ -85,6 +85,7 @@
                 <label for="estimasiTiba">Ubah Estimasi Tiba</label>
                 <input type="hidden" name="status" value="{{ $order->status }}">
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
+                <input type="hidden" name="ubah" value="1">
                 <input type="date" name="estimasi_tiba">
                 @error('estimasi_tiba')
                 <script>alert('{{ $message }}')</script>

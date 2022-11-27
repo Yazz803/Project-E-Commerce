@@ -2298,6 +2298,16 @@ textarea.input {
     font-size: 12px;
   }
 
+  .btn-checkout form button {
+    border: none;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px !important;
+    font-size: 12px;
+  }
+
   /* .sticky {
     top: inherit !important;
     width: 100%;
@@ -2548,4 +2558,19 @@ button.chat-delete > p {
 
 .navbar-nav li a.navbar-icon p {
   margin-bottom: 0;
+}
+
+.btn-checkout {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-checkout form button {
+  border: none;
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
 }

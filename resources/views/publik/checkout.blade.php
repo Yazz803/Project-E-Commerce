@@ -28,7 +28,7 @@
 											@php
 												if($checkout->status == 'pending'){
 													$status = 'Menunggu Pembayaran';
-													$background = 'rgb(201, 201, 201)';
+													$background = '#333';
 												}elseif($checkout->status == 'success'){
 													$status = 'Pesanan Dikonfirmasi';
 													$background = 'rgb(0, 66, 128)';
@@ -60,12 +60,26 @@
 													<p style="margin-bottom: 0;">Id Pemesanan : <span style="font-weight: bold">{{ $checkout->id_pemesanan }}</span></p>
 													<p style="margin-bottom: 0;">Metode Pembayaran : <span style="font-weight: bold;">{{ $checkout->payment }}</span></p>
 													<p style="margin-bottom: 20px;">Total Harga : <span style="font-weight: bold;">Rp {{ number_format($checkout->total_price_checkout, 0, ',', '.') }}</span></p>
-													<div class="btn-checkout-lihat-pesanan" style="margin-bottom: 10px">
-														<a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
-														@if($checkout->status == 'pending')
-														<a href="/checkout/{{ $checkout->id }}" style="background-color: red;font-weight:bold;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-close"></i> Cancel</a>
-														@endif
-													</div>
+                                                    <div class="btn-checkout">
+                                                        <div class="btn-checkout-lihat-pesanan">
+                                                            <a href="{{ route('checkout.show', $checkout->id) }}" style="background-color: #333;padding: 10px;border-radius:5px;color:white;"><i class="fa fa-eye"></i> Lihat Pesanan</a>
+                                                        </div>
+                                                        @if($checkout->status == 'pending')
+                                                        <form action="{{ route('checkout.cancelOrder', $checkout->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" ><i class="fa fa-close"></i> Cancel</button>
+                                                        </form>
+                                                        @endif
+                                                    </div>
+                                                    @if($checkout->status == 'done')
+                                                    <center>
+                                                        <div class="pesanan-selesai">
+                                                            <img src="/assets/img/anime-happy.gif" alt="">
+                                                            <h3>Terima Kasih Sudah Beli Product di Wikrama Shop</h3>
+                                                        </div>
+                                                    </center>
+                                                    @endif
 												</div>
 											</div>
 											{{-- <div class="product-cart">

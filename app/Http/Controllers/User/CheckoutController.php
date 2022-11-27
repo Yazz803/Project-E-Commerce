@@ -114,4 +114,23 @@ class CheckoutController extends Controller
             'methodPayment' => MethodPayment::where('name', $checkout->payment)->first()
         ]);
     }
+
+    public function cancelOrder(Checkout $checkout){
+
+        $inOrder = InOrder::where('checkout_id', $checkout->id)->where('user_id', auth()->user()->id)->get();
+
+        //ketika user memesar product, stock nya tidak akan berkurang, tapi ketika user melakukan checkout product, maka stock productnya berkurang
+        foreach ($inOrder as $order) {
+            $product = Product::find($order->product_id);
+            $product->stock += $order->quantity;
+            $product->save();
+        }
+        
+
+        InOrder::where('checkout_id', $checkout->id)->where('user_id', auth()->user()->id)->delete();
+        Checkout::where('id', $checkout->id)->delete();
+
+        Alert::success('Berhasil Menghapus Pesanan');
+        return back();
+    }
 }

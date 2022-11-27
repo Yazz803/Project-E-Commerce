@@ -112,6 +112,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/send-reply-service/{comment_service:id}', [CommentReplyServiceController::class, 'store'])->name('comment.service.reply.store');
     Route::delete('/delete-reply-service/{comment_reply_service:id}', [CommentReplyServiceController::class, 'destroy'])->name('comment.service.reply.destroy');
+
+    Route::delete('/checkout/{checkout:id}', [CheckoutController::class, 'cancelOrder'])->name('checkout.cancelOrder');
 });
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);

@@ -21,6 +21,10 @@ class StatusController extends Controller
         if($request->status == 'process'){
             $request->validate(['estimasi_tiba' => 'required']);
             $validatedData['estimasi_tiba'] = $request->estimasi_tiba;
+            if($request->ubah == "1"){
+                Checkout::where('id', $request->checkout_id)->update($validatedData);
+                return back()->with('ubah_estimasi', 'Berhasil Ubah Tanggal Estimasi Tiba');
+            }
         }
         
         if($request->status == 'done'){
@@ -30,6 +34,6 @@ class StatusController extends Controller
 
         Checkout::where('id', $request->checkout_id)->update($validatedData);
         // Alert::success("Berhasil mengubah status!", 'Mengubah status user!');
-        return back()->with('ubah_estimasi', 'Berhasil Ubah Tanggal Estimasi Tiba');
+        return back();
     }
 }
