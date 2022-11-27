@@ -64,7 +64,7 @@ class ProductController extends Controller
             $spesificQuantity == NULL ? $quantity = 1 : $quantity = $spesificQuantity->quantity;
         }
         // $quantity = $spesificQuantity->quantity;
-        return view('publik.singleProduct', [
+        return view('publik.products.singleProduct', [
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'product' => $product,
             'category_products' => CategoryProduct::all(),

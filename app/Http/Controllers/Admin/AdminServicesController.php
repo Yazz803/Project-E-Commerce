@@ -23,7 +23,7 @@ class AdminServicesController extends Controller
      */
     public function index()
     {
-        return view('admin.listservices', [
+        return view('admin.services.listservices', [
             'services' => Service::latest()->filter(request(['q']))->paginate(18)
         ]);
     }
@@ -35,7 +35,7 @@ class AdminServicesController extends Controller
      */
     public function create()
     {
-        return view('admin.addservice', [
+        return view('admin.services.addservice', [
             'title' => 'Add Service',
             'id_serv' => Service::orderBy('id', 'desc')->first(),
             'categories' => CategoryService::all(),
@@ -129,7 +129,7 @@ class AdminServicesController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.editservice', [
+        return view('admin.services.editservice', [
             'service' => $service,
             'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
         ]);

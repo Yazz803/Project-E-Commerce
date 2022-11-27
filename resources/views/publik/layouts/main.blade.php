@@ -241,7 +241,7 @@
 
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
-									<a href="{{ route('profile.index') }}">
+									<a href="{{ route('profile.edit') }}">
 										<i class="fa fa-bars"></i>
 										<span>Menu</span>
 									</a>

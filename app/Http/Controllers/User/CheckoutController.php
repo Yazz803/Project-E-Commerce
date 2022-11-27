@@ -22,7 +22,7 @@ class CheckoutController extends Controller
         $allCheckout = Checkout::all();
         $userCheckout = Checkout::where('user_id', auth()->user()->id)->get();
 
-        return view('publik.checkout', [
+        return view('publik.pages.checkout', [
             'title' => 'Checkout',
             'ttl_orders' => $ttl_orders,
             'category_products' => CategoryProduct::all(),
@@ -103,7 +103,7 @@ class CheckoutController extends Controller
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         $allCheckout = Checkout::all();
-        return view('publik.product-checkout', [
+        return view('publik.pages.product-checkout', [
             'title' => 'Checkout',
             'category_products' => CategoryProduct::all(),
             // 'single_checkout' => $checkout,

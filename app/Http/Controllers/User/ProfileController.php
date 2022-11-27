@@ -18,10 +18,7 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
-        return  view('publik.profile.edit', [
-            'user' => auth()->user(),
-            'title' => auth()->user()->username,
-        ]);
+        
     }
 
     /**

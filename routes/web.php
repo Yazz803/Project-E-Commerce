@@ -101,8 +101,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/{checkout:id}', [CheckoutController::class, 'show'])->name('checkout.show');
     Route::delete('/checkout/{checkout:id}', [CheckoutController::class, 'cancelOrder'])->name('checkout.cancelOrder');
     
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    
     Route::get('/menu-utama', [MenuController::class, 'index'])->name('menu.utama');
     
     Route::post('/send-comment-product/{product:id}', [CommentProductController::class, 'store'])->name('comment.product.store');

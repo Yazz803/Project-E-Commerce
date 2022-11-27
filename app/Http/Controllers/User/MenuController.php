@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        return view('publik.menu', [
+        return view('publik.pages.menu', [
             'title' => 'Menu Utama',
             'user' => auth()->user(),
             'products' => Product::inRandomOrder()->take(10)->get(),

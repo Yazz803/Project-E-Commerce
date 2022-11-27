@@ -23,7 +23,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        return view('admin.listproducts', [
+        return view('admin.products.listproducts', [
             'products' => Product::latest()->filter(request(['q']))->paginate(18),
         ]);
     }
@@ -36,7 +36,7 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        return view('admin.addproduct',[
+        return view('admin.products.addproduct',[
             'id_prod' => Product::orderBy('id', 'desc')->first(),
             'categories' => CategoryProduct::all(),
         ]);
@@ -130,7 +130,7 @@ class AdminProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.editproduct', [
+        return view('admin.products.editproduct', [
             'product' => $product,
             'images' => ImageProduct::where('code_product', $product->code_product)->get(),
             'categories' => CategoryProduct::all()

@@ -51,7 +51,7 @@ class ServiceController extends Controller
     public function show(Service $service)
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        return view('publik.singleService',[
+        return view('publik.services.singleService',[
             'title' => strtolower(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))),
             'service' => $service,
             // 'foods' => Product::where('category', 'foods')->inRandomOrder()->take(5)->get(),

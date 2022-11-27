@@ -19,7 +19,7 @@ class PagesController extends Controller
     public function index()
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        return view('publik.landingpage',[
+        return view('publik.pages.landingpage',[
             'title' => 'Landing Page',
             'category_products' => CategoryProduct::all(),
             'newest' => Product::orderBy('id','desc')->take(8)->get(),
@@ -32,7 +32,7 @@ class PagesController extends Controller
     public function products()
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        return view('publik.products', [
+        return view('publik.products.products', [
             'title' => 'Products',
             'products' => Product::orderBy('created_at', 'desc')->take(8)->get(),
             'category_products' => CategoryProduct::all(),
@@ -46,7 +46,7 @@ class PagesController extends Controller
 
     public function CategoryProduct(CategoryProduct $categoryProduct)
     {
-        return view('publik.categoryProduct', [
+        return view('publik.products.categoryProduct', [
             'title' => 'Category Product',
             'category' => $categoryProduct,
             'products' => Product::inRandomOrder()->get(),
@@ -55,7 +55,7 @@ class PagesController extends Controller
     }
     public function CategoryService(CategoryService $categoryService)
     {
-        return view('publik.categoryService', [
+        return view('publik.services.categoryService', [
             'title' => 'Category Service',
             'category' => $categoryService,
             'products' => Product::inRandomOrder()->get(),
@@ -66,7 +66,7 @@ class PagesController extends Controller
     public function services()
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        return view('publik.services',[
+        return view('publik.services.services',[
             'title' => 'Services',
             'services' => Service::orderBy('id', 'desc')->take(8)->get(),
             'category_services' => CategoryService::all(),
@@ -78,7 +78,7 @@ class PagesController extends Controller
 
     public function categories()
     {
-        return view('publik.categories',[
+        return view('publik.pages.categories',[
             'title' => 'Categories',
             'category_products' => CategoryProduct::all(),
             'category_services' => CategoryService::all(),
@@ -96,7 +96,7 @@ class PagesController extends Controller
         //     $product_id = $user_order->product_id;
         //     $hasil[] = Product::where('id', $product_id)->get();
         // }
-        return view('publik.shoppingcart',[
+        return view('publik.pages.shoppingcart',[
             'title' => 'Selamat Datang di Shopping Cart',
             'ttl_orders' => $ttl_orders,
             'category_products' => CategoryProduct::all(),
@@ -104,16 +104,6 @@ class PagesController extends Controller
             // 'products' => $hasil,
             'orders' => Order::where('user_id', auth()->user()->id)->get(),
             'methodPayments' => MethodPayment::all(),
-        ]);
-    }
-
-    public function edit(User $user){
-        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        return view('publik.profile',[
-            'ttl_orders' => $ttl_orders,
-            'category_products' => CategoryProduct::all(),
-            'title' => 'Edit Profile',
-            'user' => $user,
         ]);
     }
 }
