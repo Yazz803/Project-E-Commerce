@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\MethodPaymentController;
 use App\Http\Controllers\User\CommentProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CategoryServiceController;
+use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\CommentReplyProductController;
 use App\Http\Controllers\User\CommentReplyServiceController;
@@ -79,6 +80,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'dashboard'], function () {
     Route::resource('/services', AdminServicesController::class);
     Route::resource('/method-payments', MethodPaymentController::class);
     Route::get('/list-orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/list-orders/{checkout:id}', [OrderController::class, 'show'])->name('order.show');
     Route::put('/ubah-status', [StatusController::class, 'update'])->name('status.update');
     Route::resource('/category-products', CategoryProductController::class)->except('show');
     Route::resource('/category-services', CategoryServiceController::class)->except('show');
@@ -119,3 +121,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);
 Route::get('/search', [SearchController::class, 'index'])->name('search.user');
+
+Route::get('generate-invoice-pdf/{checkout:id}', [InvoiceController::class, 'generateInvoicePDF'])->name('generateInvoicePDF');

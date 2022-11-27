@@ -20,7 +20,7 @@ class OrderController extends Controller
     {
         $allCheckout = Checkout::all();
         return view('admin.listorder', [
-            'orderUser' => Checkout::latest()->paginate(15),
+            'orderUser' => Checkout::paginate(15),
             'users' => User::latest()->filter(request(['u']))->paginate(15)
         ]);
     }
@@ -85,9 +85,11 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Checkout $checkout)
     {
-        //
+        return view('admin.singleOrder', [
+            'orders' => $checkout
+        ]);
     }
 
     /**

@@ -103,7 +103,7 @@
                     <span>Method Payments</span>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('dashboard/list-orders') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/list-orders*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('order.index') }}">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>List Orders</span>
