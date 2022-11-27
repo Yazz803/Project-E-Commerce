@@ -14,6 +14,7 @@ class Service extends Model
     public function scopeFilter($query, array $filters){
         if(isset($filters['q']) ? $filters['q'] : false){
             return $query->where('name', 'LIKE', '%' . $filters['q'] . '%')
+                        ->orWhere('slug', 'LIKE', '%' . $filters['q'] . '%')
                         ->orWhere('description', 'LIKE', '%' . $filters['q'] . '%')
                         ->orWhere('detail', 'LIKE', '%' . $filters['q'] . '%');
         }

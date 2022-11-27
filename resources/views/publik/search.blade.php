@@ -52,15 +52,15 @@
                                         <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name text-truncate"><a href="{{ route('product.show', $service->slug) }}">{{ $service->name }}</a></h3>
+                                        <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}</h4>
                                         <div class="text-truncate text-description-card" style="margin-bottom: 20px;">
 											{!! $service->description !!}
 										</div>
-                                        <a href="{{ route('product.show', $service->slug) }}" class="btn-detail font-weight-bold"> Detail</a>
+                                        <a href="{{ route('service.show', $service->slug) }}" class="btn-detail font-weight-bold"> Detail</a>
                                     </div>
                                     <div class="add-to-cart category">
-                                        <a href="{{ route('product.show', $service->slug) }}">
+                                        <a href="{{ route('service.show', $service->slug) }}">
                                             <button class="add-to-cart-btn"><i class="fa fa-info-circle fa-lg"></i>Detail</button>
                                         </a>
                                     </div>
