@@ -2289,6 +2289,15 @@ textarea.input {
     margin-left: -30px;
   }
 
+  .text-description-card {
+    font-size: 12px !important;
+  }
+
+  .btn-checkout-lihat-pesanan a{
+    padding: 5px 10px !important;
+    font-size: 12px;
+  }
+
   /* .sticky {
     top: inherit !important;
     width: 100%;

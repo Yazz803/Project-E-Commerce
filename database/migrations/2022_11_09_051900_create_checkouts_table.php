@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('payment');
             $table->string('id_pemesanan');
             $table->enum('status', ['pending', 'success', 'process', 'done']);
-            $table->dateTime('tgl_konfirmasi')->nullable();
+            $table->timestamp('tgl_konfirmasi')->nullable();
+            $table->timestamp('estimasi_tiba')->nullable();
+            $table->timestamp('pesanan_sampai')->nullable();
             $table->timestamps();
         });
     }

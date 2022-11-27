@@ -115,4 +115,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);
-
+Route::get('/search', [SearchController::class, 'index'])->name('search.user');

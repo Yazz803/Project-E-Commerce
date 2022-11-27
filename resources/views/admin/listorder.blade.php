@@ -56,30 +56,50 @@
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
                 <input type="hidden" name="status" value="success">
-                <button typep="submit" class="btn btn-primary"><i class="fa fa-check"></i></button>
+                <button type="submit" onclick="return confirm('Pesanan akan dikonfirmasi, tekan OK jika ingin melanjutkannya')" class="btn btn-primary"><i class="fa fa-check"></i></button>
               </form>
               @elseif($order->status == 'success')
-              <form action="{{ route('status.update') }}" method="POST">
+              {{-- <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
                 <input type="hidden" name="status" value="pending">
                 <button typep="submit" class="btn btn-danger"><i class="fa fa-arrow-left"></i></button>
-              </form>
+              </form> --}}
               <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
+                <label for="estimasiTiba">Estimasi Tiba</label>
+                <input type="date" name="estimasi_tiba">
+                @error('estimasi_tiba')
+                <script>alert('Harap isi Tanggal Estimasi Tiba')</script>
+                @enderror
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
                 <input type="hidden" name="status" value="process">
-                <button typep="submit" class="btn btn-primary"><i class="fa fa-check"></i></button>
+                <button type="submit" onclick="return confirm('Pesanan akan diproses, tekan OK jika ingin melanjutkannya')" class="btn btn-primary"><i class="fa fa-check"></i></button>
               </form>
               @elseif($order->status == 'process')
               <form action="{{ route('status.update') }}" method="POST">
                 @csrf
                 @method('PUT')
+                <label for="estimasiTiba">Ubah Estimasi Tiba</label>
+                <input type="hidden" name="status" value="{{ $order->status }}">
                 <input type="hidden" name="checkout_id" value="{{ $order->id }}">
+                <input type="date" name="estimasi_tiba">
+                @error('estimasi_tiba')
+                <script>alert('{{ $message }}')</script>
+                @enderror
+                @if(session('ubah_estimasi'))
+                <script>alert('{{ session('ubah_estimasi') }}')</script>
+                @endif
+                <button type="submit" onclick="return confirm('Tanggal Estimasi Tiba akan diubah, tekan OK jika ingin melanjutkannya')" class="btn btn-success"><i class="fa fa-edit"></i></button>
+              </form>
+              <form action="{{ route('status.update') }}" method="POST">
+                @csrf
+                @method('PUT')
                 <input type="hidden" name="status" value="done">
-                <button typep="submit" class="btn btn-primary"><i class="fa fa-check"></i></button>
+                <input type="hidden" name="checkout_id" value="{{ $order->id }}">
+                <button type="submit" onclick="return confirm('Pesanan sampai di costumer, tekan OK jika ingin melanjutkannya')" class="btn btn-primary"><i class="fa fa-check"></i></button>
               </form>
               @endif
             </td>

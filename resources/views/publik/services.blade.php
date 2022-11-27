@@ -70,9 +70,10 @@
 												<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
+												<h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}</h4>
-												<div class="text-truncate">
+												<a href="{{ route('pages.category.service', $service->categoryService->slug) }}" class="font-weight-bold" style="font-size: 12px;">{{ strtoupper($service->categoryService->name) }}</a>
+												<div class="text-truncate text-description-card">
 													{!! $service->description !!}
 												</div>
 											</div>

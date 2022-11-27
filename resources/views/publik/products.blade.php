@@ -70,11 +70,13 @@
 												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+												<h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
 												<h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-												<div class="text-truncate">
+												<a href="{{ route('pages.category.product', $product->categoryProduct->slug) }}" class="font-weight-bold" style="font-size: 12px;">{{ strtoupper($product->categoryProduct->name) }}</a>
+												<div class="text-truncate text-description-card">
 													{!! $product->description !!}
 												</div>
+												<p style="margin-bottom: 10px;font-size:12px;color: red;" class="font-weight-bold">Sisa Stock : {{ $product->stock }} @if($product->stock > 1) pcs @else pc @endif</p>
 											</div>
 											<div class="add-to-cart">
                                                 <a href="{{ route('product.show', $product->slug) }}">

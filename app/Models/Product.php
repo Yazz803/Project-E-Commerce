@@ -12,6 +12,14 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['q']) ? $filters['q'] : false){
+            return $query->where('name', 'LIKE', '%' . $filters['q'] . '%')
+                        ->orWhere('description', 'LIKE', '%' . $filters['q'] . '%')
+                        ->orWhere('detail', 'LIKE', '%' . $filters['q'] . '%');
+        }
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }

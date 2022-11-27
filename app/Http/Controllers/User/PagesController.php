@@ -82,8 +82,8 @@ class PagesController extends Controller
             'title' => 'Categories',
             'category_products' => CategoryProduct::all(),
             'category_services' => CategoryService::all(),
-            'products' => Product::inRandomOrder()->get(),
-            'services' => Service::inRandomOrder()->get(),
+            'products' => Product::inRandomOrder()->take(10)->get(),
+            'services' => Service::inRandomOrder()->take(10)->get(),
         ]);
     }
 

@@ -26,7 +26,7 @@
 				<div class="col-md-12">
 					<div class="hot-deal">
 						<h2 class="text-uppercase" style="color: white;">{{ $category->slogan }}</h2>
-						<a class="primary-btn cta-btn" href="#lists">beli sekarang</a>
+						<a class="primary-btn cta-btn" href="#lists">pesan sekarang</a>
 					</div>
 				</div>
 			</div>
@@ -62,9 +62,10 @@
                                         <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
-                                        <h3 class="product-name"><a href="{{ route('product.show', $service->slug) }}">{{ $service->name }}</a></h3>
+                                        <h3 class="product-name text-truncate"><a href="{{ route('product.show', $service->slug) }}">{{ $service->name }}</a></h3>
                                         <h4 class="product-price">Rp. {{ number_format($service->price,0,',','.') }}</h4>
-                                        <div class="text-truncate" style="margin-bottom: 20px;">
+                                        <a href="{{ route('pages.category.service', $service->categoryService->slug) }}" class="font-weight-bold" style="font-size: 12px;">{{ strtoupper($service->categoryService->name) }}</a>
+                                        <div class="text-truncate text-description-card" style="margin-bottom: 20px;">
 											{!! $service->description !!}
 										</div>
                                         <a href="{{ route('service.show', $service->slug) }}" class="btn-detail font-weight-bold"> Detail</a>
@@ -119,11 +120,13 @@
                                             <img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                            <h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                             <h4 class="product-price">Rp {{ number_format($product->price,0,',','.') }}</h4>
-                                            <div class="text-truncate">
+                                            <a href="{{ route('pages.category.product', $product->categoryProduct->slug) }}" class="font-weight-bold" style="font-size: 12px;">{{ strtoupper($product->categoryProduct->name) }}</a>
+                                            <div class="text-truncate text-description-card">
                                                 {!! $product->description !!}
                                             </div>
+                                            <p style="margin-bottom: 20px;font-size:12px;color: red;" class="font-weight-bold">Sisa Stock : {{ $product->stock }} @if($product->stock > 1) pcs @else pc @endif</p>
                                         </div>
                                         <div class="add-to-cart">
                                             <a href="{{ route('product.show', $product->slug) }}">
@@ -159,9 +162,10 @@
                                             <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
+                                            <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>
                                             <h4 class="product-price">Rp {{ number_format($service->price,0,',','.') }}</h4>
-                                            <div class="text-truncate">
+                                            <a href="{{ route('pages.category.service', $service->categoryService->slug) }}" class="font-weight-bold" style="font-size: 12px;">{{ strtoupper($service->categoryService->name) }}</a>
+                                            <div class="text-truncate text-description-card">
                                                 {!! $service->description !!}
                                             </div>
                                         </div>

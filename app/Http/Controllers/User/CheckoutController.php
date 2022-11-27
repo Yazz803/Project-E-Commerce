@@ -5,10 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Models\Order;
 use App\Models\InOrder;
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
-use App\Models\CategoryProduct;
 use App\Models\MethodPayment;
+use App\Models\CategoryProduct;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
@@ -26,6 +27,8 @@ class CheckoutController extends Controller
             'category_products' => CategoryProduct::all(),
             'checkouts' => $userCheckout,
             'orderUser' => Checkout::all(),
+            'products' => Product::inRandomOrder()->take(10)->get(),
+            'services' => Service::inRandomOrder()->take(10)->get(),
         ]);
     }
     public function store(Request $request)

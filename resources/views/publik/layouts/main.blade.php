@@ -136,8 +136,8 @@
 						<div class="col-md-6">
 							<div class="header-search">
                                 <center>
-                                    <form>
-                                        <input type="text" class="input" placeholder="Search here" name="search" id="search" autocomplete="off">
+                                    <form action="{{ route('search.user') }}">
+                                        <input type="text" class="input" placeholder="Search here" name="q" id="search" autocomplete="off" value="{{ request('q') }}">
                                         <button class="search-btn" style="border-radius: 0 2px 2px 0;"><i class="fa fa-search"></i></button>
                                     </form>
                                 </center>
