@@ -43,7 +43,7 @@
 											@endphp
 											<div class="product-cart" style="width: 50%;margin-top: 10px;">
 												<div class="text-product" style="width: 100%; position: relative;">
-													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;"><i class="fa fa-shopping-bag"></i> Pesanan kamu #{{ $loop->iteration }} <a href="{{ route('generateInvoicePDF', $checkout->id) }}" style="font-size: 12px"><u>Download Invoice</u></a> <span style="color: white;position: absolute;right:-15px;top: -20px;background-color: {{ $background }};border-radius:10px;padding: 5px 10px;font-size:14px;">{{ $status }}</span></h3>
+													<h3 class="product-name" style="margin-bottom: 20px;font-size: 20px !important;"><i class="fa fa-shopping-bag"></i> Pesanan kamu #{{ $loop->iteration }} @if($checkout->status != 'pending') <a href="{{ route('generateInvoicePDF', $checkout->id) }}" style="font-size: 12px"><u>Download Invoice</u></a> @endif <span style="color: white;position: absolute;right:-15px;top: -20px;background-color: {{ $background }};border-radius:10px;padding: 5px 10px;font-size:14px;">{{ $status }}</span></h3>
 													{{-- <p>{{ $order->created_at->hour. ':' . $order->created_at->minute . ':' . $order->created_at->second }}</p> --}}
 													<p style="margin-bottom: 0;">Dipesan tanggal : <span style="font-weight: bold">{{ \Carbon\Carbon::parse($checkout->created_at)->format('j F Y |'). ' '. $checkout->created_at->format('H:i') }}</span></p>
 													@if($checkout->status == 'success' || $checkout->status == 'process')
