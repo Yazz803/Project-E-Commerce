@@ -18,7 +18,11 @@ class InvoiceController extends Controller
             'inOrder' => InOrder::where('user_id', Auth::user()->id)->where('checkout_id', $checkout->id)->get()
         ]);
 
-        return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
+        if($checkout->user_id == Auth::user()->id){
+            return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
+        }else{
+            return back();
+        }
     }
 
 
