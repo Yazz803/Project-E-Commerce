@@ -53,7 +53,7 @@
             <td>{{ 'Rp '.number_format($order->total_price_checkout, 0, ',', '.') }}</td>
             <td class="{{ $text }} font-weight-bold">{{ ucfirst($status) }}</td>
             <td class="d-flex justify-content-around">
-              <a href="{{ route('generateInvoicePDF', $order->id) }}" class="btn btn-light"><i class="fa fa-eye"></i></a>
+              <a href="{{ route('generateInvoicePDFAdmin', $order->id) }}" class="btn btn-light"><i class="fa fa-eye"></i></a>
               @if($order->status == 'pending')
               <form action="{{ route('status.update') }}" method="POST">
                 @csrf

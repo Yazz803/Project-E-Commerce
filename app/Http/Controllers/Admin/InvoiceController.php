@@ -20,4 +20,18 @@ class InvoiceController extends Controller
 
         return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
     }
+
+
+    public function generateInvoicePDFAdmin(Checkout $checkout)
+    {
+        $invoice = PDF::loadview('admin.invoice', [
+            'header' => 'SMK Wikrama Bogor',
+            'checkout' => $checkout,
+            'inOrder' => InOrder::where('user_id', $checkout->user_id)->where('checkout_id', $checkout->id)->get()
+        ]);
+
+        return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
+    }
+
+
 }

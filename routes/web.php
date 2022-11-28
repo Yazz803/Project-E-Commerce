@@ -86,6 +86,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'dashboard'], function () {
     Route::resource('/category-services', CategoryServiceController::class)->except('show');
     Route::get('/all-users', [UserController::class, 'index'])->name('allusers.index');
     Route::delete('/all-users/{user:id}', [UserController::class, 'destroy'])->name('allusers.destroy');
+    Route::get('generate-invoice-pdf/{checkout:id}', [InvoiceController::class, 'generateInvoicePDFAdmin'])->name('generateInvoicePDFAdmin');
 });
 
 Route::middleware('auth')->group(function () {
@@ -116,7 +117,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/send-reply-service/{comment_service:id}', [CommentReplyServiceController::class, 'store'])->name('comment.service.reply.store');
     Route::delete('/delete-reply-service/{comment_reply_service:id}', [CommentReplyServiceController::class, 'destroy'])->name('comment.service.reply.destroy');
-
+    
 });
 
 Route::get('/autocomplete-search', [SearchController::class, 'autocompleteSearch']);
