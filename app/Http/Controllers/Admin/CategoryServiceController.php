@@ -49,11 +49,11 @@ class CategoryServiceController extends Controller
             'slogan' => 'required|min:3',
             'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $validateData['ttl_product'] = 0;
+        $validateData['ttl_service'] = 0;
 
         if ($request->file('thumb_img')){
             $image = $request->file('thumb_img');
-            $imageName = 'Product_'.uniqId().'.'.$image->extension();
+            $imageName = 'Service_'.uniqId().'.'.$image->extension();
             $img = Image::make($image->path());
             $img->resize(1000, 1000, function ($const) {
                 $const->aspectRatio();
@@ -135,6 +135,7 @@ class CategoryServiceController extends Controller
      */
     public function destroy(CategoryService $categoryService)
     {
+        File::delete('images/'.$categoryService->thumb_img);
         $categoryService->where('id', $categoryService->id)->delete();
         Alert::success('Success', 'Berhasil Menghapus Category');
         return back();

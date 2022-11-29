@@ -136,6 +136,7 @@ class CategoryProductController extends Controller
      */
     public function destroy(CategoryProduct $categoryProduct)
     {
+        File::delete('images/'.$categoryProduct->thumb_img);
         $categoryProduct->where('id', $categoryProduct->id)->delete();
         Alert::success('Success', 'Berhasil Menghapus Category');
         return back();
