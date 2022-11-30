@@ -14,6 +14,10 @@
             @enderror
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Bank BRI / Bank BCA / Dana / dll" value="{{ old('name') }}">
         </div>
+        <div class="form-group">
+            <label for="no_rek" class="font-weight-bold text-primary"><i class="fa fa-circle"></i> Nomor Rekening</label>
+            <input type="text" name="no_rek" class="form-control" id="no_rek" placeholder="Masukan Nomor Rekening Jika ada" value="{{ old('no_rek') }}">
+        </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="body" class="form-label font-weight-bold @error('description') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Description</label>
             @error('description')

@@ -46,6 +46,8 @@ class MethodPaymentController extends Controller
             'description' => 'required',
         ]);
 
+        $validateData['no_rek'] = $request->no_rek;
+
         MethodPayment::create($validateData);
 
         Alert::success('Success', 'Method Payment has been added');
@@ -92,6 +94,7 @@ class MethodPaymentController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
+        $validateData['no_rek'] = $request->no_rek;
 
         $methodPayment->update($validateData);
 

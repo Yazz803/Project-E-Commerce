@@ -151,8 +151,12 @@
 						</div>
 						@endforeach
 						@else
-						<div class="product-cart">
-							<h3 class="product-name" style="padding: 20px;">Keranjang Belanja Kosong</h3>
+						<div class="product-cart empty-cart">
+							<center>
+								<h3 class="product-name">Keranjang Belanja Kosong</h3>
+								</br>
+								<a href="{{ route('pages.products') }}" class="btn-back-products">Lihat Produk lain...</a>
+							</center>
 						</div>
 						@endif
 						{{-- /Product --}}
@@ -205,13 +209,13 @@
 							<div class="payment">
 								<li>
 									<label for="payment-{{ $methodPayment->id }}" style="font-weight: bold;">
-										{{ $methodPayment->name }}
+										{{ $methodPayment->name }} @if($methodPayment->no_rek != null) (No.Rek {{ $methodPayment->no_rek }}) @endif
 									</label>
 								</li>
 							</div>
 							<div class="detail-payment">
 								<div id="myBtn{{ $methodPayment->id }}" style="cursor: pointer;">
-									<i class="fa fa-info-circle fa-lg"></i>
+									<i class="fa fa-info-circle" style="font-size: 20px;"></i>
 								</div>
 							</div>
 

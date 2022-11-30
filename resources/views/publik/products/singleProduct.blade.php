@@ -167,8 +167,8 @@
 								<!-- section title -->
 								<div class="col-md-12">
 									<div class="section-title col-md-8" style="display: flex;justify-content:space-between;align-items:center;">
-										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Diskusi</h4>
-										<a href="#"><u>Total Diskusi</u>({{ $product->commentProducts->count() }})</a>
+										<h4 class="title"><i class="fa fa-circle" style="color: #059fff"></i> Komentar</h4>
+										<a href="#"><u>Total Komentar</u>({{ $product->commentProducts->count() }})</a>
 									</div>
 								</div>
 								@foreach($product->commentProducts()->orderBy('created_at', 'desc')->get() as $comment)
@@ -271,7 +271,7 @@
 							<div class="chat-box">
 								<div class="col-md-8">
 									<button class="chat-toggle" @if(!auth()->check()) onclick="return loginDulu()" @else id="chat-toggle-send" @endif>
-										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Diskusi</p>
+										<p><i class="fa fa-plus-square-o fa-lg"></i> Tambahkan Komentar</p>
 									</button>
 									@auth
 									<form action="{{ route('comment.product.store', $product->id) }}" method="POST">

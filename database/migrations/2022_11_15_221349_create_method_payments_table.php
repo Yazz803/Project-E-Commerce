@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('method_payments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('no_rek')->nullable();
             $table->text('description');
             $table->timestamps();
         });

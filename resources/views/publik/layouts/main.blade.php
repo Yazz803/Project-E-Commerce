@@ -47,8 +47,8 @@
 			body::before {
 				content: '';
 				background-image: linear-gradient(
-					rgba(255, 255, 255, 0.9),
-					rgba(255, 255, 255, 0.9)
+					rgba(255, 255, 255, .97),
+					rgba(255, 255, 255, .97)
 				),
 				url(/assets/img/bg.jpg) ;
 				background-repeat: no-repeat;
@@ -126,7 +126,7 @@
 							<div class="header-logo">
 								<a href="#" class="logo">
 									<img src="/assets/img/logo-wk.png" alt="" class="logo-wk">
-									<h2 style="color: #DDD">Wikrama's Shop</h2>
+									<h2 style="color: #DDD;font-size: 2rem;">Wikrama Shop</h2>
 								</a>
 							</div>
 						</div>
@@ -137,7 +137,7 @@
 							<div class="header-search">
                                 <center>
                                     <form action="{{ route('search.user') }}">
-                                        <input type="text" class="input" placeholder="Search here" name="q" id="search" autocomplete="off" value="{{ request('q') }}">
+                                        <input type="text" class="input" placeholder="Cari produk / service..." name="q" id="search" autocomplete="off" value="{{ request('q') }}">
                                         <button class="search-btn" style="border-radius: 0 2px 2px 0;"><i class="fa fa-search"></i></button>
                                     </form>
                                 </center>
@@ -233,7 +233,7 @@
                                 {{-- List --}}
                                 <div class="dropdown">
 									<a href="{{ route('menu.utama') }}">
-										<i class="fa fa-list"></i>
+										<i class="fa fa-user-circle"></i>
 									</a>
 								</div>
                                 {{-- /List --}}
@@ -325,11 +325,11 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								<p>Wikrama' Shop menyediakan product dan jasa untuk masyarakat sekitar</p>
+								<p>Wikrama' Shop menyediakan product dan jasa untuk masyarakat</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>SMK Wikrama Bogor</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>0251-824211</a></li>
+									<li><a href="mailto:prohumasi@smkwikrama.sch.id"><i class="fa fa-envelope-o"></i>prohumasi@smkwikrama.sch.id</a></li>
 								</ul>
 							</div>
 						</div>
@@ -354,7 +354,6 @@
 									<li><a href="#">About Us</a></li>
 									<li><a href="#">Contact Us</a></li>
 									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
 									<li><a href="#">Terms & Conditions</a></li>
 								</ul>
 							</div>
@@ -364,11 +363,19 @@
 							<div class="footer">
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Track My Order</a></li>
+									<li><a href="{{ route('menu.utama') }}">My Account</a></li>
+									<li><a href="{{ route('pages.shoppingcart') }}">Keranjang Belanja</a></li>
+									<li><a href="{{ route('checkout.index') }}">Daftar Transaksi</a></li>
 									<li><a href="#">Help</a></li>
 								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								{{-- <h3 class="footer-title">Sponsor</h3> --}}
+								<img src="/assets/img/logo-wk.png" width="100px" alt="">
+								<img src="/assets/img/logo-ids.jpeg" width="100px" alt="">
 							</div>
 						</div>
 					</div>
