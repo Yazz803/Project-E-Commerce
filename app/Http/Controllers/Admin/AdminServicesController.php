@@ -132,6 +132,7 @@ class AdminServicesController extends Controller
         return view('admin.services.editservice', [
             'service' => $service,
             'imageServices' => ImageService::where('code_service', $service->code_service)->get(),
+            'categories' => CategoryService::all(),
         ]);
     }
 

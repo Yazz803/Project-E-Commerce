@@ -153,7 +153,7 @@
 														<div class="diskusi-profile-text">
 															<p class="font-weight-bold" style="margin-bottom: 0;">{{ $reply->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $reply->created_at->diffForHumans() }}</span></p>
 															@if($reply->user->role == 'admin')
-															<p style="color:red;">Seller</p>
+															<p style="color:red;">Admin</p>
 															@else
 															<p>Costumer</p>
 															@endif

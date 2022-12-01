@@ -184,11 +184,21 @@
 								<!-- /Notification --> --}}
 
 								<!-- Cart -->
+								@php
+									function isAdminMain(){
+										if(auth()->check()){
+											$userIsAdmin = auth()->user();
+											return $userIsAdmin->role;
+										}
+										return;
+									}
+								@endphp
 								<div>
+								@if(isAdminMain() != 'admin')
 									@if(!auth()->check())
-									<a href="#" onclick="return loginDulu()" data-toggle="modal" data-target="#largeModal">
-										<i class="fa fa-shopping-cart"></i>
-									</a>
+										<a href="#" onclick="return loginDulu()" data-toggle="modal" data-target="#largeModal">
+											<i class="fa fa-shopping-cart"></i>
+										</a>
 									@else
 									<a href="/shopping-cart">
 										<i class="fa fa-shopping-cart"></i>
@@ -200,11 +210,17 @@
 										@endif
 									</a>
 									@endif
+								@endif
 								</div>
 								<!-- /Cart -->
 
                                 {{-- Checkout --}}
                                 <div class="dropdown">
+									@if(isAdminMain() == 'admin')
+									<a href="{{ route('dashboard.index') }}">
+										<i class="fa fa-server"></i>
+									</a>
+									@else
 									<a @if(!auth()->user()) href="#" onclick="return loginDulu()" @else href="/checkout" @endif>
 										@php
 											auth()->check() == true ? $ttl_checkouts = \App\Models\Checkout::where('user_id', auth()->user()->id)->count() : $ttl_checkouts = 0;
@@ -214,6 +230,7 @@
 										<div class="qty">{{ $ttl_checkouts }}</div>
 										@endif
 									</a>
+									@endif
 								</div>
                                 {{-- /checkot --}}
 
@@ -364,8 +381,10 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="{{ route('menu.utama') }}">My Account</a></li>
+									@if(isAdminMain() != 'admin')
 									<li><a href="{{ route('pages.shoppingcart') }}">Keranjang Belanja</a></li>
 									<li><a href="{{ route('checkout.index') }}">Daftar Transaksi</a></li>
+									@endif
 									<li><a href="#">Help</a></li>
 								</ul>
 							</div>

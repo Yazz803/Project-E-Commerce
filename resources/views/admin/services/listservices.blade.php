@@ -33,7 +33,7 @@
                             <form action="{{ route('services.destroy', $service->id) }}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button type="submit" onclick="return confirm('hapus?')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <button type="submit" onclick="return confirm('Kamu yakin ingin menghapus product \'{{ $service->name }}\' ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                             </form>
                         </div>
                     </div>

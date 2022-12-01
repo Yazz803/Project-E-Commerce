@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
+    <a href="{{ route('products.index') }}" class="btn btn-outline-info mb-4 font-weight-bold"><i class="fa fa-arrow-left"></i> Lihat Semua Products</a>
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -47,6 +48,7 @@
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label class="form-label @error('thumb_img') text-danger @enderror text-primary font-weight-bold"><i class="fa fa-circle"></i> Select Images Thumbnail:</label>
+            <p>Direkomendasikan ukurannya 1:1 (Jika tidak maka akan di crop menjadi 1:1)</p>
             @error('thumb_img')
                 <p class="text-danger font-weight-bold">{{ $message }}</p>
             @enderror
@@ -57,6 +59,7 @@
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label class="form-label @error('images') text-danger @enderror text-primary font-weight-bold" for="inputImage"><i class="fa fa-circle"></i> Select Images (minimal 3 images):</label>
+            <p>Direkomendasikan ukurannya 1:1 (Jika tidak maka akan di crop menjadi 1:1)</p>
             <p>Foto thumbnail tidak usah di upload ulang disini</p>
             @error('images')
                 <p class="text-danger font-weight-bold">{{ $message }}</p>

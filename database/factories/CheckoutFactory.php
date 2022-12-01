@@ -20,7 +20,7 @@ class CheckoutFactory extends Factory
             'user_id' => mt_rand(1,50),
             'total_price_checkout' => fake()->numerify('#######'),
             'payment' => 'Bank BRI',
-            'id_pemesanan' => uniqid(),
+            'id_invoice' => uniqid(),
         ];
     }
 }

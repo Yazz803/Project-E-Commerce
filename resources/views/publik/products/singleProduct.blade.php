@@ -72,41 +72,56 @@
 								@endif
 								@endforeach
 								<div class="add-to-cart">
-									<div class="qty-label">
-										Qty
-										<div class="input-number">
-												<input type="number" name="quantity" value="{{ $quantity }}" min="1" max="{{ $product->stock }}" style="font-weight: bold;">
-												<input type="hidden" name="product_id" value="{{ $product->id }}">
-											<span class="qty-up">+</span>
-											<span class="qty-down">-</span>
-										</div>
-									</div>
-									@if(!auth()->check())
-									<a href="#" onclick="return loginDulu()">
-										<button type="button" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</a>
-									<script>
-										function loginDulu(){
-											Swal.fire({
-												title: 'Kamu Harus Login Dulu',
-												backgroundOpacity: .5,
-												position: 'left-start',
-												// width: 300,
-												icon: 'warning',
-												showCancelButton: true,
-												confirmButtonColor: '#3085d6',
-												cancelButtonColor: '#d33',
-												confirmButtonText: 'Login',
-												cancelButtonText: 'Tidak'
-												}).then((result) => {
-												if (result.isConfirmed) {
-													window.location.href= '{{ route("login.index") }}'
-												}
-											})
+									@php
+										function isAdminSingleProduct(){
+											if(auth()->check()){
+												$userIsAdmin = auth()->user();
+												return $userIsAdmin->role;
+											}
+											return;
 										}
-									</script>
+									@endphp
+									@if(isAdminSingleProduct() == 'admin')
+										<a href="{{ route('products.edit', $product->id) }}">
+											<button type="button" class="add-to-cart-btn"><i class="fa fa-edit"></i> Edit Product</button>
+										</a>
 									@else
-									<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										<div class="qty-label">
+											Qty
+											<div class="input-number">
+													<input type="number" name="quantity" value="{{ $quantity }}" min="1" max="{{ $product->stock }}" style="font-weight: bold;">
+													<input type="hidden" name="product_id" value="{{ $product->id }}">
+												<span class="qty-up">+</span>
+												<span class="qty-down">-</span>
+											</div>
+										</div>
+										@if(!auth()->check())
+										<a href="#" onclick="return loginDulu()">
+											<button type="button" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										</a>
+										<script>
+											function loginDulu(){
+												Swal.fire({
+													title: 'Kamu Harus Login Dulu',
+													backgroundOpacity: .5,
+													position: 'left-start',
+													// width: 300,
+													icon: 'warning',
+													showCancelButton: true,
+													confirmButtonColor: '#3085d6',
+													cancelButtonColor: '#d33',
+													confirmButtonText: 'Login',
+													cancelButtonText: 'Tidak'
+													}).then((result) => {
+													if (result.isConfirmed) {
+														window.location.href= '{{ route("login.index") }}'
+													}
+												})
+											}
+										</script>
+										@else
+										<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										@endif
 									@endif
 								</div>
 							</form>
@@ -180,7 +195,7 @@
 											<div class="diskusi-profile-text">
 												<p class="font-weight-bold" style="margin-bottom: 0;">{{ $comment->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $comment->created_at->diffForHumans() }}</span></p>
 												@if($comment->user->role == 'admin')
-												<p style="color: red">Seller</p>
+												<p style="color: red">Admin</p>
 												@else
 												<p>Costumer</p>
 												@endif

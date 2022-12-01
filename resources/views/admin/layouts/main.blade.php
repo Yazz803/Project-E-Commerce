@@ -66,7 +66,7 @@
                 </a>
             </li>
             <!-- Nav Item - Product Collapse Menu -->
-            <li class="nav-item {{ Request::is('dashboard/products*', 'dashboard/category-services*') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/products*', 'dashboard/category-products*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item {{ Request::is('dashboard/method-payments') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('dashboard/method-payments*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('method-payments.index') }}">
                     <i class="fas fa-fw fa-duotone fa-money-bill"></i>
                     <span>Method Payments</span>

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
+    <a href="{{ route('service.show', $service->slug) }}" class="btn btn-outline-info mb-4 font-weight-bold"><i class="fa fa-eye"></i> Lihat Service</a>
     <form action="{{ route('services.update', $service->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -32,9 +33,9 @@
             @enderror
             <select class="form-control @error('category_service_id') is-invalid @enderror" name="category_service_id" id="exampleFormControlSelect1">
                 @foreach($categories as $category)
-                  <option value="{{ $category->id }}" @if($category->id == $service->categoryService->id) selected @endif>{{ ucfirst($category->name) }}</option>
+                <option value="{{ $category->id }}" @if($category->id == $service->categoryService->id) selected @endif>{{ ucfirst($category->name) }}</option>
                 @endforeach
-                </select>
+            </select>
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label for="exampleFormControlSelect1" class="font-weight-bold @error('tag') text-danger @enderror text-primary"><i class="fa fa-circle"></i> Tag</label>
@@ -56,7 +57,7 @@
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label class="form-label @error('thumb_img') text-danger @enderror text-primary font-weight-bold"><i class="fa fa-circle"></i> Select Images Thumbnail:</label>
-            <p>Direkomendasikan ukurannya 5:3 (Jika tidak maka akan di crop menjadi 5:3)</p>
+            <p>Direkomendasikan ukurannya 1:1 (Jika tidak maka akan di crop menjadi 1:1)</p>
             @error('thumb_img')
                 <p class="text-danger font-weight-bold">{{ $message }}</p>
             @enderror
@@ -67,7 +68,7 @@
         </div>
         <div class="form-group" style="margin-top: 30px;">
             <label class="form-label @error('images') text-danger @enderror text-primary font-weight-bold" for="inputImage"><i class="fa fa-circle"></i> Select Images (minimal 3 images):</label>
-            <p>Direkomendasikan ukurannya 5:3 (Jika tidak maka akan di crop menjadi 5:3)</p>
+            <p>Direkomendasikan ukurannya 1:1 (Jika tidak maka akan di crop menjadi 1:1)</p>
             <p>Foto thumbnail tidak usah di upload ulang disini</p>
             @error('images')
                 <p class="text-danger font-weight-bold">{{ $message }}</p>

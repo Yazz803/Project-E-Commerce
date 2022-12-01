@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Checkout;
+use App\Models\InOrder;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -58,15 +59,15 @@ class OrderController extends Controller
         //     Order::create($validatedData);
         // }
 
-        $validatedData['code_order'] = uniqid();
+        // $validatedData['code_order'] = uniqid();
 
-        $allOrder = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $request->product_id)->get();
-        foreach($allOrder as $all){
-            if($all->user_id == auth()->user()->id){
-                $code_order = $all->code_order;
-                $validatedData['code_order'] = $code_order;
-            }
-        }
+        // $allOrder = Order::where('user_id', auth()->user()->id)->orWhere('product_id', $request->product_id)->get();
+        // foreach($allOrder as $all){
+        //     if($all->user_id == auth()->user()->id){
+        //         $code_order = $all->code_order;
+        //         $validatedData['code_order'] = $code_order;
+        //     }
+        // }
             
         // mengurangi stock sesuai dengan quantitynya
         // $product = Product::find($validatedData['product_id']);
@@ -88,7 +89,8 @@ class OrderController extends Controller
     public function show(Checkout $checkout)
     {
         return view('admin.singleOrder', [
-            'orders' => $checkout
+            'orders' => InOrder::where('checkout_id', $checkout->id)->get(),
+            'checkout' => $checkout,
         ]);
     }
 

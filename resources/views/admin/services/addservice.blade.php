@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="form-add-product col-lg-6 m-auto">
+    <a href="{{ route('services.index') }}" class="btn btn-outline-info mb-4 font-weight-bold"><i class="fa fa-arrow-left"></i> Lihat Semua Services</a>
     <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">

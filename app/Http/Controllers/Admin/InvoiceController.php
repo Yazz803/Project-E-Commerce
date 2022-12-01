@@ -19,7 +19,7 @@ class InvoiceController extends Controller
         ]);
 
         if($checkout->user_id == Auth::user()->id){
-            return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
+            return $invoice->download($checkout->id_invoice.'_'.$checkout->user->full_name.'.pdf');
         }else{
             return back();
         }
@@ -34,7 +34,7 @@ class InvoiceController extends Controller
             'inOrder' => InOrder::where('user_id', $checkout->user_id)->where('checkout_id', $checkout->id)->get()
         ]);
 
-        return $invoice->download($checkout->id_pemesanan.'_'.$checkout->user->full_name.'.pdf');
+        return $invoice->download($checkout->id_invoice.'_'.$checkout->user->full_name.'.pdf');
     }
 
 

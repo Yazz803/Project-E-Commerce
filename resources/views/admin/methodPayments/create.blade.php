@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="form-add-product col-lg-6 m-auto">
+    <a href="{{ route('method-payments.index') }}" class="btn btn-outline-info mb-4 font-weight-bold"><i class="fa fa-arrow-left"></i> Back</a>
     <form action="{{ route('method-payments.store') }}" method="POST">
         @csrf
         <div class="form-group">

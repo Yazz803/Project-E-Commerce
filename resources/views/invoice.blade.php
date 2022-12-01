@@ -233,7 +233,7 @@
         </div>
         <div id="invoice">
             <h1>INVOICE</h1>
-          <div class="date">{{ $checkout->id_pemesanan }}</div>
+          <div class="date">{{ $checkout->id_invoice }}</div>
           <div class="date">Metode Pembayaran : {{ $checkout->payment }}</div>
         </div>
         @endif

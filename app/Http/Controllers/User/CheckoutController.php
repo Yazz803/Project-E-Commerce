@@ -61,7 +61,8 @@ class CheckoutController extends Controller
             'total_price_checkout' => $result_total_harga,
             'status' => 'pending',
             'payment' => $request->payment,
-            'id_pemesanan' => 'INV-' . date('Ymd') . '-' . date('His') . '-' . auth()->user()->id,
+            'id_invoice' => 'INV-' . date('Ymd') . '-' . date('His') . '-' . auth()->user()->id,
+            'id_pemesanan' => substr(strtoupper(auth()->user()->username), 0, 4) . date('His') . substr(md5(microtime()), rand(0, 26), 4) . auth()->user()->id,
         ];
 
         if($orders->count() > 0){

@@ -5,9 +5,9 @@
     <h3 style="margin-top: 20px;border-bottom: 2px solid gray;" id="section">Menu Utama</h3>
     <div class="col-lg-6 menu-user">
         <div class="diskusi-profile">
-            <img src="/images/{{ auth()->user()->photo_profile }}" width="50px" alt="">
+            <img src="/images/{{ $user->photo_profile }}" width="50px" alt="">
             <div class="diskusi-profile-text">
-                <p class="font-weight-bold" style="margin-bottom: 0;">{{ auth()->user()->full_name }}</p>
+                <p class="font-weight-bold" style="margin-bottom: 0;">{{ $user->full_name }}</p>
                 @if($user->no_hp != NULL)
                 <p>{{ $user->no_hp }}</p>
                 @else
@@ -18,11 +18,18 @@
         <br>
         <h4>Aktifitas Saya</h4>
         <div class="aktifitas-saya">
+            @if($user->role != 'admin')
             <a href="{{ route('checkout.index') }}">
                 <div class="menu">
                     <i class="fa fa-file-text-o fa-lg"></i> Daftar Transaksi
                 </div>
             </a>
+            <a href="{{ route('pages.shoppingcart') }}">
+                <div class="menu">
+                    <i class="fa fa-shopping-cart fa-lg"></i> Lihat Orderan kamu
+                </div>
+            </a>
+            @endif
             @if($user->role == 'admin')
             <a href="{{ route('dashboard.index') }}">
                 <div class="menu">
@@ -33,11 +40,6 @@
             <a href="{{ route('profile.edit') }}">
                 <div class="menu">
                     <i class="fa fa-pencil-square-o fa-lg"></i>Ubah Profile
-                </div>
-            </a>
-            <a href="{{ route('pages.shoppingcart') }}">
-                <div class="menu">
-                    <i class="fa fa-shopping-cart fa-lg"></i> Lihat Orderan kamu
                 </div>
             </a>
             {{-- <a href="#">

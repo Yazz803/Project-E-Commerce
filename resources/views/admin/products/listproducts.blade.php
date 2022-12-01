@@ -14,7 +14,7 @@
         </style>
         @if($products->count())
         {{ $products->links() }}
-        <div class="row">
+        <div class="row mt-4">
             {{-- List Product --}}
             @foreach($products as $product)
             <div class="col-md-4 mb-3">
@@ -33,7 +33,7 @@
                             <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <button type="submit" onclick="return confirm('Kamu yakin ingin menghapus product \'{{ $product->name }}\' ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                             </form>
                         </div>
                     </div>
