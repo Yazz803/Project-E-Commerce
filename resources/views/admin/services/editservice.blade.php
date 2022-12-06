@@ -97,7 +97,7 @@
             <trix-editor input="detail"></trix-editor>
         </div>
         {{-- code_service --}}
-        <input type="hidden" name="code_service" value="{{ 'P-'.$service->id }}">
+        <input type="hidden" name="code_service" value="{{ 'S-'.$service->id }}">
         @error('code_service')
         <p class="text-danger ">
             {!! $message !!}

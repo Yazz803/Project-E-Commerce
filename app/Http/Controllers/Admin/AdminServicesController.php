@@ -50,7 +50,7 @@ class AdminServicesController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedProduct = $request->validate([
+        $validatedService = $request->validate([
             'name' => 'required|unique:products',
             'price' => 'required',
             'thumb_img' => 'required',
@@ -69,7 +69,7 @@ class AdminServicesController extends Controller
             $img->fit(500, 500, function($const){
                 $const->upsize();
             })->save(public_path('/images/'.$imageName));
-            $validatedProduct['thumb_img'] = $imageName;
+            $validatedService['thumb_img'] = $imageName;
         }
 
         $images = [];
@@ -86,11 +86,11 @@ class AdminServicesController extends Controller
             }
         }
 
-        $validatedProduct['user_id'] = auth()->user()->id;
-        $validatedProduct['name'] = strtolower($request->name);
-        $validatedProduct['slug'] = Str::slug($request->name, '-');
+        $validatedService['user_id'] = auth()->user()->id;
+        $validatedService['name'] = strtolower($request->name);
+        $validatedService['slug'] = Str::slug($request->name, '-');
         
-        Service::create($validatedProduct);
+        Service::create($validatedService);
         
         foreach($images as $image){
             ImageService::insert([
@@ -145,7 +145,64 @@ class AdminServicesController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        $validatedService = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'code_service' => 'required',
+            'description' => 'required',
+            'detail' => 'required',
+        ]);
+
+        if ($request->file('thumb_img')){
+            // hapus dulu, baru upload yang baru
+            File::delete('images/'.$service->thumb_img);
+            $image = $request->file('thumb_img');
+            $imageName = 'Service_'.uniqId().'.'.$image->extension();
+            $img = Image::make($image->path());
+            $img->fit(500, 500, function($const){
+                $const->upsize();
+            })->save(public_path('/images/'.$imageName));
+            $validatedService['thumb_img'] = $imageName;
+        }
+
+        $images = [];
+        if ($request->images){
+            // menghapus thumb image dan menggantikannya dengan yang baru
+            $old_img = ImageService::where('code_service', $service->code_service)->get();
+            foreach($old_img as $image){
+                File::delete('images/'.$image->name);
+            }
+            ImageService::where('code_service', $service->code_service)->delete();
+            foreach($request->images as $image){
+                $imageName = 'Service_'.uniqId().'.'.$image->extension();
+                // $image->move(public_path('images'), $imageName);
+                $img = Image::make($image->path());
+                // size 1:1
+                $img->fit(500, 500, function($const){
+                    $const->upsize();
+                })->save(public_path('images/'.$imageName));
+                $images[]['name'] = $imageName;
+            }
+        }
+
+        $validatedService['user_id'] = auth()->user()->id;
+        $validatedService['category_service_id'] = $request->category_service_id;
+        $validatedService['name'] = strtolower($request->name);
+        $validatedService['slug'] = Str::slug($request->name, '-');
+
         
+        $service->update($validatedService);
+        
+        if($request->images){
+            foreach($images as $image){
+                ImageService::insert([
+                    'name' => implode('|', $image),
+                    'code_service' => $request->code_service
+                ]);
+            }
+        }
+        Alert::toast('Berhasil Mengubah service!', 'success');
+        return redirect()->route('services.edit', $service->id);
     }
 
     /**
@@ -167,7 +224,7 @@ class AdminServicesController extends Controller
         $category->ttl_service -= 1;
         $category->save();
         File::delete('images/'.$service->thumb_img);
-        Imageservice::where('code_service', $service->code_service)->delete();
+        ImageService::where('code_service', $service->code_service)->delete();
         Service::where('id', $service->id)->delete();
 
         // destroy field in database

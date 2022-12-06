@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(60),
             'detail' => $this->faker->sentence(80),
             'thumb_img' => $this->thumb_img[mt_rand(0,count($this->thumb_img)-1)],
-            'code_product' => 'P-'.mt_rand(1,99),
+            'code_product' => 'P-'. mt_rand(1, 20),
             // 'category' => $this->category[mt_rand(1,count($this->category)-1)],
             'category_product_id' => mt_rand(1,2),
         ];

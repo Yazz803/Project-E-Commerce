@@ -150,7 +150,6 @@ class AdminProductController extends Controller
             'name' => 'required',
             'price' => 'required',
             'stock' => 'required',
-            'category' => 'required',
             'code_product' => 'required',
             'description' => 'required',
             'detail' => 'required',
@@ -189,8 +188,10 @@ class AdminProductController extends Controller
         }
 
         $validatedProduct['user_id'] = auth()->user()->id;
+        $validatedProduct['category_product_id'] = $request->category_product_id;
         $validatedProduct['name'] = strtolower($request->name);
         $validatedProduct['slug'] = Str::slug($request->name, '-');
+
         
         $product->update($validatedProduct);
         

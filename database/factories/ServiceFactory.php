@@ -25,7 +25,7 @@ class ServiceFactory extends Factory
             'description' => $this->faker->sentence(60),
             'detail' => $this->faker->sentence(80),
             'thumb_img' => 'pplg2.jpg',
-            'code_service' => 'S-'.mt_rand(1,99),
+            'code_service' => 'S-'. mt_rand(1, 20),
             'tag' => 'pplg',
             'category_service_id' => 1,
         ];

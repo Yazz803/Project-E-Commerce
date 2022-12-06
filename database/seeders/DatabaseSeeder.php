@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Checkout;
 use App\Models\ImageProduct;
+use App\Models\ImageService;
 use App\Models\MethodPayment;
 use App\Models\CategoryProduct;
 use App\Models\CategoryService;
@@ -21,10 +22,59 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    private $Products = ['Bolsu', 'Mie Ayam', 'Corndog', 'Sandwich', 'Bread', 'Cookies', 'Onde-Onde', 'Donut', 'Seblak', 'Rice Bowl', 'Risol', 'Jus Buah Naga', 'Jus Buah Mangga', 'Jus Buah Alpukat', 'Jus Buah Jeruk', 'Jus Buah Apel', 'Jus Buah Nanas', 'Jus Buah Melon', 'Jus Buah Kiwi', 'Jus Buah Sem'];
+    private $category = ['foods', 'drinks'];
+    private $thumb_img = ['bannermakanan2.jpg', 'bannerminuman2.jpg'];
+    private $services = ['web developer', 'software engineer', 'ios developer', 'android developer', 'data analyst'];
     public function run()
     {
-        Product::factory(30)->create();
-        Service::factory(30)->create();
+        // Product::factory(20)->create();
+        for($i = 1; $i <= 20; $i++){
+            Product::create([
+                'name' => $this->Products[$i - 1],
+                'slug' => str_replace(' ', '-', strtolower($this->Products[$i - 1])),
+                'user_id' => 1,
+                'price' => fake()->numerify('#####'),
+                'stock' => mt_rand(1,100),
+                'description' => fake()->sentence(60),
+                'detail' => fake()->sentence(80),
+                'thumb_img' => $this->thumb_img[mt_rand(0,count($this->thumb_img)-1)],
+                'code_product' => 'P-'. $i,
+                // 'category' => $this->category[mt_rand(1,count($this->category)-1)],
+                'category_product_id' => mt_rand(1,2),
+            ]);
+
+            for($j = 0; $j < 3; $j++){
+                ImageProduct::create([
+                    'code_product' => 'P-' . $i,
+                    'name' => 'image_not_found.png',
+                ]);
+            }
+        }
+
+        for($k = 1; $k <= 5; $k++){
+            Service::create([
+                'name' => $this->services[$k - 1],
+                'slug' => str_replace(' ', '-', strtolower($this->services[$k - 1])),
+                'user_id' => 1,
+                'price' => fake()->numerify('#######'),
+                'description' => fake()->sentence(60),
+                'detail' => fake()->sentence(80),
+                'thumb_img' => 'pplg2.jpg',
+                'code_service' => 'S-'. $k,
+                'tag' => 'pplg',
+                'category_service_id' => 1,
+            ]);
+
+            for($l = 0; $l < 3; $l++){
+                ImageService::create([
+                    'code_service' => 'S-' . $k,
+                    'name' => 'image_not_found.png',
+                ]);
+            }
+        }
+        // ImageProduct::factory(90)->create();
+        // ImageService::factory(90)->create();
         // Checkout::factory(50)->create();
         
         // Service::factory()->create([
