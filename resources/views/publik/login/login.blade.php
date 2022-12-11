@@ -25,13 +25,6 @@
               <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 
               <p class="mt-3">Belum punya akun? <a href="{{ route('register.index') }}">Register</a></p>
-
-              {{-- <hr class="my-4"> --}}
-
-              {{-- <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
-                type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
-              <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
-                type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> --}}
             </form>
 
           <a href="{{ route('pages.index') }}" class="btn btn-success ">Back to Home</a>

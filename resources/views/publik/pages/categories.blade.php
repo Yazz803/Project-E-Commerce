@@ -79,7 +79,7 @@
                                 @foreach($products as $product)
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+                                        <img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -121,7 +121,7 @@
                                 @foreach($services as $service)
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+                                        <img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

@@ -18,13 +18,10 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-        $allCheckout = Checkout::all();
         $userCheckout = Checkout::where('user_id', auth()->user()->id)->get();
 
         return view('publik.pages.checkout', [
             'title' => 'Checkout',
-            'ttl_orders' => $ttl_orders,
             'category_products' => CategoryProduct::all(),
             'checkouts' => $userCheckout,
             'orderUser' => Checkout::all(),

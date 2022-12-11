@@ -19,7 +19,7 @@
             <th scope="row" width="5%">{{ $loop->iteration }}</th>
             <td width="15%">{{ $category->name }}</td>
             <td width="60%">
-                <img src="/images/{{ $category->thumb_img }}" width="300px" alt="" class="img-fluid">
+                <img src="{{ asset('/images/'. $category->thumb_img) }}" width="300px" alt="" class="img-fluid">
             </td>
             <td>
               <form action="{{ route('category-products.destroy', $category->id) }}" method="POST">

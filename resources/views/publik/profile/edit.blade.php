@@ -4,22 +4,10 @@
 <div class="container edit-profile">
     <div class="profile" style="margin-top: 10px;">
         <center>
-            <img src="/images/{{ auth()->user()->photo_profile }}" width="100px" style="border-radius: 50%" alt="">
+            <img src="{{ asset('/images/'. auth()->user()->photo_profile) }}" width="100px" style="border-radius: 50%" alt="">
         </center>
         <h4 style="color: gray; margin-top:5px">{{ auth()->user()->full_name }}</h4>
     </div>
-    
-    {{-- <div class="diskusi-profile">
-        <img src="/assets/img/anime7.webp" width="50px" alt="">
-        <div class="diskusi-profile-text">
-            <p class="font-weight-bold" style="margin-bottom: 0;">{{ auth()->user()->full_name }} <span style="color: gray;font-size:10px;"></p>
-            @if(auth()->user()->role == 'admin')
-            <p style="color:red;">Seller</p>
-            @else
-            <p>Costumer</p>
-            @endif
-        </div>
-    </div> --}}
 
     <form action="{{ route('profile.update') }}" method="POST" class="form-profile" enctype="multipart/form-data">
         @csrf

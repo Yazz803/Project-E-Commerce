@@ -63,7 +63,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												<img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
 												<div class="product-label">
 													<span class="new">NEW</span>
 												</div>
@@ -111,7 +111,7 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="/assets/img/products(1).jpg" alt="">
+                            <img src="{{ asset('/assets/img/products(1).jpg') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>Products<br>Collection</h3>
@@ -125,7 +125,7 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="/assets/img/services.jpg" alt="">
+                            <img src="{{ asset('/assets/img/services.jpg') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>Services<br>Collection</h3>
@@ -138,11 +138,11 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="/assets/img/services.jpg" alt="">
+                            <img src="{{ asset('/assets/img/services.jpg') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>About<br>Wikrama's Shop</h3>
-                            <a href="/services" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('pages.aboutWikrama') }}" class="cta-btn">Show More <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												<img src="{{ asset('/images/'. $product->thumb_img ) }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -242,7 +242,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+												<img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

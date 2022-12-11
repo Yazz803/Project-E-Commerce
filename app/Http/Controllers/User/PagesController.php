@@ -29,6 +29,12 @@ class PagesController extends Controller
         ]);
     }
 
+    public function aboutWikrama() {
+        return view('publik.pages.aboutWikrama', [
+            'title' => 'About Wikrama',
+        ]);
+    }
+
     public function products()
     {
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
@@ -89,19 +95,11 @@ class PagesController extends Controller
 
     public function shoppingcart()
     {
-        auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         $user_order_id = Order::where('user_id', auth()->user()->id)->get();
-        // $hasil = [];
-        // foreach($user_order_id as $user_order){
-        //     $product_id = $user_order->product_id;
-        //     $hasil[] = Product::where('id', $product_id)->get();
-        // }
         return view('publik.pages.shoppingcart',[
-            'title' => 'Selamat Datang di Shopping Cart',
-            'ttl_orders' => $ttl_orders,
+            'title' => 'Shopping Cart',
             'category_products' => CategoryProduct::all(),
             'quantity' => $user_order_id,
-            // 'products' => $hasil,
             'orders' => Order::where('user_id', auth()->user()->id)->get(),
             'methodPayments' => MethodPayment::all(),
         ]);

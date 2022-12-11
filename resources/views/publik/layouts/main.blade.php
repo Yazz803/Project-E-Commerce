@@ -9,26 +9,26 @@
 		<title>Wikrama's Shop | {{ $title }}</title>
 
 		{{-- Icon --}}
-		<link rel="icon" href="/assets/img/logo-wk.png">
+		<link rel="icon" href="{{ asset('assets/img/logo-wk.png') }}">
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}"/>
 
 		<!-- Slick -->
-		<link type="text/css" rel="stylesheet" href="/assets/css/slick.css"/>
-		<link type="text/css" rel="stylesheet" href="/assets/css/slick-theme.css"/>
+		<link type="text/css" rel="stylesheet" href="{{ asset('/assets/css/slick.css') }}"/>
+		<link type="text/css" rel="stylesheet" href="{{ asset('/assets/css/slick-theme.css') }}"/>
 
 		<!-- nouislider -->
-		<link type="text/css" rel="stylesheet" href="/assets/css/nouislider.min.css"/>
+		<link type="text/css" rel="stylesheet" href="{{ asset('/assets/css/nouislider.min.css') }}"/>
 
 		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('/assets/css/font-awesome.min.css') }}">
 
 		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="/assets/css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="{{ asset('/assets/css/style.css') }}"/>
 		{{-- <link rel="stylesheet" href="/assets/css/login.css"> --}}
 
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -50,7 +50,7 @@
 					rgba(255, 255, 255, .97),
 					rgba(255, 255, 255, .97)
 				),
-				url(/assets/img/bg.jpg) ;
+				url({{ asset('/assets/img/bg.jpg') }}) ;
 				background-repeat: no-repeat;
 				background-size: cover;
 				height: 100%;
@@ -74,7 +74,7 @@
 				rgba(44, 44, 44, 0.322),
 				rgba(51, 51, 51, 0.349)
 			)
-			,url('/assets//img/GedungWikrama.jpg');
+			,url({{ asset('/assets//img/GedungWikrama.jpg') }});
 			background-position: center;
 			background-repeat: no-repeat;
 			}
@@ -88,7 +88,7 @@
 				rgba(44, 44, 44, 0.322),
 				rgba(51, 51, 51, 0.349)
 			)
-			,url('/assets/img/pplg.jpg');
+			,url({{ asset('/assets/img/pplg.jpg') }});
 			background-position: center;
 			background-repeat: no-repeat;
 			}
@@ -102,11 +102,12 @@
 				rgba(44, 44, 44, 0.322),
 				rgba(51, 51, 51, 0.349)
 			)
-			,url('/assets/img/animeduduk.jpg');
+			,url({{ asset('/assets/img/animeduduk.jpg') }});
 			background-position: center;
 			background-repeat: no-repeat;
 			}
 
+			/* {{ 'biar code dibawahnya gk jadi language mode CSS' }} */
 		</style>
 
     </head>
@@ -125,7 +126,7 @@
 						<div class="col-md-3" style="margin-top: 20px">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="/assets/img/logo-wk.png" alt="" class="logo-wk">
+									<img src="{{ asset('/assets/img/logo-wk.png') }}" alt="" class="logo-wk">
 									<h2 style="color: #DDD;font-size: 2rem;">Wikrama Shop</h2>
 								</a>
 							</div>
@@ -163,26 +164,6 @@
 						<!-- ACCOUNT -->
 						<div class="col-lg-3 clearfix">
 							<div class="header-ctn">
-								{{-- <!-- Notification -->
-								<div>
-									@if(!auth()->check())
-									<a href="#" onclick="return loginDulu()" data-toggle="modal" data-target="#largeModal">
-										<i class="fa fa-bell"></i>
-									</a>
-									@else
-									<a href="/notification">
-										<i class="fa fa-bell"></i>
-										@php
-											auth()->check() == true ? $ttl_orders = \App\Models\Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
-										@endphp
-										@if($ttl_orders > 0)
-										<div class="qty">{{ $ttl_orders }}</div>
-										@endif
-									</a>
-									@endif
-								</div>
-								<!-- /Notification --> --}}
-
 								<!-- Cart -->
 								@php
 									function isAdminMain(){
@@ -200,7 +181,7 @@
 											<i class="fa fa-shopping-cart"></i>
 										</a>
 									@else
-									<a href="/shopping-cart">
+									<a href="{{ route('pages.shoppingcart') }}">
 										<i class="fa fa-shopping-cart"></i>
 										@php
 											auth()->check() == true ? $ttl_orders = \App\Models\Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
@@ -221,7 +202,7 @@
 										<i class="fa fa-server"></i>
 									</a>
 									@else
-									<a @if(!auth()->user()) href="#" onclick="return loginDulu()" @else href="/checkout" @endif>
+									<a @if(!auth()->user()) href="#" onclick="return loginDulu()" @else href="{{ route('checkout.index') }}" @endif>
 										@php
 											auth()->check() == true ? $ttl_checkouts = \App\Models\Checkout::where('user_id', auth()->user()->id)->count() : $ttl_checkouts = 0;
 										@endphp
@@ -237,7 +218,7 @@
                                 {{-- Account --}}
                                 <div class="dropdown">
 									@if(!auth()->check())
-									<a href="/login">
+									<a href="{{ route('login.index') }}">
 										<i class="fa fa-user-circle"></i>
 									</a>
 									@else
@@ -313,10 +294,6 @@
 								<p>Categories</p>
 							</a>
 						</li>
-						{{-- @if(Request::is('service/*') || Request::is('product/*'))
-						<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-						<li><a href="#" style="font-weight: bold;">{{ strtoupper(str_replace('-',' ',basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)))) }}</a></li>
-						@endif --}}
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -351,17 +328,6 @@
 							</div>
 						</div>
 
-						{{-- <div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
-								<ul class="footer-links">
-									<li><a href="#">Foods</a></li>
-									<li><a href="#">Drinks</a></li>
-									<li><a href="#">Services</a></li>
-								</ul>
-							</div>
-						</div> --}}
-
 						<div class="clearfix visible-xs"></div>
 
 						<div class="col-md-3 col-xs-6">
@@ -393,8 +359,8 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								{{-- <h3 class="footer-title">Sponsor</h3> --}}
-								<img src="/assets/img/logo-wk.png" width="100px" alt="">
-								<img src="/assets/img/logo-ids.jpeg" width="100px" alt="">
+								<img src="{{ asset('/assets/img/logo-wk.png') }}" width="100px" alt="">
+								<img src="{{ asset('/assets/img/logo-ids.jpeg') }}" width="100px" alt="">
 							</div>
 						</div>
 					</div>
@@ -429,13 +395,13 @@
 		@include('sweetalert::alert')
 
 		<!-- jQuery Plugins -->
-		<script src="/assets/js/jquery.min.js"></script>
-		<script src="/assets/js/bootstrap.min.js"></script>
-		<script src="/assets/js/slick.min.js"></script>
-		<script src="/assets/js/nouislider.min.js"></script>
-		<script src="/assets/js/jquery.zoom.min.js"></script>
-		<script src="/assets/js/main.js"></script>
-		<script src="/assets/js/login.js"></script>
+		<script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+		<script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('/assets/js/slick.min.js') }}"></script>
+		<script src="{{ asset('/assets/js/nouislider.min.js') }}"></script>
+		<script src="{{ asset('/assets/js/jquery.zoom.min.js') }}"></script>
+		<script src="{{ asset('/assets/js/main.js') }}"></script>
+		<script src="{{ asset('/assets/js/login.js') }}"></script>
 		<script>
 			function loginDulu(){
 				Swal.fire({

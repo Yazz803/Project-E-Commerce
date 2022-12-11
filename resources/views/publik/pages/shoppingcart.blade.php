@@ -117,22 +117,21 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-7">
-						@if($orders->count() > 0)
-						@foreach($orders as $order)
+						@forelse($orders as $order)
 						<div class="product-cart">
 							<div class="cancel-product">
-								<form action="/cancel-order/{{ $order->id }}" method="POST">
+								<form action="{{ route('checkout.cancelOrder', $order->id) }}" method="POST">
 									@csrf
 									@method('DELETE')
 									<input type="hidden" name="product_id" value="{{ $order->id }}">
 									<button type="submit" class="cancel-product-btn"><i class="fa fa-times"></i> </button>
 								</form>
 							</div>
-							<img src="/images/{{ $order->product->thumb_img }}" width="100px" alt="">
+							<img src="{{ asset('/images/'. $order->product->thumb_img) }}" width="100px" alt="">
 							<div class="text-product">
 								<a href="{{ route('product.show', $order->product->slug) }}"><h3 class="product-name" style="font-size: 14px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
 								<h4 class="product-price">Rp {{ number_format($order->product->price,0, ',', '.') }} <span style="color: #D10024;font-size:12px;">(STOCK: {{ $order->product->stock }})</span> </h4>
-								<form action="/order" method="POST">
+								<form action="{{ route('order.update') }}" method="POST">
 									@csrf
 									@method('PUT')
 									<div class="add-to-cart" style="display: flex; justify-content: space-between;">
@@ -149,8 +148,7 @@
 								</form>
 							</div>
 						</div>
-						@endforeach
-						@else
+						@empty
 						<div class="product-cart empty-cart">
 							<center>
 								<h3 class="product-name">Keranjang Belanja Kosong</h3>
@@ -158,7 +156,7 @@
 								<a href="{{ route('pages.products') }}" class="btn-back-products">Lihat Produk lain...</a>
 							</center>
 						</div>
-						@endif
+						@endforelse
 						{{-- /Product --}}
 					</div>
 

@@ -19,7 +19,7 @@
             @foreach($services as $service)
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <img src="/images/{{ $service->thumb_img }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/images/'. $service->thumb_img) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold text-dark uppercase">{{ $service->name }}</h5>
                         <h5 class="card-title font-weight-bold text-danger">Rp {{ number_format($service->price,0, ',', '.') }}</h5>

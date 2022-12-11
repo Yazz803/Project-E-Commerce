@@ -9,7 +9,7 @@
             @foreach($orders as $order)
             <div class="col-md-3 mb-3">
                 <div class="card">
-                    <img src="/images/{{ $order->product->thumb_img }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/images/'. $order->product->thumb_img) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <a href="{{ route('product.show', $order->product->slug) }}" class="font-weight-bold text-dark">{{ $order->product->name }} ({{ $order->quantity }}x)</a>
                         <h5 class="font-weight-bold text-danger">Rp {{ number_format($order->product->price,0, ',', '.') }}</h5>
@@ -29,12 +29,6 @@
             </div>
             <div class="kiri text-right">
                 <a href="{{ route('generateInvoicePDFAdmin', $checkout->id) }}" class="text-success font-weight-bold"><u>Donwload Invoice</u></a>
-                {{-- <form action="{{ route('status.update') }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="status" value="process">
-                    <button class="btn btn-primary" onclick="return confirm('Tekan Ok Jika ingin Mengkonfirmasi Pesanan.')">Konfirmasi Pembayaran</button>
-                </form> --}}
                 @if($checkout->status == 'pending')
               <form action="{{ route('status.update') }}" method="POST">
                 @csrf

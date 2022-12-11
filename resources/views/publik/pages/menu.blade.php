@@ -5,7 +5,7 @@
     <h3 style="margin-top: 20px;border-bottom: 2px solid gray;" id="section">Menu Utama</h3>
     <div class="col-lg-6 menu-user">
         <div class="diskusi-profile">
-            <img src="/images/{{ $user->photo_profile }}" width="50px" alt="">
+            <img src="{{ asset('/images/'.$user->photo_profile) }}" width="50px" alt="">
             <div class="diskusi-profile-text">
                 <p class="font-weight-bold" style="margin-bottom: 0;">{{ $user->full_name }}</p>
                 @if($user->no_hp != NULL)
@@ -94,7 +94,7 @@
                                     @foreach($products as $product)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -136,7 +136,7 @@
                                     @foreach($services as $service)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

@@ -75,20 +75,13 @@
                                                     @if($checkout->status == 'done')
                                                     <center>
                                                         <div class="pesanan-selesai">
-                                                            <img src="/assets/img/anime-happy.gif" alt="">
+                                                            <img src="{{ asset('/assets/img/anime-happy.gif') }}" alt="">
                                                             <h3>Terima Kasih Sudah Beli Product di Wikrama Shop</h3>
                                                         </div>
                                                     </center>
                                                     @endif
 												</div>
 											</div>
-											{{-- <div class="product-cart">
-												<img src="/images/{{ $order->product->thumb_img }}" width="100px" alt="">
-												<div class="text-product">
-													<a href="/product/{{ $order->product->slug }}"><h3 class="product-name" style="font-size: 20px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
-													<h4 class="product-price">Rp {{ number_format($order->product->price,0, ',', '.') }} <span style="color: #D10024;font-size:12px;">(STOCK: {{ $order->product->stock }})</span> </h4>
-												</div>
-											</div> --}}
 											@endforeach
 										</div>
 									</div>
@@ -150,7 +143,7 @@
                                     @foreach($products as $product)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -192,7 +185,7 @@
                                     @foreach($services as $service)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

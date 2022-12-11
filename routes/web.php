@@ -57,6 +57,7 @@ Route::get('/services', [PagesController::class, 'services'])->name('pages.servi
 Route::get('/categories', [PagesController::class, 'categories'])->name('pages.categories');
 Route::get('/category/product/{category_product:slug}', [PagesController::class, 'CategoryProduct'])->name('pages.category.product');
 Route::get('/category/service/{category_service:slug}', [PagesController::class, 'CategoryService'])->name('pages.category.service');
+Route::get('/about', [PagesController::class, 'aboutWikrama'])->name('pages.aboutWikrama');
 
 // ProductController Route
 Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');

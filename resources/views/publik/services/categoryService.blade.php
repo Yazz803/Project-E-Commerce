@@ -12,7 +12,7 @@
 				rgba(44, 44, 44, 0.322),
 				rgba(51, 51, 51, 0.349)
 			)
-			,url('/images/{{ $category->thumb_img }}');
+			,url('{{ asset('/images/'. $category->thumb_img) }}');
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -59,7 +59,7 @@
                             <div class="card">
                                 <div class="product category">
                                     <div class="product-img">
-                                        <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+                                        <img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name text-truncate"><a href="{{ route('product.show', $service->slug) }}">{{ $service->name }}</a></h3>
@@ -117,7 +117,7 @@
                                     @foreach($products as $product)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -159,7 +159,7 @@
                                     @foreach($services as $service)
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+                                            <img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

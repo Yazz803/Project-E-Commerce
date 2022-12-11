@@ -19,7 +19,7 @@
             @foreach($products as $product)
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <img src="/images/{{ $product->thumb_img }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/images/'. $product->thumb_img) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold text-dark uppercase">{{ $product->name }}</h5>
                         <h5 class="card-title font-weight-bold text-danger">Rp {{ number_format($product->price,0, ',', '.') }} (Stock : {{ $product->stock }})</h5>

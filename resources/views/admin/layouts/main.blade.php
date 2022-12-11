@@ -14,16 +14,16 @@
     <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Custom fonts for this template-->
-    <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/trix.css">
-    <link rel="stylesheet" href="/assets/css/adminStyle.css">
-    <link rel="stylesheet" href="/assets/css/carousels.css">
+    <link href="{{ asset('/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/assets/css/trix.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/adminStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/carousels.css') }}">
     <style>
         /* menghilangkan fitur upload gambar di trix-nya */
         .trix-button-group.trix-button-group--file-tools {
@@ -44,7 +44,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
-                    <img src="/assets/img/logo-wk.png" width="50px" alt="">
+                    <img src="{{ asset('/assets/img/logo-wk.png') }}" width="50px" alt="">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin <sup>WK</sup></div>
             </a>
@@ -152,24 +152,11 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ strtoupper(auth()->user()->full_name) }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="/images/{{ auth()->user()->photo_profile }}">
+                                    src="{{ asset('/images/'. auth()->user()->photo_profile) }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                {{-- <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="{{ route('login.logout') }}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -234,23 +221,23 @@
     @include('sweetalert::alert')
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('/assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('/assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/assets/js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('/assets/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('/assets/vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/assets/js/demo/chart-area-demo.js"></script>
-    <script src="/assets/js/demo/chart-pie-demo.js"></script>
+    <script src="{{ asset('/assets/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('/assets/js/demo/chart-pie-demo.js') }}"></script>
 
-    <script src="/assets/js/trix.js"></script>
+    <script src="{{ asset('/assets/js/trix.js') }}"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script> --}}

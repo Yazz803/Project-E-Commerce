@@ -120,7 +120,7 @@
 						@if($orders->count() > 0)
 						@foreach($orders as $order)
 						<div class="product-cart">
-							<img src="/images/{{ $order->product->thumb_img }}" width="100px" alt="">
+							<img src="{{ asset('/images/'. $order->product->thumb_img) }}" width="100px" alt="">
 							<div class="text-product">
 								<a href="{{ route('product.show', $order->product->slug) }}"><h3 class="product-name" style="font-size: 20px !important;">{{ strtoupper($order->product->name). ' (' . $order->quantity . 'x)' }}</h3></a>
 								<h4 class="product-price">Rp {{ number_format($order->product->price,0, ',', '.') }} <span style="color: #D10024;font-size:12px;">(STOCK: {{ $order->product->stock }})</span> </h4>
@@ -242,7 +242,7 @@
 				</div>
 				<!-- /row -->
                 <div class="product-cart" style="display: block;text-align:center;padding-top:10px;">
-                    <img src="/assets/img/anime-sorry2-unscreen.gif" alt="Gambar anime" width="200px">
+                    <img src="{{ asset('/assets/img/anime-sorry2-unscreen.gif') }}" alt="Gambar anime" width="200px">
                     <h1>Tidak ada Pesanan</h1>
                 </div>
                 @endif

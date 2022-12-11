@@ -26,7 +26,7 @@
                 rgba(0, 0, 0, 0.2),
                 rgba(0, 0, 0, 0.2)
             ),
-            url('/assets/img/bgwkshop.jpg');
+            url({{ asset('/assets/img/bgwkshop.jpg') }});
             background-repeat: no-repeat;
             background-size: cover;
             z-index: -1;
@@ -37,6 +37,7 @@
             bottom: 0;
             left: 0;
         }
+        {{ '' }}
     </style>
     <title>{{ $title }}</title>
 </head>

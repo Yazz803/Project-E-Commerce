@@ -13,11 +13,11 @@
 						<div id="product-main-img">
 							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/images/{{ $service->thumb_img }}" alt="">
+								<img src="{{ asset('/images/'. $service->thumb_img) }}" alt="">
 							</div>
 							@foreach($imageServices as $image)
 							<div class="product-preview">
-								<img src="/images/{{ $image->name }}" alt="">
+								<img src="{{ asset('/images/'. $image->name) }}" alt="">
 							</div>
 							@endforeach
 						</div>
@@ -29,11 +29,11 @@
 						<div id="product-imgs">
 							{{-- Thumnail Image --}}
 							<div class="product-preview">
-								<img src="/images/{{ $service->thumb_img }}" alt="">
+								<img src="{{ asset('/images/'. $service->thumb_img) }}" alt="">
 							</div>
 							@foreach($imageServices as $image)
 							<div class="product-preview">
-								<img src="/images/{{ $image->name }}" alt="">
+								<img src="{{ asset('/images/'. $image->name) }}" alt="">
 							</div>
 							@endforeach
 						</div>
@@ -118,7 +118,7 @@
 								<div class="col-md-8">
 									<div class="diskusi-head">
 										<div class="diskusi-profile">
-											<img src="/images/{{ $comment->user->photo_profile }}" width="50px" alt="">
+											<img src="{{ asset('/images/'. $comment->user->photo_profile) }}" width="50px" alt="">
 											<div class="diskusi-profile-text">
 												<p class="font-weight-bold" style="margin-bottom: 0;">{{ $comment->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $comment->created_at->diffForHumans() }}</span></p>
 												@if($comment->user->role == 'admin')
@@ -149,7 +149,7 @@
 											<div class="col-md-12" style="border-left: 3px solid gray !important; margin-left:15px;margin-bottom: 10px;padding-right: 0 !important">
 												<div class="diskusi-head">
 													<div class="diskusi-profile">
-														<img src="/images/{{ $reply->user->photo_profile }}" width="50px" alt="">
+														<img src="{{ asset('/images/'. $reply->user->photo_profile) }}" width="50px" alt="">
 														<div class="diskusi-profile-text">
 															<p class="font-weight-bold" style="margin-bottom: 0;">{{ $reply->user->full_name }} <span style="color: gray;font-size:10px;"><i class="fa fa-circle"></i> {{ $reply->created_at->diffForHumans() }}</span></p>
 															@if($reply->user->role == 'admin')
@@ -279,7 +279,7 @@
 											@foreach($products as $product)
 											<div class="product">
 												<div class="product-img">
-													<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+													<img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -321,7 +321,7 @@
 											@foreach($services as $service)
 											<div class="product">
 												<div class="product-img">
-													<img src="/images/{{ $service->thumb_img }}" alt="" style="object-fit: cover;">
+													<img src="{{ asset('/images/'. $service->thumb_img) }}" alt="" style="object-fit: cover;">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name text-truncate"><a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a></h3>

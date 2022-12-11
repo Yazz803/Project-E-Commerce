@@ -13,12 +13,13 @@
 				rgba(44, 44, 44, 0.322),
 				rgba(51, 51, 51, 0.349)
 			)
-			,url('/images/{{ $category->thumb_img }}');
+			,url('{{ asset('/images/'. $category->thumb_img) }}');
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
 			}
 			@endforeach
+			{{ '' }}
 	</style>
 
     @foreach($category_products as $category)
@@ -67,7 +68,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/images/{{ $product->thumb_img }}" alt="" style="object-fit: cover;">
+												<img src="{{ asset('/images/'. $product->thumb_img) }}" alt="" style="object-fit: cover;">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name text-truncate"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
@@ -126,8 +127,6 @@
 		}
 		}
         </script>
-        @php
-            break;
-        @endphp
+        @break
     @endforeach
 @endsection
