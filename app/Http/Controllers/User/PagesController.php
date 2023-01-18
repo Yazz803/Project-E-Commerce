@@ -22,9 +22,9 @@ class PagesController extends Controller
         return view('publik.pages.landingpage',[
             'title' => 'Landing Page',
             'category_products' => CategoryProduct::all(),
-            'newest' => Product::orderBy('id','desc')->take(8)->get(),
-            'products' => Product::inRandomOrder()->take(10)->get(),
-            'services' => Service::inRandomOrder()->take(10)->get(),
+            'newest' => Product::with('categoryProduct')->orderBy('id','desc')->take(8)->get(),
+            'products' => Product::with('categoryProduct')->inRandomOrder()->take(10)->get(),
+            'services' => Service::with(['categoryService'])->inRandomOrder()->take(10)->get(),
             'ttl_orders' => $ttl_orders,
         ]);
     }
@@ -40,12 +40,7 @@ class PagesController extends Controller
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         return view('publik.products.products', [
             'title' => 'Products',
-            'products' => Product::orderBy('created_at', 'desc')->take(8)->get(),
-            'category_products' => CategoryProduct::all(),
-            // 'foods' => Product::where('category', 'foods')->orderBy('id', 'desc')->paginate(8, ['*'], 'foods'),
-            // 'drinks' => Product::where('category', 'drinks')->orderBy('id', 'desc')->paginate(8, ['*'], 'drinks'),
-            'images' => ImageProduct::all(),
-            'singleimage' => ImageProduct::orderBy('id', 'desc')->take(1)->get(),
+            'category_products' => CategoryProduct::with('products')->get(),
             'ttl_orders' => $ttl_orders,
         ]);
     }
@@ -74,10 +69,7 @@ class PagesController extends Controller
         auth()->check() == true ? $ttl_orders = Order::where('user_id', auth()->user()->id)->count() : $ttl_orders = 0;
         return view('publik.services.services',[
             'title' => 'Services',
-            'services' => Service::orderBy('id', 'desc')->take(8)->get(),
-            'category_services' => CategoryService::all(),
-            // 'progtechs' => Service::where('category','progtech')->orderBy('id','desc')->paginate(8),
-            // 'designs' => Service::where('category','design')->orderBy('id','desc')->paginate(8),
+            'category_services' => CategoryService::with('services')->get(),
             'ttl_orders' => $ttl_orders,
         ]);
     }
@@ -88,8 +80,8 @@ class PagesController extends Controller
             'title' => 'Categories',
             'category_products' => CategoryProduct::all(),
             'category_services' => CategoryService::all(),
-            'products' => Product::inRandomOrder()->take(10)->get(),
-            'services' => Service::inRandomOrder()->take(10)->get(),
+            'products' => Product::with('categoryProduct')->inRandomOrder()->take(10)->get(),
+            'services' => Service::with('categoryService')->inRandomOrder()->take(10)->get(),
         ]);
     }
 
@@ -100,7 +92,7 @@ class PagesController extends Controller
             'title' => 'Shopping Cart',
             'category_products' => CategoryProduct::all(),
             'quantity' => $user_order_id,
-            'orders' => Order::where('user_id', auth()->user()->id)->get(),
+            'orders' => Order::with('product')->where('user_id', auth()->user()->id)->get(),
             'methodPayments' => MethodPayment::all(),
         ]);
     }

@@ -64,7 +64,7 @@
 								<!-- tab -->
 								<div id="tab{{ $category->id }}" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-{{ $category->id }}">
-										@foreach($category->products->shuffle() as $product)
+										@foreach($category->products->load('categoryProduct')->shuffle() as $product)
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">

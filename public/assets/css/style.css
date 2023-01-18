@@ -639,7 +639,7 @@ textarea.input {
 
 #navigation {
   background: #FFF;
-  border-bottom: 2px solid #E4E7ED;
+  border-bottom: 2px solid rgba(255, 255, 255, .2);
   border-top: 3px solid #256D85;
 }
 
@@ -2447,7 +2447,7 @@ textarea.input {
 
 #navigation {
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
 }
 
